@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    //选中时显示蓝色文字
+    <item android:state_selected="true" android:color="@color/tabtextColor_selected"></item>
+    //未选中时显示灰色文字
+    <item android:state_selected="false" android:color="@color/tabtextColor_unselected"></item>
+</selector>
