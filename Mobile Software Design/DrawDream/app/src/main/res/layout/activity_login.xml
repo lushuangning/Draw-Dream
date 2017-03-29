@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.yangq.drawdream.viewmodel.LoginActivityViewModel" />
+            type="cuit.drawdream.viewmodel.LoginActivityViewModel" />
         <import type="android.view.View" />
         <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
 

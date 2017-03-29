@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.yangq.drawdream">
+    package="com.example.drawdream">
 
     <!-- 网络访问权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -41,13 +41,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="com.example.yangq.drawdream.cuit.drawdream.SwApplication"
+        android:name="cuit.drawdream.SwApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.yangq.drawdream.cuit.drawdream.view.MainActivity"
+        <activity android:name="cuit.drawdream.view.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

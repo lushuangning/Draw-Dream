@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
-import com.example.yangq.drawdream.R;
+import com.example.drawdream.R;
 import cuit.drawdream.view.adapter.MainVpAdapter;
 import cuit.drawdream.view.fragment.IndexFragment;
 
