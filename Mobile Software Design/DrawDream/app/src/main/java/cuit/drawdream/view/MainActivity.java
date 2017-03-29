@@ -1,19 +1,25 @@
 package cuit.drawdream.view;
 
+import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.example.drawdream.R;
-import cuit.drawdream.view.adapter.MainVpAdapter;
-import cuit.drawdream.view.fragment.IndexFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cuit.drawdream.view.adapter.MainVpAdapter;
+import cuit.drawdream.view.custom.PageTransformer;
+import cuit.drawdream.view.fragment.ClassfiFragment;
+import cuit.drawdream.view.fragment.IndexFragment;
+import cuit.drawdream.view.fragment.InquireFragment;
+import cuit.drawdream.view.fragment.SettingsFragment;
 import devlight.io.library.ntb.NavigationTabBar;
+
+
 
 /**
  * class :    MainActivity
@@ -43,12 +49,14 @@ public class MainActivity extends BaseActivity {
 
         //TODO 这里添加需要的fragment
         fragments.add(new IndexFragment());
-        fragments.add(new IndexFragment());
-        fragments.add(new IndexFragment());
-        fragments.add(new IndexFragment());
+        fragments.add(new ClassfiFragment());
+        fragments.add(new InquireFragment());
+        fragments.add(new SettingsFragment());
 
+//        mViewPager.addOnPageChangeListener(this); ////设置页面切换时的监听器
         mMainVpAdapter = new MainVpAdapter(getSupportFragmentManager(),fragments);
         mViewPager.setAdapter(mMainVpAdapter);
+        mViewPager.setPageTransformer(true,new PageTransformer());
 
         //初始化navigationTabBar
 //        final String[] colors = getResources().getStringArray(R.array.default_preview);
@@ -64,14 +72,14 @@ public class MainActivity extends BaseActivity {
         model.add(new NavigationTabBar.Model.Builder(
                 getResources().getDrawable(R.drawable.ic_four),
                 Color.parseColor("#00000000"))
-                .title("学习日程")
+                .title("分类")
                 .badgeTitle("NTB")
                 .build()
         );
         model.add(new NavigationTabBar.Model.Builder(
                 getResources().getDrawable(R.drawable.ic_four),
                 Color.parseColor("#FFFFFF"))
-                .title("联系人")
+                .title("搜索")
                 .badgeTitle("NTB")
                 .build()
         );
