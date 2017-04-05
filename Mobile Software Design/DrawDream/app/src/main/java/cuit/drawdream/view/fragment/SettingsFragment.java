@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 
 import com.example.drawdream.R;
 
-
+/**
+ * class : SettingsFragment
+ * Created by 路双宁 on 2017/3/29
+ * Desc : 用户设置的fragment
+ */
 public class SettingsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

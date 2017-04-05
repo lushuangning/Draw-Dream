@@ -4,7 +4,9 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 /**
+ * class : PageTransformer
  * Created by 路双宁 on 2017/3/30.
+ * Desc : viewPager切换动画
  */
 
 public class PageTransformer implements ViewPager.PageTransformer{

@@ -10,9 +10,29 @@
         <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
 
     </data>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon"/>
+
+        <TextView
+            android:id="@+id/sinIn_username"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/sinIn_username"/>
+
+        <TextView
+            android:id="@+id/sinIn_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/sinIn_password"/>
+
+
+    </LinearLayout>
+
 </layout>

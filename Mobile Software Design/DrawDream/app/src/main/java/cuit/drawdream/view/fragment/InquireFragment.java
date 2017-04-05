@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 
 import com.example.drawdream.R;
 
-
+/**
+ * class : InquireFragment
+ * Created by 路双宁 on 2017/3/29
+ * Desc : 搜索的fragment
+ */
 public class InquireFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
