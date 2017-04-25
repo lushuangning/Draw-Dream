@@ -9,7 +9,6 @@ import com.google.gson.JsonParseException;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,15 +33,11 @@ public class OkHttpHelper {
     private Gson mGson;
 
     private OkHttpHelper(){
-        mClientInstance = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10,TimeUnit.SECONDS)
-                .writeTimeout(30,TimeUnit.SECONDS)
-                .build();
+        mClientInstance = new OkHttpClient();
 
-//        mClientInstance.connectTimeoutMillis();//默认10000毫秒
-//        mClientInstance.readTimeoutMillis();
-//        mClientInstance.writeTimeoutMillis();
+        mClientInstance.connectTimeoutMillis();//默认10000毫秒
+        mClientInstance.readTimeoutMillis();
+        mClientInstance.writeTimeoutMillis();
         mGson = new Gson();
 
         mHandler = new Handler(Looper.getMainLooper());
