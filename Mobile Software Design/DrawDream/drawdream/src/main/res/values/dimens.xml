@@ -9,7 +9,7 @@
     <!--屏幕左右基线-->
     <dimen name="md_margin_screen_basic">16dp</dimen>
     <!--文字左侧基线-->
-    <dimen name="md_margin_text">72dp</dimen>
+    <dimen name="md_margin_text">56dp</dimen>
 
 
     <!--小字提示-->

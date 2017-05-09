@@ -21,12 +21,6 @@ import com.example.drawdream.R;
 public class IndexFragment extends Fragment {
     public static final String TAG = IndexFragment.class.getSimpleName();
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.i(TAG,"onCreate");
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

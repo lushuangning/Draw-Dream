@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '25.0.1'
     defaultConfig {
         applicationId "com.example.sailwish008.electronics_meeting"
-        minSdkVersion 15
-        targetSdkVersion 19
+        minSdkVersion 19
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,7 +31,7 @@ android {
     }
 }
 ext {
-    androidSupportLibVersion = "25.0.0"
+    androidSupportLibVersion = "25.0.1"
     retrofitVersion = "2.0.0"
     greenDaoVersion = "2.0.0"
     glideVersion = "3.7.0"
@@ -61,7 +61,6 @@ dependencies {
     //MVVM
     compile project(':library')
     //navigationTabBar
-    compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'io.reactivex:rxandroid:1.1.0'

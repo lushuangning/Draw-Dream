@@ -10,7 +10,7 @@ public class greenGenerator {
         //添加AppInfo实体类
         addAppInfoEntity(schema);
         //在.../src/main/java-gen文件夹下生成java对象、javaDAO、DAOSession和DAOMaster类
-        new DaoGenerator().generateAll(schema, "E:\\MyCode\\GitHub\\Draw-Dream\\Mobile Software Design\\DrawDream\\app\\src\\main\\java-gen");
+        new DaoGenerator().generateAll(schema, "E:\\Github\\Draw-Dream\\Mobile Software Design\\DrawDream\\drawdream\\src\\main\\java-gen");
     }
 
     /**
