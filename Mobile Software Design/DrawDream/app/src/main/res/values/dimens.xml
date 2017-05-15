@@ -1,0 +1,28 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--顶部状态栏高度-->
+    <dimen name="md_margin_top_status">24dp</dimen>
+    <!--appbar最小高度-->
+    <dimen name="md_margin_appbar">56dp</dimen>
+    <!--屏幕左右基线-->
+    <dimen name="md_margin_screen_basic">16dp</dimen>
+    <!--文字左侧基线-->
+    <dimen name="md_margin_text">48dp</dimen>
+    <!--小字提示-->
+    <dimen name="md_text_size_hint">12sp</dimen>
+    <!--正文-->
+    <dimen name="md_text_size_content">14sp</dimen>
+    <!--小标题-->
+    <dimen name="md_text_size_small_title">15sp</dimen>
+    <!--appbar文字-->
+    <dimen name="md_text_size_appbar">20sp</dimen>
+    <!--大标题-->
+    <dimen name="md_text_size_big_title">24sp</dimen>
+    <!--超大号字体-->
+    <dimen name="md_text_size_super_one">34sp</dimen>
+    <dimen name="md_text_size_super_two">45sp</dimen>
+    <dimen name="md_text_size_super_three">56sp</dimen>
+    <dimen name="md_text_size_super_four">112sp</dimen>
+</resources>

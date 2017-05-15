@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">绘梦</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sinIn_username">邮箱/手机号/用户名</string>
+    <string name="sinIn_password">请输入密码</string>
+</resources>
