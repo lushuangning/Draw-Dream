@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "com.example.sailwish008.electronics_meeting"
+        applicationId "com.cuit.drawdream.drawdream"
         minSdkVersion 18
         targetSdkVersion 24
         versionCode 1
@@ -72,5 +72,6 @@ dependencies {
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.youth.banner:banner:1.4.9'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
