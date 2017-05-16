@@ -1,9 +1,12 @@
 package com.cuit.drawdream.drawdream.view.adapter;
 
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
+
+import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +18,7 @@ import java.util.List;
  * Desc :
  */
 
-public class MainVpAdapter extends FragmentPagerAdapter {
+public class MainVpAdapter extends FragmentPagerAdapter{
 
     private List<Fragment> fragmentList = new ArrayList<>();
     @Override
@@ -37,4 +40,5 @@ public class MainVpAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return fragmentList.size();
     }
+
 }

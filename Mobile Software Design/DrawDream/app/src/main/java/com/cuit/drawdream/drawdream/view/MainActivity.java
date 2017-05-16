@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.view.adapter.MainVpAdapter;
+import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 import com.cuit.drawdream.drawdream.view.fragment.IndexFragment;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class MainActivity extends BaseActivity {
 
         //TODO 这里添加需要的fragment
         fragments.add(new IndexFragment());
-        fragments.add(new IndexFragment());
+        fragments.add(new ClassifyFragment());
         fragments.add(new IndexFragment());
         fragments.add(new IndexFragment());
 
@@ -64,14 +65,14 @@ public class MainActivity extends BaseActivity {
         model.add(new NavigationTabBar.Model.Builder(
                 getResources().getDrawable(R.drawable.ic_four),
                 Color.parseColor("#00000000"))
-                .title("学习日程")
+                .title("分类")
                 .badgeTitle("NTB")
                 .build()
         );
         model.add(new NavigationTabBar.Model.Builder(
                 getResources().getDrawable(R.drawable.ic_four),
                 Color.parseColor("#FFFFFF"))
-                .title("联系人")
+                .title("搜索")
                 .badgeTitle("NTB")
                 .build()
         );

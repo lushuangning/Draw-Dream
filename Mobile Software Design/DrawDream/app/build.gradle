@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.example.sailwish008.electronics_meeting"
-        minSdkVersion 19
+        minSdkVersion 18
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -20,9 +20,9 @@ android {
     dataBinding {
         enabled = true
     }
-    sourceSets{
-        main{
-            java.srcDirs = ['src/main/java' , 'src/main/java-gen']
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java-gen']
         }
     }
     compileOptions {
@@ -42,7 +42,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
     compile "com.android.support:appcompat-v7:${androidSupportLibVersion}"
     compile "com.android.support:design:${androidSupportLibVersion}"
     compile "com.android.support:cardview-v7:${androidSupportLibVersion}"
@@ -54,22 +53,24 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
     compile "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
     compile "com.github.bumptech.glide:glide:${glideVersion}"
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //greendao
-    compile 'io.reactivex:rxandroid:1.1.0'
     compile "de.greenrobot:greendao:${greenDaoVersion}"
     //filedownload
-    compile 'com.liulishuo.filedownloader:library:1.2.2'
     //云巴
     compile files('libs/yunba-sdk-release1.8.5.jar')
     //MVVM
     compile project(':library')
-    testCompile 'junit:junit:4.12'
     //navigationTabBar
-    compile 'devlight.io:navigationtabbar:1.2.5'
     //circle
-    compile 'me.relex:circleindicator:1.2.2@aar'
     //banner
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.liulishuo.filedownloader:library:1.2.2'
+    compile 'devlight.io:navigationtabbar:1.2.5'
+    compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.android.support:support-v4:24.2.1'
+    testCompile 'junit:junit:4.12'
 }

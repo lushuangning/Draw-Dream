@@ -18,7 +18,7 @@
             android:layout_centerInParent="true"
             android:textColor="#fff"
             android:background="@null"
-            android:text="绘梦"/>
+            android:text="绘梦动画"/>
 
     </RelativeLayout>
     <!--这里应该是一个轮播图，先以图片代替看看效果-->
