@@ -3,10 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DrawDream.iml" filepath="$PROJECT_DIR$/DrawDream.iml" />
-      <module fileurl="file://$PROJECT_DIR$/drawdream/drawdream.iml" filepath="$PROJECT_DIR$/drawdream/drawdream.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/greendaogenerator/greendaogenerator.iml" filepath="$PROJECT_DIR$/greendaogenerator/greendaogenerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/okhttptest/okhttptest.iml" filepath="$PROJECT_DIR$/okhttptest/okhttptest.iml" />
     </modules>
   </component>
 </project>

@@ -2,13 +2,11 @@
 
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'me.tatarka:gradle-retrolambda:3.2.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
@@ -19,7 +17,6 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenCentral()
         jcenter()
     }
 }

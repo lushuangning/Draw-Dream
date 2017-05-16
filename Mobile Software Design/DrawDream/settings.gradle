@@ -1,1 +1,1 @@
-include ':drawdream', ':library', ':greendaogenerator', ':okhttptest'
+include ':app', ':library', ':greendaogenerator'
