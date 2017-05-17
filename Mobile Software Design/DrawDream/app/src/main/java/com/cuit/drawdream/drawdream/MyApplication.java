@@ -10,6 +10,7 @@ import com.cuit.drawdream.bean.DaoMaster;
 import com.cuit.drawdream.bean.DaoSession;
 import com.cuit.drawdream.drawdream.model.service.ServiceFactory;
 import com.cuit.drawdream.drawdream.model.service.SwNetworkService;
+import com.cuit.drawdream.drawdream.utils.Utils;
 import com.cuit.drawdream.drawdream.utils.tool.NetworkManager;
 import com.cuit.drawdream.drawdream.utils.widget.CrashHandler;
 import com.liulishuo.filedownloader.FileDownloader;
@@ -53,6 +54,7 @@ public class MyApplication extends Application {
         application = this;
         CrashHandler handler = CrashHandler.getInstance();
         handler.init(this);
+        Utils.init(this);
         helper = new DaoMaster.DevOpenHelper(this, DB_NAME, null);
         db = helper.getWritableDatabase();
         // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。

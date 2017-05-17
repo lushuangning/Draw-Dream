@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.cuit.drawdream.drawdream.R;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +18,10 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             },3000);
+    }
+
+    @Override
+    protected void destroy() {
+
     }
 }

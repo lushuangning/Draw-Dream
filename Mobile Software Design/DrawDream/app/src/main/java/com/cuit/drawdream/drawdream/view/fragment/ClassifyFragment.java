@@ -1,66 +1,93 @@
 package com.cuit.drawdream.drawdream.view.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.cuit.drawdream.drawdream.R;
+import com.cuit.drawdream.drawdream.view.adapter.PullToRefreshAdapter;
+import com.cuit.drawdream.drawdream.viewmodel.DataServer;
 
 
-public class ClassifyFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class ClassifyFragment extends Fragment implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener{
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private RecyclerView mRecyclerView;
+    private PullToRefreshAdapter pullToRefreshAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private int delayMillis = 1000;
+    private int mCurrentCounter = 0;
+    private static final int PAGE_SIZE = 6;
+    private boolean isErr;
 
     public ClassifyFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ClassifyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ClassifyFragment newInstance(String param1, String param2) {
-        ClassifyFragment fragment = new ClassifyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_classify, container, false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        initAdapter();
         return view;
     }
 
+    private void initAdapter() {
+        pullToRefreshAdapter = new PullToRefreshAdapter();
+        pullToRefreshAdapter.setOnLoadMoreListener(this, mRecyclerView);
+        pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
+//        pullToRefreshAdapter.setPreLoadNumber(3);
+        mRecyclerView.setAdapter(pullToRefreshAdapter);
+        mCurrentCounter = pullToRefreshAdapter.getData().size();
+
+        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
+                Toast.makeText(getContext(), Integer.toString(position), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 
+    @Override
+    public void onLoadMoreRequested() {
 
+    }
 
+    @Override
+    public void onRefresh() {
+        pullToRefreshAdapter.setEnableLoadMore(false);
+        new Handler().postDelayed(() -> {
+                pullToRefreshAdapter.setNewData(DataServer.getSampleData(PAGE_SIZE));
+                isErr = false;
+                mCurrentCounter = PAGE_SIZE;
+                mSwipeRefreshLayout.setRefreshing(false);
+                pullToRefreshAdapter.setEnableLoadMore(true);
+
+        }, delayMillis);
+    }
 }

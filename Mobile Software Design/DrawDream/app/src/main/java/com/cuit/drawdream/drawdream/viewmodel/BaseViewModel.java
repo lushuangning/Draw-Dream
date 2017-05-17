@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 
 import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.bean.response.ResponseError;
-import com.cuit.drawdream.drawdream.utils.widget.ToastUtils;
+import com.cuit.drawdream.drawdream.utils.ToastUtils;
 import com.google.gson.Gson;
 import java.io.IOException;
 
