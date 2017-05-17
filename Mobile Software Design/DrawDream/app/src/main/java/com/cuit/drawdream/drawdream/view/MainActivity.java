@@ -56,35 +56,35 @@ public class MainActivity extends BaseActivity {
         final NavigationTabBar navigationTabBar = (NavigationTabBar)findViewById(R.id.ntb_index);
         final ArrayList<NavigationTabBar.Model> model = new ArrayList<NavigationTabBar.Model>();
         model.add(new NavigationTabBar.Model.Builder(
-                getResources().getDrawable(R.drawable.ic_four),
-                Color.parseColor("#00000000"))
+                getResources().getDrawable(R.drawable.ic_index),
+                Color.parseColor("#ffffff"))
                 .title("首页")
                 .badgeTitle("NTB")
                 .build()
         );
         model.add(new NavigationTabBar.Model.Builder(
-                getResources().getDrawable(R.drawable.ic_four),
-                Color.parseColor("#00000000"))
+                getResources().getDrawable(R.drawable.ic_classify),
+                Color.parseColor("#ffffff"))
                 .title("分类")
                 .badgeTitle("NTB")
                 .build()
         );
         model.add(new NavigationTabBar.Model.Builder(
-                getResources().getDrawable(R.drawable.ic_four),
-                Color.parseColor("#FFFFFF"))
+                getResources().getDrawable(R.drawable.ic_search),
+                Color.parseColor("#ffffff"))
                 .title("搜索")
                 .badgeTitle("NTB")
                 .build()
         );
         model.add(new NavigationTabBar.Model.Builder(
-                getResources().getDrawable(R.drawable.ic_four),
-                Color.parseColor("#FFFFFF"))
+                getResources().getDrawable(R.drawable.ic_me),
+                Color.parseColor("#ffffff"))
                 .title("个人")
                 .badgeTitle("NTB")
                 .build()
         );
         navigationTabBar.setModels(model);
-        navigationTabBar.setViewPager(mViewPager,1);
+        navigationTabBar.setViewPager(mViewPager,0);
     }
 
     @Override

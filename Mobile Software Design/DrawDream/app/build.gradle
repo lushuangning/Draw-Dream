@@ -5,7 +5,7 @@ android {
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.cuit.drawdream.drawdream"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -61,18 +61,19 @@ dependencies {
     compile files('libs/yunba-sdk-release1.8.5.jar')
     //MVVM
     compile project(':library')
-    //navigationTabBar
-    //circle
-    //banner
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'com.liulishuo.filedownloader:library:1.2.2'
+    //navigationTabBar
     compile 'devlight.io:navigationtabbar:1.2.5'
+    //circle
     compile 'me.relex:circleindicator:1.2.2@aar'
+    //banner
     compile 'com.youth.banner:banner:1.4.9'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     // BRVAH
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.16'
+    compile 'org.jsoup:jsoup:1.9.2'
     testCompile 'junit:junit:4.12'
 }

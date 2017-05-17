@@ -21,7 +21,7 @@
         app:ntb_badged="true"
         app:ntb_badge_gravity="top"
         app:ntb_badge_position="right"
-        app:ntb_active_color="#000"
+        app:ntb_active_color="@color/color_main"
         />
 
 </LinearLayout>

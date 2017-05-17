@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@null">
+
+    <com.cuit.drawdream.drawdream.view.custom.PreviousView
+        android:id="@+id/pv_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/md_margin_appbar"/>
+
+    <ScrollView
+        android:layout_below="@+id/pv_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff">
+            <ImageView
+                android:id="@+id/iv_title_detial"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                tools:background="@drawable/item1"/>
+            <TextView
+                android:layout_margin="@dimen/md_margin_screen_basic"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_title_detial"
+                android:id="@+id/tv_title_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/md_text_size_appbar"
+                android:textColor="#000"
+                tools:text="《夏目友人帐》第五季官方图确认公布时间倒计时！"/>
+            <TextView
+                android:id="@+id/tv_author_detail"
+                android:layout_below="@+id/tv_title_detial"
+                android:layout_marginTop="@dimen/md_margin_top_status"
+                android:layout_marginBottom="@dimen/md_margin_screen_basic"
+                android:layout_marginStart="@dimen/md_margin_screen_basic"
+                android:layout_marginEnd="@dimen/md_margin_screen_basic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/md_text_size_small_title"
+                android:textColor="#000"
+                tools:text="报道：丢仔"/>
+            <TextView
+                android:id="@+id/tv_read_num_detail"
+                android:layout_below="@+id/tv_title_detial"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/md_margin_top_status"
+                android:layout_marginBottom="@dimen/md_margin_screen_basic"
+                android:layout_marginStart="@dimen/md_margin_screen_basic"
+                android:layout_marginEnd="@dimen/md_margin_screen_basic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/md_text_size_small_title"
+                android:textColor="#000"
+                tools:text="阅读：2030"/>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

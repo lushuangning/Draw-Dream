@@ -1,6 +1,7 @@
 package com.cuit.drawdream.drawdream.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,8 +10,11 @@ import android.support.v7.widget.GridLayoutManager;
 import com.bumptech.glide.Glide;
 import com.cuit.drawdream.drawdream.BR;
 import com.cuit.drawdream.drawdream.R;
+import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.utils.tool.GlideImageLoader;
+import com.cuit.drawdream.drawdream.view.DetailActivity;
+import com.kelin.mvvmlight.command.ReplyCommand;
 
 
 import java.util.ArrayList;
@@ -187,6 +191,11 @@ public class IndexFragmentViewModel extends BaseViewModel {
                     break;
             }
         }
+
+        public final ReplyCommand toDetial = new ReplyCommand(()->{
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            mContext.startActivity(intent);
+        });
 
         @Override
         public void destroy() {
