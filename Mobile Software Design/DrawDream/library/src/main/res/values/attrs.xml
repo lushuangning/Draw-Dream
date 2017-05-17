@@ -165,5 +165,10 @@
     <declare-styleable name="Button">
         <attr name="setButtonTextColor" format="reference"></attr>
     </declare-styleable>
+    <declare-styleable name="Banner">
+        <attr name="setImageLoader" format="reference"></attr>
+        <attr name="setImages" format="reference"></attr>
+        <attr name="isOk" format="boolean"></attr>
+    </declare-styleable>
 
 </resources>
