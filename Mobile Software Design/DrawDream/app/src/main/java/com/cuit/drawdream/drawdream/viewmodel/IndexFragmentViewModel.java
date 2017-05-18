@@ -3,9 +3,11 @@ package com.cuit.drawdream.drawdream.viewmodel;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
@@ -40,6 +42,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
     private Context mContext;
     private ArrayList<ItemIndexEntity> mList;
 
+    public final ObservableBoolean isRefreshing = new ObservableBoolean(true);
+    public final ObservableBoolean isProgressBarShowing = new ObservableBoolean(true);
     public final ObservableField<GridLayoutManager> mGridLayoutManager = new ObservableField<>();
     public final ObservableArrayList<ItemIndexViewModel> viewModels = new ObservableArrayList<>();
     public final ItemViewSelector<ItemIndexViewModel> itemView = new ItemViewSelector<ItemIndexViewModel>() {
@@ -83,6 +87,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
     }
 
     private void initUI() {
+        isProgressBarShowing.set(false);
+        isRefreshing.set(false);
         mList = new ArrayList<>();
 
         ArrayList<String > images = new ArrayList<>();
@@ -117,6 +123,19 @@ public class IndexFragmentViewModel extends BaseViewModel {
         }
 
     }
+
+    /**
+     * 下拉刷新
+     */
+    public final ReplyCommand onRefreshCommand = new ReplyCommand(()->{
+        isRefreshing.set(true);
+        isRefreshing.set(false);
+    });
+
+    public final ReplyCommand<Integer> onLoadMoreCommand = new ReplyCommand<>((itemCount)->{
+        Toast.makeText(mContext,"没有更多了" + itemCount,Toast.LENGTH_SHORT)
+                .show();
+    });
 
 
     @Override
@@ -156,8 +175,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
                 case ITEM_HEADER_RECYCLER:
                     for(String imgUrl:mEntity.getImages()){
                         mImages.add(imgUrl);
-                        Log.d("mImages' size is ","" + mImages.size());
                     }
+                    Log.d("mImages' size is ","" + mImages.size());
                     break;
                 case ITEM_GENERAL:
                     mImage.set(mEntity.getImg());

@@ -13,6 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp">
+        <!--app:isOk属性一定要放在setImageLoader和Images后面，否则轮播图为空-->
         <com.youth.banner.Banner
             android:layout_width="wrap_content"
             android:layout_height="150dp"
@@ -22,12 +23,6 @@
             app:isOk="@{true}"
             app:is_auto_play="true"
             />
-        <!--<ImageView-->
-        <!--android:id="@+id/test"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="150dp"-->
-
-        <!--android:background="@drawable/pt_weibo"/>-->
 
     </RelativeLayout>
 </layout>

@@ -8,6 +8,8 @@
             name="indexFragmentViewModel"
             type="com.cuit.drawdream.drawdream.viewmodel.IndexFragmentViewModel" />
         <import type="me.tatarka.bindingcollectionadapter.LayoutManagers"/>
+
+        <import type="android.view.View"/>
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,10 +35,20 @@
 
         </RelativeLayout>
 
+        <ProgressBar
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/rl_title_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{indexFragmentViewModel.isProgressBarShowing?View.VISIBLE:View.GONE}"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/rl_title_index"
+            android:refreshing="@{indexFragmentViewModel.isRefreshing}"
+            app:onRefreshCommand="@{indexFragmentViewModel.onRefreshCommand}"
             >
 
             <android.support.v7.widget.RecyclerView
@@ -45,6 +57,7 @@
                 app:itemView="@{indexFragmentViewModel.itemView}"
                 app:items="@{indexFragmentViewModel.viewModels}"
                 app:setLayoutManager="@{indexFragmentViewModel.mGridLayoutManager}"
+                app:onLoadMoreCommand="@{indexFragmentViewModel.onLoadMoreCommand}"
                 />
 
         </android.support.v4.widget.SwipeRefreshLayout>
