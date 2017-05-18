@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 
 
 import com.bumptech.glide.Glide;
@@ -88,8 +89,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
 
         images.add("http://img1.178.com/acg1/201705/288466908147/288471126293.jpg");
         images.add("http://img0.178.com/acg1/201705/288926238343/288926825037.jpg");
-        images.add("http://img1.178.com/acg1/201705/288466908147/288471126293.jpg");
-        images.add("http://img0.178.com/acg1/201705/288926238343/288926825037.jpg");
+        images.add("http://img5.178.com/acg1/201705/288287453008/288288127007.jpg");
+        images.add("http://img1.178.com/acg1/201705/288287453008/288288091902.jpg");
 
         ItemIndexViewModel viewModelForRecycler = new ItemIndexViewModel(mContext,
                 new ItemIndexEntity(images),
@@ -101,45 +102,20 @@ public class IndexFragmentViewModel extends BaseViewModel {
                 ITEM_HEADER_AUTHOR);
         viewModels.add(viewModelForAuthor);
 
-        mList.add(new ItemIndexEntity("http://img3.178.com/acg1/201705/288980777014/288982536952.jpg",
-                "今日早报",
-                "动漫",
-                "Fragd",
-                "09-12"));
-        mList.add(new ItemIndexEntity("http://img3.178.com/acg1/201705/288980777014/288982536952.jpg",
-                "今日早报",
-                "动漫",
-                "Fragd",
-                "09-12"));
-        mList.add(new ItemIndexEntity("http://img3.178.com/acg1/201705/288980777014/288982536952.jpg",
-                "今日早报",
-                "动漫",
-                "Fragd",
-                "09-12"));
-        mList.add(new ItemIndexEntity("http://img3.178.com/acg1/201705/288980777014/288982536952.jpg",
-                "今日早报",
-                "动漫",
-                "Fragd",
-                "09-12"));
-        mList.add(new ItemIndexEntity("http://img3.178.com/acg1/201705/288980777014/288982536952.jpg",
-                "今日早报",
-                "动漫",
-                "Fragd",
-                "09-12"));
-        mList.add(new ItemIndexEntity("http://img3.178.com/acg1/201705/288980777014/288982536952.jpg",
-                "今日早报",
-                "动漫",
-                "Fragd",
-                "09-12"));
+
+        for(int i = 0; i < 12;i++){
+           mList.add(new ItemIndexEntity("http://img1.178.com/acg1/201705/288466908147/288471126293.jpg",
+                   "今日早报",
+                   "动漫",
+                   "Fragd",
+                   "09-12"));
+        }
 
         for(ItemIndexEntity entity :mList){
             ItemIndexViewModel viewModel = new ItemIndexViewModel(mContext,entity,ITEM_GENERAL);
             viewModels.add(viewModel);
         }
-        for(ItemIndexEntity entity :mList){
-            ItemIndexViewModel viewModel = new ItemIndexViewModel(mContext,entity,ITEM_GENERAL);
-            viewModels.add(viewModel);
-        }
+
     }
 
 
@@ -180,6 +156,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
                 case ITEM_HEADER_RECYCLER:
                     for(String imgUrl:mEntity.getImages()){
                         mImages.add(imgUrl);
+                        Log.d("mImages' size is ","" + mImages.size());
                     }
                     break;
                 case ITEM_GENERAL:

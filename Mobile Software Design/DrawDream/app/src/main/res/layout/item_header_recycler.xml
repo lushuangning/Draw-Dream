@@ -13,22 +13,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp">
-
         <com.youth.banner.Banner
-            android:id="@+id/recycle_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="150dp"
-            app:delay_time="1000"
+            app:delay_time="2000"
+            app:setImageLoader="@{itemHeaderRecyclerViewModel.mGil}"
+            app:setImages="@{itemHeaderRecyclerViewModel.mImages}"
             app:isOk="@{true}"
             app:is_auto_play="true"
-            app:setImageLoader="@{itemHeaderRecyclerViewModel.mGil}"
-            app:setImages="@{itemHeaderRecyclerViewModel.mImages}" />
+            />
         <!--<ImageView-->
         <!--android:id="@+id/test"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="150dp"-->
-        <!--app:SetIcon="@{itemHeaderRecyclerViewModel.mImage}"-->
-        <!--tools:background="@drawable/item1"/>-->
+
+        <!--android:background="@drawable/pt_weibo"/>-->
 
     </RelativeLayout>
 </layout>
