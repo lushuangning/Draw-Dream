@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemDetailReviewViewModel"
+            type="com.cuit.drawdream.drawdream.viewmodel.DetailActivityViewModel.ItemDetailViewModel" />
+    </data>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/color_bg" />
+
+        <ImageView
+            android:id="@+id/iv_header_item_review"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/md_margin_screen_basic"
+            app:SetIcon="@{itemDetailReviewViewModel.mHeadImg}"
+            tools:background="@drawable/head1" />
+
+        <TextView
+            android:id="@+id/tv_name_item_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/md_margin_screen_basic"
+            android:layout_toEndOf="@+id/iv_header_item_review"
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/md_text_size_appbar"
+            android:text="@{itemDetailReviewViewModel.mName}"
+            tools:text="刘大妈" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/md_margin_screen_basic"
+            android:layout_above="@+id/tv_content_review"
+            android:layout_toEndOf="@+id/tv_name_item_review"
+            android:textSize="@dimen/md_text_size_small_title"
+            android:text="@{itemDetailReviewViewModel.mTime}"
+            tools:text="2017/09/10" />
+        <TextView
+            android:layout_above="@+id/tv_content_review"
+            android:layout_marginTop="@dimen/md_margin_screen_basic"
+            android:padding="4dp"
+            android:layout_marginEnd="@dimen/md_margin_screen_basic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/md_text_size_small_title"
+            android:layout_alignParentEnd="true"
+            android:text="回复"
+            app:clickCommand="@{itemDetailReviewViewModel.replyToWho}"/>
+
+        <TextView
+            android:id="@+id/tv_content_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name_item_review"
+            android:layout_marginEnd="@dimen/md_margin_screen_basic"
+            android:layout_marginTop="@dimen/md_margin_screen_basic"
+            android:layout_toEndOf="@+id/iv_header_item_review"
+            android:lines="4"
+            android:textSize="@dimen/md_text_size_small_title"
+            android:text="@{itemDetailReviewViewModel.mContent}"
+            tools:text="游记去年天天，看了第四季之后断了魂意昂的感觉
+从那时起一起等待第五季" />
+
+    </RelativeLayout>
+</layout>

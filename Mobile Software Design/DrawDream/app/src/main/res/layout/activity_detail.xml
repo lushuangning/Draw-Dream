@@ -1,90 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@null">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="detailActivityViewModel"
+            type="com.cuit.drawdream.drawdream.viewmodel.DetailActivityViewModel"/>
+        <import type="android.view.View"/>
+        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers"/>
+    </data>
 
-    <com.cuit.drawdream.drawdream.view.custom.PreviousView
-        android:id="@+id/pv_detail"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/md_margin_appbar"/>
+        android:layout_height="match_parent"
+        android:background="@null">
 
-    <ScrollView
-        android:layout_below="@+id/pv_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        >
-        <RelativeLayout
+        <com.cuit.drawdream.drawdream.view.custom.PreviousView
+            android:id="@+id/pv_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#fff">
-            <ImageView
-                android:id="@+id/iv_title_detial"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop"
-                tools:background="@drawable/item1"/>
-            <TextView
-                android:layout_margin="@dimen/md_margin_screen_basic"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_title_detial"
-                android:id="@+id/tv_title_detial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/md_text_size_appbar"
-                android:textColor="#000"
-                tools:text="《夏目友人帐》第五季官方图确认公布时间倒计时！"/>
-            <TextView
-                android:id="@+id/tv_author_detail"
-                android:layout_below="@+id/tv_title_detial"
-                android:layout_marginTop="@dimen/md_margin_top_status"
-                android:layout_marginBottom="@dimen/md_margin_screen_basic"
-                android:layout_marginStart="@dimen/md_margin_screen_basic"
-                android:layout_marginEnd="@dimen/md_margin_screen_basic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/md_text_size_small_title"
-                android:textColor="#000"
-                tools:text="报道：丢仔"/>
-            <TextView
-                android:id="@+id/tv_read_num_detail"
-                android:layout_below="@+id/tv_title_detial"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/md_margin_top_status"
-                android:layout_marginBottom="@dimen/md_margin_screen_basic"
-                android:layout_marginStart="@dimen/md_margin_screen_basic"
-                android:layout_marginEnd="@dimen/md_margin_screen_basic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/md_text_size_small_title"
-                android:textColor="#000"
-                tools:text="阅读：2030"/>
-            <WebView
-                android:id="@+id/wv_content_detail"
-                android:layout_marginStart="@dimen/md_margin_screen_basic"
-                android:layout_marginEnd="@dimen/md_margin_screen_basic"
-                android:layout_below="@+id/tv_read_num_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </WebView>
-            <TextView
-                android:id="@+id/tv_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/md_text_size_appbar"
-                android:layout_below="@+id/wv_content_detail"
-                android:padding="8dp"
-                android:background="@color/color_grey"
-                android:text="相关推荐"
-                android:textColor="#000"/>
-            <android.support.v7.widget.RecyclerView
-                android:layout_below="@+id/tv_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
-    </ScrollView>
+            android:layout_height="@dimen/md_margin_appbar" />
 
-</RelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pv_detail"
+            android:background="@null"
+            android:scrollbars="none">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/iv_title_detial"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    tools:background="@drawable/item1"
+                    app:SetIcon="@{detailActivityViewModel.mTitleImg}"/>
+
+                <TextView
+                    android:id="@+id/tv_title_detial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_title_detial"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/md_margin_screen_basic"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar"
+                    android:text="@{detailActivityViewModel.mTitle}"
+                    tools:text="《夏目友人帐》第五季官方图确认公布时间倒计时！" />
+
+                <TextView
+                    android:id="@+id/tv_author_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_title_detial"
+                    android:layout_marginBottom="@dimen/md_margin_screen_basic"
+                    android:layout_marginEnd="@dimen/md_margin_screen_basic"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"
+                    android:layout_marginTop="@dimen/md_margin_top_status"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_small_title"
+                    android:text="@{detailActivityViewModel.mReporter}"
+                    tools:text="报道：丢仔" />
+
+                <TextView
+                    android:id="@+id/tv_read_num_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/tv_title_detial"
+                    android:layout_marginBottom="@dimen/md_margin_screen_basic"
+                    android:layout_marginEnd="@dimen/md_margin_screen_basic"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"
+                    android:layout_marginTop="@dimen/md_margin_top_status"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_small_title"
+                    android:text="@{detailActivityViewModel.mReadNum}"
+                    tools:text="阅读：2030" />
+
+                <WebView
+                    android:id="@+id/wv_content_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_read_num_detail"
+                    android:layout_marginEnd="@dimen/md_margin_screen_basic"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"></WebView>
+
+                <TextView
+                    android:id="@+id/tv_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/wv_content_detail"
+                    android:background="@color/color_bg"
+                    android:padding="8dp"
+                    android:text="相关推荐"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rlv_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_recommend"
+                    android:layout_marginBottom="@dimen/md_margin_screen_basic"
+                    android:layout_marginTop="@dimen/md_margin_screen_basic"
+                    android:background="@null"
+                    app:itemView="@{detailActivityViewModel.itemView}"
+                    app:items="@{detailActivityViewModel.viewModelsForRecommend}"
+                    app:layoutManager="@{LayoutManagers.linear()}"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlv_recommend"
+                    android:background="@color/color_bg"
+                    android:padding="8dp"
+                    android:text="网友评论"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar" />
+
+                <TextView
+                    android:id="@+id/tv_review_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlv_recommend"
+                    android:layout_toEndOf="@+id/tv_review"
+                    android:background="@color/color_bg"
+                    android:gravity="center"
+                    android:padding="11.5dp"
+                    android:textColor="@color/color_hint_text"
+                    android:textSize="@dimen/md_text_size_small_title"
+                    tools:text="评论(23)" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlv_recommend"
+                    android:layout_toEndOf="@+id/tv_review_num"
+                    android:background="@color/color_bg"
+                    android:gravity="center|start"
+                    android:padding="11.5dp"
+                    android:textColor="@color/color_hint_text"
+                    android:textSize="@dimen/md_text_size_small_title"
+                    tools:text="点赞(23)" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rlv_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_review"
+                    android:background="@null"
+                    app:itemView="@{detailActivityViewModel.itemView}"
+                    app:layoutManager="@{LayoutManagers.linear()}"
+                    app:items="@{detailActivityViewModel.viewModelsForReview}"
+                    />
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

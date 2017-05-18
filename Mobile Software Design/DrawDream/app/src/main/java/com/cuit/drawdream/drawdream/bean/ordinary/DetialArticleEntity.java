@@ -50,4 +50,16 @@ public class DetialArticleEntity extends BaseBean {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public DetialArticleEntity(String title, String author, String readNum, String content) {
+        this.title = title;
+        this.author = author;
+        this.readNum = readNum;
+        this.content = content;
+    }
+
+    public DetialArticleEntity(String title, String readNum) {
+        this.title = title;
+        this.readNum = readNum;
+    }
 }
