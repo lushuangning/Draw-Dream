@@ -17,7 +17,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.view.adapter.PullToRefreshAdapter;
-import com.cuit.drawdream.drawdream.viewmodel.DataServer;
+import com.cuit.drawdream.drawdream.model.service.DataServer;
 
 
 public class ClassifyFragment extends Fragment implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener{
@@ -60,7 +60,7 @@ public class ClassifyFragment extends Fragment implements BaseQuickAdapter.Reque
         pullToRefreshAdapter = new PullToRefreshAdapter();
         pullToRefreshAdapter.setOnLoadMoreListener(this, mRecyclerView);
         pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
-//        pullToRefreshAdapter.setPreLoadNumber(3);
+        //设置adapter
         mRecyclerView.setAdapter(pullToRefreshAdapter);
         mCurrentCounter = pullToRefreshAdapter.getData().size();
 

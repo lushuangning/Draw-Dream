@@ -14,7 +14,7 @@ import com.cuit.drawdream.drawdream.bean.Status;
 import com.cuit.drawdream.drawdream.utils.SpannableStringUtils;
 import com.cuit.drawdream.drawdream.utils.ToastUtils;
 import com.cuit.drawdream.drawdream.utils.Utils;
-import com.cuit.drawdream.drawdream.viewmodel.DataServer;
+import com.cuit.drawdream.drawdream.model.service.DataServer;
 
 /**
  * 文 件 名: PullToRefreshAdapter
@@ -30,10 +30,13 @@ public class PullToRefreshAdapter extends BaseQuickAdapter<Status, BaseViewHolde
     }
 
 
-
     @Override
     protected void convert(BaseViewHolder helper, Status item) {
-        helper.addOnClickListener(R.id.img).addOnClickListener(R.id.tweetText).addOnClickListener(R.id.tweetName);
+        helper
+            .addOnClickListener(R.id.img)
+            .addOnClickListener(R.id.tweetText)
+            .addOnClickListener(R.id.tweetName);
+
         switch (helper.getLayoutPosition()%
                 3){
             case 0:
@@ -46,6 +49,7 @@ public class PullToRefreshAdapter extends BaseQuickAdapter<Status, BaseViewHolde
                 helper.setImageResource(R.id.img,R.mipmap.animation_img3);
                 break;
         }
+
         helper.setText(R.id.tweetName,"Hoteis in Rio de Janeiro");
         String msg="\"He was one of Australia's most of distinguished artistes, renowned for his portraits\"";
         ( (TextView)helper.getView(R.id.tweetText)).setText(SpannableStringUtils.getBuilder(msg).append("landscapes and nedes").setClickSpan(clickableSpan).create());
