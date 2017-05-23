@@ -10,6 +10,7 @@ import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.view.adapter.MainVpAdapter;
 import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 import com.cuit.drawdream.drawdream.view.fragment.IndexFragment;
+import com.cuit.drawdream.drawdream.view.fragment.MyInfoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class MainActivity extends BaseActivity {
         fragments.add(new IndexFragment());
         fragments.add(new ClassifyFragment());
         fragments.add(new IndexFragment());
-        fragments.add(new IndexFragment());
+        fragments.add(new MyInfoFragment());
 
         mMainVpAdapter = new MainVpAdapter(getSupportFragmentManager(),fragments);
         mViewPager.setAdapter(mMainVpAdapter);
