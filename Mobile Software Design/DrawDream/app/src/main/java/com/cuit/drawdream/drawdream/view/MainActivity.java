@@ -1,4 +1,4 @@
-package com.cuit.drawdream.drawdream.view;
+﻿package com.cuit.drawdream.drawdream.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
         fragments.add(new IndexFragment());
         fragments.add(new SectionFragment());
         fragments.add(new IndexFragment());
-        fragments.add(new IndexFragment());
+        fragments.add(new MyInfoFragment());
 
         mMainVpAdapter = new MainVpAdapter(getSupportFragmentManager(),fragments);
         mViewPager.setAdapter(mMainVpAdapter);
