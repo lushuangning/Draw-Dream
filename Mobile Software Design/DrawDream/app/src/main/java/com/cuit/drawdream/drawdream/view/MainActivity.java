@@ -12,6 +12,7 @@ import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 import com.cuit.drawdream.drawdream.view.fragment.IndexFragment;
 import com.cuit.drawdream.drawdream.view.fragment.SectionFragment;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
