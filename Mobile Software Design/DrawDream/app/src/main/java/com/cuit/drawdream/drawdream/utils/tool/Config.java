@@ -11,4 +11,9 @@ public class Config {
      */
     public static Boolean isActive = true;
 
+    /**
+     * 当前用户id
+     */
+    public static String USER_ID = "";
+
 }

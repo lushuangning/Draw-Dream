@@ -6,12 +6,26 @@ import de.greenrobot.daogenerator.Schema;
 
 public class greenGenerator {
     public static void main(String[] args) throws Exception {
-        Schema schema = new Schema(1, "com.example.electornics_meeting.bean");
+        Schema schema = new Schema(1, "com.cuit.drawdream.bean");
         //添加AppInfo实体类
         addAppInfoEntity(schema);
+        addUserInfoEntity(schema);
+        addAccountEntity(schema);
+        addNewsDetailEntity(schema);
         //在tabframework/src/main/java-gen文件夹下生成java对象、javaDAO、DAOSession和DAOMaster类
-        new DaoGenerator().generateAll(schema, "D:\\Electronics_meeting\\app\\src\\main\\java-gen");
+        new DaoGenerator().generateAll(schema, "E:\\Github\\drawDream\\Draw-Dream\\Mobile Software Design\\DrawDream\\app\\src\\main\\java-gen");
     }
+
+    private static void addNewsDetailEntity(Schema schema) {
+        Entity newsDetail = schema.addEntity("NewsDetail");
+        newsDetail.addStringProperty("nede_id").notNull();
+        newsDetail.addStringProperty("nede_title").notNull();
+        newsDetail.addStringProperty("nede_author").notNull();
+        newsDetail.addStringProperty("nede_time").notNull();
+        newsDetail.addStringProperty("nede_content").notNull();
+        newsDetail.addStringProperty("nede_img").notNull();
+    }
+
 
     /**
      * @param schema 1.通过schema.addEntity("UserEntitty")添加一个实体对象,这相当于在数据库中创建了一个表,会以"UserEntitty"为表名,但是会将其转换成
@@ -28,4 +42,20 @@ public class greenGenerator {
         appInfo.addStringProperty("ui_type").notNull();
         appInfo.addStringProperty("logo");
     }
+    private static void addUserInfoEntity(Schema schema) {
+        Entity userInfo = schema.addEntity("UserInfoEntity");
+        userInfo.addStringProperty("user_name").notNull();
+        userInfo.addStringProperty("user_id").notNull();
+        userInfo.addStringProperty("user_gander").notNull();
+        userInfo.addStringProperty("user_phone").notNull();
+        userInfo.addStringProperty("user_email").notNull();
+        userInfo.addStringProperty("user_sign");
+    }
+    private static void addAccountEntity(Schema schema) {
+        Entity account = schema.addEntity("AccountEntity");
+        account.addStringProperty("account").notNull();
+        account.addStringProperty("pwd").notNull();
+        account.addStringProperty("user_id").notNull();
+    }
+
 }

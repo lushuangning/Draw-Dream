@@ -1,4 +1,4 @@
-﻿package com.cuit.drawdream.drawdream.view;
+package com.cuit.drawdream.drawdream.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.view.adapter.MainVpAdapter;
 import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 import com.cuit.drawdream.drawdream.view.fragment.IndexFragment;
+import com.cuit.drawdream.drawdream.view.fragment.MyInfoFragment;
 import com.cuit.drawdream.drawdream.view.fragment.SectionFragment;
 
 

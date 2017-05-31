@@ -41,7 +41,7 @@ public class MyApplication extends Application {
     /**
      * 数据库名
      */
-    public static final String DB_NAME = "dbnewworld.db";
+    public static final String DB_NAME = "drawdream.db";
     public static SharedPreferences mPref;
     @Override
     public void onCreate() {
