@@ -10,6 +10,7 @@ import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.view.adapter.MainVpAdapter;
 import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 import com.cuit.drawdream.drawdream.view.fragment.IndexFragment;
+import com.cuit.drawdream.drawdream.view.fragment.SectionFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class MainActivity extends BaseActivity {
 
         //TODO 这里添加需要的fragment
         fragments.add(new IndexFragment());
-        fragments.add(new ClassifyFragment());
+        fragments.add(new SectionFragment());
         fragments.add(new IndexFragment());
         fragments.add(new IndexFragment());
 

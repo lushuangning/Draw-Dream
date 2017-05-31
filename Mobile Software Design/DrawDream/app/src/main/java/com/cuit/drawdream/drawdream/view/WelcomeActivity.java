@@ -14,7 +14,7 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         new Handler().postDelayed(() -> {
-                Intent intent = new Intent(WelcomeActivity.this,LoginActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
             },3000);

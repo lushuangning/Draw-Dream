@@ -3,6 +3,7 @@ package com.cuit.drawdream.drawdream.model.service;
 
 
 
+import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.MultipleItem;
 import com.cuit.drawdream.drawdream.bean.MySection;
 import com.cuit.drawdream.drawdream.bean.Status;
@@ -17,7 +18,8 @@ import java.util.List;
 public class DataServer {
 
     private static final String HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK = "https://avatars1.githubusercontent.com/u/7698209?v=3&s=460";
-    private static final String CYM_CHAD = "CymChad";
+    private static final String CYM_CHAD = "绘梦工作室";
+    private static final String ITEM_RESOURCE_WEB_SERVER = "http://115.159.40.239/images/android_app_res/";
 
     private DataServer() {
     }
@@ -52,24 +54,22 @@ public class DataServer {
 
     public static List<MySection> getSampleData() {
         List<MySection> list = new ArrayList<>();
-        list.add(new MySection(true, "Section 1", true));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(true, "Section 2", false));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(true, "Section 3", false));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(true, "Section 4", false));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(true, "Section 5", false));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
-        list.add(new MySection(new Video(HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK, CYM_CHAD)));
+        list.add(new MySection(true, "漫画", false));
+        list.add(new MySection(new Video(R.mipmap.archer, "热血")));
+        list.add(new MySection(new Video(R.mipmap.badminton, "恐怖")));
+        list.add(new MySection(new Video(R.mipmap.basketball, "治愈")));
+        list.add(new MySection(new Video(R.mipmap.biker, "悬疑")));
+        list.add(new MySection(true, "动画", false));
+        list.add(new MySection(new Video(R.mipmap.canoe, "同人")));
+        list.add(new MySection(new Video(R.mipmap.football, "剧情")));
+        list.add(new MySection(new Video(R.mipmap.cricket, "四格")));
+        list.add(new MySection(new Video(R.mipmap.gymnast, "搞笑")));
+        list.add(new MySection(true, "周边", false));
+        list.add(new MySection(new Video(R.mipmap.snowboard, "画册")));
+        list.add(new MySection(new Video(R.mipmap.sprinter, "手办")));
+        list.add(new MySection(new Video(R.mipmap.standup_paddleboardi, "抱枕")));
+        list.add(new MySection(new Video(R.mipmap.windsurf, "其他")));
+
         return list;
     }
 
@@ -97,19 +97,5 @@ public class DataServer {
 
         return list;
     }
-
-//    public static List<MultipleItem> getMultipleChildView() {
-//        List<MultipleItem> list = new ArrayList<>();
-//        for (int i = 0; i <= 4; i++) {
-//            list.add(new ClickEntity(ClickEntity.CLICK_ITEM_VIEW, MultipleItem.TEXT_SPAN_SIZE, CYM_CHAD));
-//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.BIG_IMG_SPAN_SIZE));
-//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE));
-//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE));
-//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE));
-//        }
-//
-//        return list;
-//    }
-
 
 }

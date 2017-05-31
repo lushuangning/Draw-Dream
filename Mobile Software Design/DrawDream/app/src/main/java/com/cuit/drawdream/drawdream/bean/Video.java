@@ -4,19 +4,19 @@ package com.cuit.drawdream.drawdream.bean;
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  */
 public class Video {
-    private String img;
+    private int img;
     private String name;
 
-    public Video(String img, String name) {
+    public Video(int img, String name) {
         this.img = img;
         this.name = name;
     }
 
-    public String getImg() {
+    public int getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(int img) {
         this.img = img;
     }
 
