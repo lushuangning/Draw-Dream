@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class ItemIndexEntity extends BaseBean {
 
+    private String id;
+
     private String img;
 
     private String title;
@@ -23,7 +25,11 @@ public class ItemIndexEntity extends BaseBean {
 
     private String time;
 
+    private String content;
+
     private ArrayList<String > images;
+
+    public ItemIndexEntity(){}
 
     /**
      * 瀑布流的构造方法
@@ -95,5 +101,21 @@ public class ItemIndexEntity extends BaseBean {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

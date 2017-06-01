@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.cuit.drawdream.drawdream.BR;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
+import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ReviewEntity;
 import com.kelin.mvvmlight.command.ReplyCommand;
 
@@ -30,6 +31,7 @@ public class DetailActivityViewModel extends BaseViewModel {
     private static int ITEM_REVIEW = 1;        //评论
 
     private Context mContext;
+    private ItemIndexEntity mEntity;
     private ArrayList<DetialArticleEntity> mListForRecommend;
     private ArrayList<ReviewEntity> mListForReview;
 
@@ -55,18 +57,23 @@ public class DetailActivityViewModel extends BaseViewModel {
         }
     };
 
-    public DetailActivityViewModel(Context context) {
+    public DetailActivityViewModel(Context context, ItemIndexEntity entity) {
         super(context);
         mContext = context;
+        mEntity = entity;
         initData();
     }
 
     private void initData() {
 
-        mTitle.set("《夏目友人帐》第五季官方图确认公布时间倒计时！");
-        mReporter.set("报道：" + "丢仔");
-        mReadNum.set("阅读" + "2930");
-        mTitleImg.set("http://img4.178.com/acg1/201705/289093273635/289093503178.jpg");
+//        mTitle.set("《夏目友人帐》第五季官方图确认公布时间倒计时！");
+//        mReporter.set("报道：" + "丢仔");
+//        mReadNum.set("阅读" + "2930");
+//        mTitleImg.set("http://img4.178.com/acg1/201705/289093273635/289093503178.jpg");
+        mTitle.set(mEntity.getTitle());
+        mTitleImg.set(mEntity.getImg());
+        mReadNum.set(mEntity.getTime());
+        mReporter.set("报道：" + mEntity.getAuthor());
 
         mListForRecommend = new ArrayList<>();
         mListForReview = new ArrayList<>();

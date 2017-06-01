@@ -34,11 +34,13 @@
             android:layout_marginEnd="@dimen/md_margin_screen_basic"
             android:layout_marginStart="@dimen/md_margin_screen_basic"
             android:layout_marginTop="@dimen/md_margin_screen_basic"
-            android:lines="2"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:text="@{itemIndexViewModel.mTitle}"
             android:textColor="#000"
             android:textSize="@dimen/md_text_size_content"
-            tools:text="希望之火又剿灭了强烈建议" />
+            tools:text="希望之火又剿灭了强烈建议希望之火又剿灭了强烈建议
+希望之火又剿灭了强烈建议希望之火又剿灭了强烈建议希望之火又剿灭了强烈建议" />
 
         <TextView
             android:layout_width="wrap_content"

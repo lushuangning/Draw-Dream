@@ -1,5 +1,6 @@
 package com.cuit.drawdream.drawdream.view;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.webkit.WebViewClient;
 
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
+import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.databinding.ActivityDetailBinding;
 import com.cuit.drawdream.drawdream.viewmodel.DetailActivityViewModel;
 
@@ -24,6 +26,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -41,10 +44,14 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_detail);
-        DetailActivityViewModel viewModel = new DetailActivityViewModel(this);
+        Intent intent = getIntent();
+        ArrayList<ItemIndexEntity> list = (ArrayList<ItemIndexEntity>)intent.getExtras().getSerializable("Detail");
+        ItemIndexEntity entity = list.get(0);
+        DetailActivityViewModel viewModel = new DetailActivityViewModel(this,entity);
         mBinding.setDetailActivityViewModel(viewModel);
         mBinding.pvDetail.setTitle("详情");
-        mBinding.wvContentDetail.loadUrl("file:///android_asset/test.html");
+//        mBinding.wvContentDetail.loadUrl("file:///android_asset/test.html");
+        mBinding.wvContentDetail.loadUrl(entity.getContent());
 
 //        wv.loadUrl("file:///android_asset/test.html");
 

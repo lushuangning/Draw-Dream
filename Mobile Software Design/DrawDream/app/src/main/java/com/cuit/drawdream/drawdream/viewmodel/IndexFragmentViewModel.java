@@ -5,13 +5,17 @@ import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.cuit.drawdream.bean.NewsDetail;
+import com.cuit.drawdream.bean.NewsDetailDao;
 import com.cuit.drawdream.drawdream.BR;
+import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
@@ -114,19 +118,38 @@ public class IndexFragmentViewModel extends BaseViewModel {
         viewModels.add(viewModelForAuthor);
 
 
-        for(int i = 0; i < 12;i++){
-           mList.add(new ItemIndexEntity("http://img1.178.com/acg1/201705/288466908147/288471126293.jpg",
-                   "今日早报",
-                   "动漫",
-                   "Fragd",
-                   "09-12"));
+        for(NewsDetail entity :loadGeneralData()){
+            ItemIndexEntity itemEntity = new ItemIndexEntity();
+            itemEntity.setAuthor(entity.getNede_author());
+            itemEntity.setImg(entity.getNede_img());
+            itemEntity.setTime(entity.getNede_time());
+            itemEntity.setTitle(entity.getNede_title());
+            itemEntity.setId(entity.getNede_id());
+            itemEntity.setContent(entity.getNede_content());
+            itemEntity.setClassify("日漫");
+            mList.add(itemEntity);
         }
+//        for(int i = 0; i < 12;i++){
+//           mList.add(new ItemIndexEntity("http://img1.178.com/acg1/201705/288466908147/288471126293.jpg",
+//                   "今日早报",
+//                   "动漫",
+//                   "Fragd",
+//                   "09-12"));
+//        }
 
         for(ItemIndexEntity entity :mList){
             ItemIndexViewModel viewModel = new ItemIndexViewModel(mContext,entity,ITEM_GENERAL);
             viewModels.add(viewModel);
         }
 
+    }
+
+    private ArrayList<NewsDetail> loadGeneralData() {
+        ArrayList<NewsDetail> list = new ArrayList<>();
+        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
+        list = (ArrayList<NewsDetail>) dao.loadAll();
+
+        return list;
     }
 
     /**
@@ -204,8 +227,12 @@ public class IndexFragmentViewModel extends BaseViewModel {
              * TODO 这里需要获取到被点击item的信息，以便在详情页面进行网络请求
              * mTitle.get();获取信息
              */
-
+            Bundle bundle = new Bundle();
+            ArrayList<ItemIndexEntity > list = new ArrayList<>();
+            list.add(mEntity);
+            bundle.putSerializable("Detail",list);
             Intent intent = new Intent(mContext, DetailActivity.class);
+            intent.putExtras(bundle);
             mContext.startActivity(intent);
         });
 
