@@ -12,8 +12,17 @@ public class greenGenerator {
         addUserInfoEntity(schema);
         addAccountEntity(schema);
         addNewsDetailEntity(schema);
+        addReplayEntity(schema);
         //在tabframework/src/main/java-gen文件夹下生成java对象、javaDAO、DAOSession和DAOMaster类
         new DaoGenerator().generateAll(schema, "E:\\Github\\drawDream\\Draw-Dream\\Mobile Software Design\\DrawDream\\app\\src\\main\\java-gen");
+    }
+
+    private static void addReplayEntity(Schema schema) {
+        Entity replayEntity = schema.addEntity("ReplayEntity");
+        replayEntity.addStringProperty("core_nede_id").notNull();
+        replayEntity.addStringProperty("core_acco_id");
+        replayEntity.addStringProperty("core_content");
+        replayEntity.addStringProperty("core_date");
     }
 
     private static void addNewsDetailEntity(Schema schema) {

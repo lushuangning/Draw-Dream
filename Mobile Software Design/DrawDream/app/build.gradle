@@ -72,6 +72,7 @@ dependencies {
     //banner
     compile 'com.youth.banner:banner:1.4.9'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.airbnb.android:lottie:1.0.1'
     // BRVAH
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.16'
     compile 'org.jsoup:jsoup:1.9.2'

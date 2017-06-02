@@ -3,7 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/welcome"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.cuit.drawdream.drawdream.view.WelcomeActivity">
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_centerInParent="true"
+        android:id="@+id/animation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_fileName="PinJump.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true" />
 
 </RelativeLayout>

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.cuit.drawdream.bean.AccountEntity;
 import com.cuit.drawdream.bean.AccountEntityDao;
 import com.cuit.drawdream.bean.NewsDetail;
@@ -27,6 +28,8 @@ public class WelcomeActivity extends BaseActivity {
                 finish();
             },3000);
     }
+
+
 
     private void setDataToDataBase() {
         //TODO 此处为本地测试数据
