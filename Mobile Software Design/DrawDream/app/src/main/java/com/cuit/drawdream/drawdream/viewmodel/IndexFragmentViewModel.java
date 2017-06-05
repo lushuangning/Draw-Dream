@@ -45,7 +45,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
     private static final int ITEM_GENERAL = 2;          //普通的
 
     private Context mContext;
-    private ArrayList<ItemIndexEntity> mList;
+    private static ArrayList<ItemIndexEntity> mList;
 
     public final ObservableBoolean isRefreshing = new ObservableBoolean(true);
     public final ObservableBoolean isProgressBarShowing = new ObservableBoolean(true);
@@ -102,21 +102,6 @@ public class IndexFragmentViewModel extends BaseViewModel {
 
         ArrayList<String > images = new ArrayList<>();
 
-        images.add("http://img1.178.com/acg1/201705/288466908147/288471126293.jpg");
-        images.add("http://img0.178.com/acg1/201705/288926238343/288926825037.jpg");
-        images.add("http://img5.178.com/acg1/201705/288287453008/288288127007.jpg");
-        images.add("http://img1.178.com/acg1/201705/288287453008/288288091902.jpg");
-
-        ItemIndexViewModel viewModelForRecycler = new ItemIndexViewModel(mContext,
-                new ItemIndexEntity(images),
-                ITEM_HEADER_RECYCLER);
-        viewModels.add(viewModelForRecycler);
-
-        ItemIndexViewModel viewModelForAuthor = new ItemIndexViewModel(mContext,
-                null,
-                ITEM_HEADER_AUTHOR);
-        viewModels.add(viewModelForAuthor);
-
 
         for(NewsDetail entity :loadGeneralData()){
             ItemIndexEntity itemEntity = new ItemIndexEntity();
@@ -130,13 +115,21 @@ public class IndexFragmentViewModel extends BaseViewModel {
             itemEntity.setTable_id(entity.getId());
             mList.add(itemEntity);
         }
-//        for(int i = 0; i < 12;i++){
-//           mList.add(new ItemIndexEntity("http://img1.178.com/acg1/201705/288466908147/288471126293.jpg",
-//                   "今日早报",
-//                   "动漫",
-//                   "Fragd",
-//                   "09-12"));
-//        }
+
+        images.add(mList.get(0).getImg());
+        images.add(mList.get(1).getImg());
+        images.add(mList.get(2).getImg());
+        images.add(mList.get(3).getImg());
+
+        ItemIndexViewModel viewModelForRecycler = new ItemIndexViewModel(mContext,
+                new ItemIndexEntity(images),
+                ITEM_HEADER_RECYCLER);
+        viewModels.add(viewModelForRecycler);
+
+        ItemIndexViewModel viewModelForAuthor = new ItemIndexViewModel(mContext,
+                null,
+                ITEM_HEADER_AUTHOR);
+        viewModels.add(viewModelForAuthor);
 
         for(ItemIndexEntity entity :mList){
             ItemIndexViewModel viewModel = new ItemIndexViewModel(mContext,entity,ITEM_GENERAL);
@@ -168,6 +161,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
         Toast.makeText(mContext,"没有更多了" + itemCount,Toast.LENGTH_SHORT)
                 .show();
     });
+
+
 
 
     @Override
@@ -231,6 +226,19 @@ public class IndexFragmentViewModel extends BaseViewModel {
             Bundle bundle = new Bundle();
             ArrayList<ItemIndexEntity > list = new ArrayList<>();
             list.add(mEntity);
+            bundle.putSerializable("Detail",list);
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            intent.putExtras(bundle);
+            mContext.startActivity(intent);
+        });
+
+        /**
+         * 轮播图的监听事件
+         */
+        public final ReplyCommand banner = new ReplyCommand((position)->{
+            Bundle bundle = new Bundle();
+            ArrayList<ItemIndexEntity > list = new ArrayList<>();
+            list.add(mList.get(Integer.valueOf(position.toString())));
             bundle.putSerializable("Detail",list);
             Intent intent = new Intent(mContext, DetailActivity.class);
             intent.putExtras(bundle);

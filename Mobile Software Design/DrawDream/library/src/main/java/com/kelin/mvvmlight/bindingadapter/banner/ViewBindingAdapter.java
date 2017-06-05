@@ -1,6 +1,8 @@
 package com.kelin.mvvmlight.bindingadapter.banner;
 
+import com.kelin.mvvmlight.command.ReplyCommand;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -29,5 +31,17 @@ public class ViewBindingAdapter {
         if(isOk){
             banner.start();
         }
+    }
+
+    @android.databinding.BindingAdapter(value = {"listener"} ,requireAll = true)
+    public static void listener(Banner banner, final ReplyCommand replyCommand){
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                if(null != replyCommand ){
+                    replyCommand.execute(position);
+                }
+            }
+        });
     }
 }
