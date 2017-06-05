@@ -169,7 +169,6 @@
         <attr name="setImageLoader" format="reference"></attr>
         <attr name="setImages" format="reference"></attr>
         <attr name="isOk" format="boolean"></attr>
-        <attr name="listener" format="reference"></attr>
     </declare-styleable>
 
 </resources>

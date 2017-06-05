@@ -22,7 +22,6 @@
             app:setImages="@{itemHeaderRecyclerViewModel.mImages}"
             app:isOk="@{true}"
             app:is_auto_play="true"
-            app:listener="@{itemHeaderRecyclerViewModel.banner}"
             />
 
     </RelativeLayout>

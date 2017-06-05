@@ -50,19 +50,15 @@ public class DetailActivity extends BaseActivity {
         DetailActivityViewModel viewModel = new DetailActivityViewModel(this,entity);
         mBinding.setDetailActivityViewModel(viewModel);
         mBinding.pvDetail.setTitle("详情");
+//        mBinding.wvContentDetail.loadUrl("file:///android_asset/test.html");
         mBinding.wvContentDetail.loadUrl(entity.getContent());
+
+//        wv.loadUrl("file:///android_asset/test.html");
+
     }
-
-
 
     @Override
     protected void destroy() {
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 }

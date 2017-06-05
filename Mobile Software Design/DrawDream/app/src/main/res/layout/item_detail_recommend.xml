@@ -19,13 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/md_margin_screen_basic"
-            android:maxLines="1"
+            android:lines="1"
             android:maxLength="20"
-            android:ellipsize="end"
             android:textColor="#000"
             android:textSize="@dimen/md_text_size_small_title"
             android:text="@{itemDetailRecommendViewModel.mTitle}"
-            tools:text="网曝《夏目友人帐》将于10月5日播出fafafasfsa" />
+            tools:text="网曝《夏目友人帐》将于10月5日播出.." />
 
         <TextView
             android:layout_width="wrap_content"
