@@ -14,7 +14,7 @@ import com.cuit.drawdream.bean.UserInfoEntity;
 /** 
  * DAO for table USER_INFO_ENTITY.
 */
-public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Void> {
+public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Long> {
 
     public static final String TABLENAME = "USER_INFO_ENTITY";
 
@@ -23,12 +23,13 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Void> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property User_name = new Property(0, String.class, "user_name", false, "USER_NAME");
-        public final static Property User_id = new Property(1, String.class, "user_id", false, "USER_ID");
-        public final static Property User_gander = new Property(2, String.class, "user_gander", false, "USER_GANDER");
-        public final static Property User_phone = new Property(3, String.class, "user_phone", false, "USER_PHONE");
-        public final static Property User_email = new Property(4, String.class, "user_email", false, "USER_EMAIL");
-        public final static Property User_sign = new Property(5, String.class, "user_sign", false, "USER_SIGN");
+        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property User_name = new Property(1, String.class, "user_name", false, "USER_NAME");
+        public final static Property User_id = new Property(2, String.class, "user_id", false, "USER_ID");
+        public final static Property User_gander = new Property(3, String.class, "user_gander", false, "USER_GANDER");
+        public final static Property User_phone = new Property(4, String.class, "user_phone", false, "USER_PHONE");
+        public final static Property User_email = new Property(5, String.class, "user_email", false, "USER_EMAIL");
+        public final static Property User_sign = new Property(6, String.class, "user_sign", false, "USER_SIGN");
     };
 
 
@@ -44,12 +45,13 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Void> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'USER_INFO_ENTITY' (" + //
-                "'USER_NAME' TEXT NOT NULL ," + // 0: user_name
-                "'USER_ID' TEXT NOT NULL ," + // 1: user_id
-                "'USER_GANDER' TEXT NOT NULL ," + // 2: user_gander
-                "'USER_PHONE' TEXT NOT NULL ," + // 3: user_phone
-                "'USER_EMAIL' TEXT NOT NULL ," + // 4: user_email
-                "'USER_SIGN' TEXT);"); // 5: user_sign
+                "'_id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ," + // 0: id
+                "'USER_NAME' TEXT NOT NULL ," + // 1: user_name
+                "'USER_ID' TEXT NOT NULL ," + // 2: user_id
+                "'USER_GANDER' TEXT NOT NULL ," + // 3: user_gander
+                "'USER_PHONE' TEXT NOT NULL ," + // 4: user_phone
+                "'USER_EMAIL' TEXT NOT NULL ," + // 5: user_email
+                "'USER_SIGN' TEXT);"); // 6: user_sign
     }
 
     /** Drops the underlying database table. */
@@ -62,34 +64,36 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Void> {
     @Override
     protected void bindValues(SQLiteStatement stmt, UserInfoEntity entity) {
         stmt.clearBindings();
-        stmt.bindString(1, entity.getUser_name());
-        stmt.bindString(2, entity.getUser_id());
-        stmt.bindString(3, entity.getUser_gander());
-        stmt.bindString(4, entity.getUser_phone());
-        stmt.bindString(5, entity.getUser_email());
+        stmt.bindLong(1, entity.getId());
+        stmt.bindString(2, entity.getUser_name());
+        stmt.bindString(3, entity.getUser_id());
+        stmt.bindString(4, entity.getUser_gander());
+        stmt.bindString(5, entity.getUser_phone());
+        stmt.bindString(6, entity.getUser_email());
  
         String user_sign = entity.getUser_sign();
         if (user_sign != null) {
-            stmt.bindString(6, user_sign);
+            stmt.bindString(7, user_sign);
         }
     }
 
     /** @inheritdoc */
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.getLong(offset + 0);
     }    
 
     /** @inheritdoc */
     @Override
     public UserInfoEntity readEntity(Cursor cursor, int offset) {
         UserInfoEntity entity = new UserInfoEntity( //
-            cursor.getString(offset + 0), // user_name
-            cursor.getString(offset + 1), // user_id
-            cursor.getString(offset + 2), // user_gander
-            cursor.getString(offset + 3), // user_phone
-            cursor.getString(offset + 4), // user_email
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // user_sign
+            cursor.getLong(offset + 0), // id
+            cursor.getString(offset + 1), // user_name
+            cursor.getString(offset + 2), // user_id
+            cursor.getString(offset + 3), // user_gander
+            cursor.getString(offset + 4), // user_phone
+            cursor.getString(offset + 5), // user_email
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // user_sign
         );
         return entity;
     }
@@ -97,25 +101,30 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Void> {
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, UserInfoEntity entity, int offset) {
-        entity.setUser_name(cursor.getString(offset + 0));
-        entity.setUser_id(cursor.getString(offset + 1));
-        entity.setUser_gander(cursor.getString(offset + 2));
-        entity.setUser_phone(cursor.getString(offset + 3));
-        entity.setUser_email(cursor.getString(offset + 4));
-        entity.setUser_sign(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setId(cursor.getLong(offset + 0));
+        entity.setUser_name(cursor.getString(offset + 1));
+        entity.setUser_id(cursor.getString(offset + 2));
+        entity.setUser_gander(cursor.getString(offset + 3));
+        entity.setUser_phone(cursor.getString(offset + 4));
+        entity.setUser_email(cursor.getString(offset + 5));
+        entity.setUser_sign(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     /** @inheritdoc */
     @Override
-    protected Void updateKeyAfterInsert(UserInfoEntity entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected Long updateKeyAfterInsert(UserInfoEntity entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     /** @inheritdoc */
     @Override
-    public Void getKey(UserInfoEntity entity) {
-        return null;
+    public Long getKey(UserInfoEntity entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     /** @inheritdoc */

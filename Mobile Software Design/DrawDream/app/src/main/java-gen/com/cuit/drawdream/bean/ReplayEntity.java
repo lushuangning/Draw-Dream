@@ -8,14 +8,14 @@ public class ReplayEntity {
 
     /** Not-null value. */
     private String core_nede_id;
-    private String core_acco_id;
+    private Long core_acco_id;
     private String core_content;
     private String core_date;
 
     public ReplayEntity() {
     }
 
-    public ReplayEntity(String core_nede_id, String core_acco_id, String core_content, String core_date) {
+    public ReplayEntity(String core_nede_id, Long core_acco_id, String core_content, String core_date) {
         this.core_nede_id = core_nede_id;
         this.core_acco_id = core_acco_id;
         this.core_content = core_content;
@@ -32,11 +32,11 @@ public class ReplayEntity {
         this.core_nede_id = core_nede_id;
     }
 
-    public String getCore_acco_id() {
+    public Long getCore_acco_id() {
         return core_acco_id;
     }
 
-    public void setCore_acco_id(String core_acco_id) {
+    public void setCore_acco_id(Long core_acco_id) {
         this.core_acco_id = core_acco_id;
     }
 

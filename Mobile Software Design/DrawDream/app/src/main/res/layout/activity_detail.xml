@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="detailActivityViewModel"
-            type="com.cuit.drawdream.drawdream.viewmodel.DetailActivityViewModel"/>
-        <import type="android.view.View"/>
-        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers"/>
+            type="com.cuit.drawdream.drawdream.viewmodel.DetailActivityViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
     </data>
 
     <RelativeLayout
@@ -37,8 +41,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:scaleType="centerCrop"
-                    tools:background="@drawable/item1"
-                    app:SetIcon="@{detailActivityViewModel.mTitleImg}"/>
+                    app:SetIcon="@{detailActivityViewModel.mTitleImg}"
+                    tools:background="@drawable/item1" />
 
                 <TextView
                     android:id="@+id/tv_title_detial"
@@ -47,9 +51,9 @@
                     android:layout_below="@+id/iv_title_detial"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="@dimen/md_margin_screen_basic"
+                    android:text="@{detailActivityViewModel.mTitle}"
                     android:textColor="#000"
                     android:textSize="@dimen/md_text_size_appbar"
-                    android:text="@{detailActivityViewModel.mTitle}"
                     tools:text="《夏目友人帐》第五季官方图确认公布时间倒计时！" />
 
                 <TextView
@@ -61,9 +65,9 @@
                     android:layout_marginEnd="@dimen/md_margin_screen_basic"
                     android:layout_marginStart="@dimen/md_margin_screen_basic"
                     android:layout_marginTop="@dimen/md_margin_top_status"
+                    android:text="@{detailActivityViewModel.mReporter}"
                     android:textColor="#000"
                     android:textSize="@dimen/md_text_size_small_title"
-                    android:text="@{detailActivityViewModel.mReporter}"
                     tools:text="报道：丢仔" />
 
                 <TextView
@@ -76,9 +80,9 @@
                     android:layout_marginEnd="@dimen/md_margin_screen_basic"
                     android:layout_marginStart="@dimen/md_margin_screen_basic"
                     android:layout_marginTop="@dimen/md_margin_top_status"
+                    android:text="@{detailActivityViewModel.mReadNum}"
                     android:textColor="#000"
                     android:textSize="@dimen/md_text_size_small_title"
-                    android:text="@{detailActivityViewModel.mReadNum}"
                     tools:text="阅读：2030" />
 
                 <WebView
@@ -110,8 +114,7 @@
                     android:background="@null"
                     app:itemView="@{detailActivityViewModel.itemView}"
                     app:items="@{detailActivityViewModel.viewModelsForRecommend}"
-                    app:layoutManager="@{LayoutManagers.linear()}"
-                    />
+                    app:layoutManager="@{LayoutManagers.linear()}" />
 
                 <TextView
                     android:id="@+id/tv_review"
@@ -149,6 +152,33 @@
                     android:textSize="@dimen/md_text_size_small_title"
                     tools:text="点赞(23)" />
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tv_review"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="@{detailActivityViewModel.isNoDataShowing?View.VISIBLE:View.GONE}">
+
+                    <ImageView
+                        android:id="@+id/iv_no_data_detail"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/bg_no_data" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_no_data_detail"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="64dp"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:text="当前无评论"
+                        android:textSize="@dimen/md_text_size_appbar" />
+
+                </RelativeLayout>
+
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rlv_review"
                     android:layout_width="match_parent"
@@ -156,9 +186,8 @@
                     android:layout_below="@+id/tv_review"
                     android:background="@null"
                     app:itemView="@{detailActivityViewModel.itemView}"
-                    app:layoutManager="@{LayoutManagers.linear()}"
                     app:items="@{detailActivityViewModel.viewModelsForReview}"
-                    />
+                    app:layoutManager="@{LayoutManagers.linear()}" />
             </RelativeLayout>
         </ScrollView>
 

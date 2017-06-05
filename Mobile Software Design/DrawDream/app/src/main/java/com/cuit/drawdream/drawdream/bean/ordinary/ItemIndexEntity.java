@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class ItemIndexEntity extends BaseBean {
 
+    private Long table_id;
+
     private String id;
 
     private String img;
@@ -117,5 +119,13 @@ public class ItemIndexEntity extends BaseBean {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Long getTable_id() {
+        return table_id;
+    }
+
+    public void setTable_id(Long table_id) {
+        this.table_id = table_id;
     }
 }
