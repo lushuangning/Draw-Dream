@@ -85,9 +85,10 @@ public class DetailActivityViewModel extends BaseViewModel {
         mListForRecommend = new ArrayList<>();
         mListForReview = new ArrayList<>();
 
-        for(int i = 0;i < 5;i++){
-            mListForRecommend.add(new DetialArticleEntity("《夏目的友人帐》破译了！","阅读2301"));
-        }
+        mListForRecommend.add(new DetialArticleEntity("「狐妖小红娘」日语版追加CAST公布，国语版「南国篇」确定制作","阅读3201"));
+        mListForRecommend.add(new DetialArticleEntity("魔幻史诗《幻镜诺德琳》上线，很久没有看到这么良心的国产动画了","阅读1011"));
+        mListForRecommend.add(new DetialArticleEntity("《夏目的友人帐》破译了！","阅读1924"));
+        mListForRecommend.add(new DetialArticleEntity("非遗+动漫有多惊艳？狐妖和灵剑山有新画风了！","阅读5313"));
         loadDataForReview();
 
 
@@ -124,14 +125,6 @@ public class DetailActivityViewModel extends BaseViewModel {
         if(0 == mListForReview.size()){
             isNoDataShowing.set(true);
         }
-//        for(int i = 0;i < 10;i++){
-//            mListForReview.add(new ReviewEntity("file:///android_asset/head1.jpg",
-//                    "刘大妈",
-//                    "2017/07/01",
-//                    "游记去年天天，看了第四季之后断了魂意昂的感觉\n" +
-//                            "从那时起一起等待第五季",
-//                    "art"));
-//        }
     }
 
     @Override
