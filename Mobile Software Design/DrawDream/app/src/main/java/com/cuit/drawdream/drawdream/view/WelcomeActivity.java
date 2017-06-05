@@ -10,6 +10,8 @@ import com.cuit.drawdream.bean.AccountEntity;
 import com.cuit.drawdream.bean.AccountEntityDao;
 import com.cuit.drawdream.bean.NewsDetail;
 import com.cuit.drawdream.bean.NewsDetailDao;
+import com.cuit.drawdream.bean.ReplayEntity;
+import com.cuit.drawdream.bean.ReplayEntityDao;
 import com.cuit.drawdream.bean.UserInfoEntity;
 import com.cuit.drawdream.bean.UserInfoEntityDao;
 import com.cuit.drawdream.drawdream.MyApplication;
@@ -36,20 +38,32 @@ public class WelcomeActivity extends BaseActivity {
         UserInfoEntityDao userInfoEntityDao = MyApplication.daoSession.getUserInfoEntityDao();
         AccountEntityDao accountEntityDao = MyApplication.daoSession.getAccountEntityDao();
         NewsDetailDao newsDetailDao = MyApplication.daoSession.getNewsDetailDao();
+        ReplayEntityDao replayEntityDao = MyApplication.daoSession.getReplayEntityDao();
         //创建表格
         userInfoEntityDao.createTable(MyApplication.daoSession.getDatabase(),true);
         accountEntityDao.createTable(MyApplication.daoSession.getDatabase(),true);
         newsDetailDao.createTable(MyApplication.daoSession.getDatabase(),true);
+        replayEntityDao.createTable(MyApplication.daoSession.getDatabase(),true);
         //测试数据
         userInfoEntityDao.insertOrReplace(new UserInfoEntity("杨庆","1","男","1","1","1"));
         accountEntityDao.insertOrReplace(new AccountEntity("13228189965","1","1"));
+        newsDetailDao.insertOrReplace(new NewsDetail("1",
+                "「狐妖小红娘」日语版追加CAST公布，国语版「南国篇」确定制作",
+                "双儿",
+                "2017/07/01",
+                "file:///android_asset/test.html",
+                "http://img4.178.com/acg1/201706/290464239679/290468626785.jpg"));
         for(int i = 0;i < 12;i++){
-            newsDetailDao.insertOrReplace(new NewsDetail("1",
+            newsDetailDao.insertOrReplace(new NewsDetail("2",
                     "《夏目友人帐》第五季官方图确认公布时间倒计时！",
                     "丢仔",
                     "2017/07/01",
                     "file:///android_asset/test.html",
                     "http://img4.178.com/acg1/201705/289093273635/289093503178.jpg"));
+        }
+
+        for(int i = 0;i < 10;i++){
+            replayEntityDao.insertOrReplace(new ReplayEntity("1", new Long(0),"小红娘更新了，小红娘更行了！","2017/06/05"));
         }
     }
 

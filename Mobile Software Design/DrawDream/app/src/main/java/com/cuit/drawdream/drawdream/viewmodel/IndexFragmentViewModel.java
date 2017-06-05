@@ -126,7 +126,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
             itemEntity.setTitle(entity.getNede_title());
             itemEntity.setId(entity.getNede_id());
             itemEntity.setContent(entity.getNede_content());
-            itemEntity.setClassify("日漫");
+            itemEntity.setClassify("动漫");
+            itemEntity.setTable_id(entity.getId());
             mList.add(itemEntity);
         }
 //        for(int i = 0; i < 12;i++){

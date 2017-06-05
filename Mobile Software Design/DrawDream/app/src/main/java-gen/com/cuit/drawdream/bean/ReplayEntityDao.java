@@ -24,7 +24,7 @@ public class ReplayEntityDao extends AbstractDao<ReplayEntity, Void> {
     */
     public static class Properties {
         public final static Property Core_nede_id = new Property(0, String.class, "core_nede_id", false, "CORE_NEDE_ID");
-        public final static Property Core_acco_id = new Property(1, String.class, "core_acco_id", false, "CORE_ACCO_ID");
+        public final static Property Core_acco_id = new Property(1, Long.class, "core_acco_id", false, "CORE_ACCO_ID");
         public final static Property Core_content = new Property(2, String.class, "core_content", false, "CORE_CONTENT");
         public final static Property Core_date = new Property(3, String.class, "core_date", false, "CORE_DATE");
     };
@@ -43,7 +43,7 @@ public class ReplayEntityDao extends AbstractDao<ReplayEntity, Void> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'REPLAY_ENTITY' (" + //
                 "'CORE_NEDE_ID' TEXT NOT NULL ," + // 0: core_nede_id
-                "'CORE_ACCO_ID' TEXT," + // 1: core_acco_id
+                "'CORE_ACCO_ID' INTEGER," + // 1: core_acco_id
                 "'CORE_CONTENT' TEXT," + // 2: core_content
                 "'CORE_DATE' TEXT);"); // 3: core_date
     }
@@ -60,9 +60,9 @@ public class ReplayEntityDao extends AbstractDao<ReplayEntity, Void> {
         stmt.clearBindings();
         stmt.bindString(1, entity.getCore_nede_id());
  
-        String core_acco_id = entity.getCore_acco_id();
+        Long core_acco_id = entity.getCore_acco_id();
         if (core_acco_id != null) {
-            stmt.bindString(2, core_acco_id);
+            stmt.bindLong(2, core_acco_id);
         }
  
         String core_content = entity.getCore_content();
@@ -87,7 +87,7 @@ public class ReplayEntityDao extends AbstractDao<ReplayEntity, Void> {
     public ReplayEntity readEntity(Cursor cursor, int offset) {
         ReplayEntity entity = new ReplayEntity( //
             cursor.getString(offset + 0), // core_nede_id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // core_acco_id
+            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // core_acco_id
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // core_content
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // core_date
         );
@@ -98,7 +98,7 @@ public class ReplayEntityDao extends AbstractDao<ReplayEntity, Void> {
     @Override
     public void readEntity(Cursor cursor, ReplayEntity entity, int offset) {
         entity.setCore_nede_id(cursor.getString(offset + 0));
-        entity.setCore_acco_id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setCore_acco_id(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setCore_content(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setCore_date(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
      }

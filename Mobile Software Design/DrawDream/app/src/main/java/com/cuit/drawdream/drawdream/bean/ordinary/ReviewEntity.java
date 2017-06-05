@@ -35,6 +35,8 @@ public class ReviewEntity extends BaseBean {
      */
     private String toWhoByName;
 
+    public ReviewEntity(){}
+
     /**
      * 这里只需要姓名就行了，id获取到是为了作为外键使用
      * @param header

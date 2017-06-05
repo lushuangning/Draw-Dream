@@ -2,10 +2,16 @@ package com.cuit.drawdream.drawdream.viewmodel;
 
 import android.content.Context;
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.widget.Toast;
 
+import com.cuit.drawdream.bean.ReplayEntity;
+import com.cuit.drawdream.bean.ReplayEntityDao;
+import com.cuit.drawdream.bean.UserInfoEntity;
+import com.cuit.drawdream.bean.UserInfoEntityDao;
 import com.cuit.drawdream.drawdream.BR;
+import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
@@ -35,6 +41,7 @@ public class DetailActivityViewModel extends BaseViewModel {
     private ArrayList<DetialArticleEntity> mListForRecommend;
     private ArrayList<ReviewEntity> mListForReview;
 
+    public final ObservableBoolean isNoDataShowing = new ObservableBoolean(false);
     public final ObservableField<String > mTitle = new ObservableField<>();
     public final ObservableField<String > mReporter = new ObservableField<>();
     public final ObservableField<String > mReadNum = new ObservableField<>();
@@ -81,14 +88,8 @@ public class DetailActivityViewModel extends BaseViewModel {
         for(int i = 0;i < 5;i++){
             mListForRecommend.add(new DetialArticleEntity("《夏目的友人帐》破译了！","阅读2301"));
         }
-        for(int i = 0;i < 10;i++){
-            mListForReview.add(new ReviewEntity("file:///android_asset/head1.jpg",
-                    "刘大妈",
-                    "2017/07/01",
-                    "游记去年天天，看了第四季之后断了魂意昂的感觉\n" +
-                    "从那时起一起等待第五季",
-                    "art"));
-        }
+        loadDataForReview();
+
 
         //加载推荐
         for(DetialArticleEntity entity: mListForRecommend){
@@ -100,6 +101,37 @@ public class DetailActivityViewModel extends BaseViewModel {
             viewModelsForReview.add(viewModel);
         }
 
+    }
+
+    /**
+     * 加载评论
+     */
+    private void loadDataForReview() {
+        ReplayEntityDao replyDao = MyApplication.daoSession.getReplayEntityDao();
+        UserInfoEntityDao userInfoDao = MyApplication.daoSession.getUserInfoEntityDao();
+        for(ReplayEntity entity : (ArrayList<ReplayEntity>) replyDao.loadAll()){
+            if(entity.getCore_nede_id().equals(mEntity.getId())){
+                ReviewEntity entityReView = new ReviewEntity();
+                entityReView.setContent(entity.getCore_content());
+                entityReView.setTime(entity.getCore_date());
+                UserInfoEntity entityUserInfo = new UserInfoEntity();
+                entityUserInfo = userInfoDao.load(entity.getCore_acco_id());
+                entityReView.setName(entityUserInfo.getUser_name());
+                entityReView.setHeader("file:///android_asset/head1.jpg");
+                mListForReview.add(entityReView);
+            }
+        }
+        if(0 == mListForReview.size()){
+            isNoDataShowing.set(true);
+        }
+//        for(int i = 0;i < 10;i++){
+//            mListForReview.add(new ReviewEntity("file:///android_asset/head1.jpg",
+//                    "刘大妈",
+//                    "2017/07/01",
+//                    "游记去年天天，看了第四季之后断了魂意昂的感觉\n" +
+//                            "从那时起一起等待第五季",
+//                    "art"));
+//        }
     }
 
     @Override
@@ -145,11 +177,12 @@ public class DetailActivityViewModel extends BaseViewModel {
             mHeadImg.set(mReviewEntity.getHeader());
             mName.set(mReviewEntity.getName());
             mTime.set(mReviewEntity.getTime());
-            if(!mReviewEntity.getToWhoByName().equals("art")){
-                mContent.set("回复@" + mReviewEntity.getToWhoByName() + ":" + mReviewEntity.getContent());
-            }else {
-                mContent.set("阅读" + mReviewEntity.getContent());
-            }
+            mContent.set(mReviewEntity.getContent());
+//            if(!mReviewEntity.getToWhoByName().equals("art")){
+//                mContent.set("回复@" + mReviewEntity.getToWhoByName() + ":" + mReviewEntity.getContent());
+//            }else {
+//                mContent.set("阅读" + mReviewEntity.getContent());
+//            }
         }
 
         /**

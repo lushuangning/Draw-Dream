@@ -6,6 +6,7 @@ package com.cuit.drawdream.bean;
  */
 public class NewsDetail {
 
+    private Long id;
     /** Not-null value. */
     private String nede_id;
     /** Not-null value. */
@@ -22,13 +23,35 @@ public class NewsDetail {
     public NewsDetail() {
     }
 
-    public NewsDetail(String nede_id, String nede_title, String nede_author, String nede_time, String nede_content, String nede_img) {
+    public NewsDetail(Long id) {
+        this.id = id;
+    }
+
+    public NewsDetail(Long id, String nede_id, String nede_title, String nede_author, String nede_time, String nede_content, String nede_img) {
+        this.id = id;
         this.nede_id = nede_id;
         this.nede_title = nede_title;
         this.nede_author = nede_author;
         this.nede_time = nede_time;
         this.nede_content = nede_content;
         this.nede_img = nede_img;
+    }
+
+    public NewsDetail(String nede_id, String nede_title, String nede_author, String nede_time, String nede_content, String nede_img) {
+        this.nede_id = nede_id;
+        this.nede_author = nede_author;
+        this.nede_title = nede_title;
+        this.nede_time = nede_time;
+        this.nede_img = nede_img;
+        this.nede_content = nede_content;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /** Not-null value. */

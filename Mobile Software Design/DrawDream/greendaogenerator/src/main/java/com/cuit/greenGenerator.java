@@ -17,16 +17,20 @@ public class greenGenerator {
         new DaoGenerator().generateAll(schema, "E:\\Github\\drawDream\\Draw-Dream\\Mobile Software Design\\DrawDream\\app\\src\\main\\java-gen");
     }
 
+
     private static void addReplayEntity(Schema schema) {
         Entity replayEntity = schema.addEntity("ReplayEntity");
+        //文章id
         replayEntity.addStringProperty("core_nede_id").notNull();
-        replayEntity.addStringProperty("core_acco_id");
+        //用户id
+        replayEntity.addLongProperty("core_acco_id");
         replayEntity.addStringProperty("core_content");
         replayEntity.addStringProperty("core_date");
     }
 
     private static void addNewsDetailEntity(Schema schema) {
         Entity newsDetail = schema.addEntity("NewsDetail");
+        newsDetail.addIdProperty().autoincrement();
         newsDetail.addStringProperty("nede_id").notNull();
         newsDetail.addStringProperty("nede_title").notNull();
         newsDetail.addStringProperty("nede_author").notNull();
@@ -53,6 +57,7 @@ public class greenGenerator {
     }
     private static void addUserInfoEntity(Schema schema) {
         Entity userInfo = schema.addEntity("UserInfoEntity");
+        userInfo.addIdProperty().autoincrement().notNull();
         userInfo.addStringProperty("user_name").notNull();
         userInfo.addStringProperty("user_id").notNull();
         userInfo.addStringProperty("user_gander").notNull();
