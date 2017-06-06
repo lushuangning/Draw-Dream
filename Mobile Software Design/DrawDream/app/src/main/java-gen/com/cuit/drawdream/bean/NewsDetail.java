@@ -39,11 +39,11 @@ public class NewsDetail {
 
     public NewsDetail(String nede_id, String nede_title, String nede_author, String nede_time, String nede_content, String nede_img) {
         this.nede_id = nede_id;
-        this.nede_author = nede_author;
         this.nede_title = nede_title;
+        this.nede_author = nede_author;
         this.nede_time = nede_time;
-        this.nede_img = nede_img;
         this.nede_content = nede_content;
+        this.nede_img = nede_img;
     }
 
     public Long getId() {

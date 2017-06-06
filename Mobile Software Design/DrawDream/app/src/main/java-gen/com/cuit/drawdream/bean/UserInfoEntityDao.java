@@ -23,7 +23,7 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Long> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property User_name = new Property(1, String.class, "user_name", false, "USER_NAME");
         public final static Property User_id = new Property(2, String.class, "user_id", false, "USER_ID");
         public final static Property User_gander = new Property(3, String.class, "user_gander", false, "USER_GANDER");
@@ -45,7 +45,7 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Long> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'USER_INFO_ENTITY' (" + //
-                "'_id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ," + // 0: id
+                "'_id' INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "'USER_NAME' TEXT NOT NULL ," + // 1: user_name
                 "'USER_ID' TEXT NOT NULL ," + // 2: user_id
                 "'USER_GANDER' TEXT NOT NULL ," + // 3: user_gander
@@ -64,7 +64,11 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Long> {
     @Override
     protected void bindValues(SQLiteStatement stmt, UserInfoEntity entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
         stmt.bindString(2, entity.getUser_name());
         stmt.bindString(3, entity.getUser_id());
         stmt.bindString(4, entity.getUser_gander());
@@ -80,14 +84,14 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Long> {
     /** @inheritdoc */
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     /** @inheritdoc */
     @Override
     public UserInfoEntity readEntity(Cursor cursor, int offset) {
         UserInfoEntity entity = new UserInfoEntity( //
-            cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // user_name
             cursor.getString(offset + 2), // user_id
             cursor.getString(offset + 3), // user_gander
@@ -101,7 +105,7 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Long> {
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, UserInfoEntity entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setUser_name(cursor.getString(offset + 1));
         entity.setUser_id(cursor.getString(offset + 2));
         entity.setUser_gander(cursor.getString(offset + 3));

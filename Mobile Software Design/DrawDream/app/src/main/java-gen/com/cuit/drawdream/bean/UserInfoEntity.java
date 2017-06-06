@@ -6,7 +6,7 @@ package com.cuit.drawdream.bean;
  */
 public class UserInfoEntity {
 
-    private long id;
+    private Long id;
     /** Not-null value. */
     private String user_name;
     /** Not-null value. */
@@ -22,11 +22,11 @@ public class UserInfoEntity {
     public UserInfoEntity() {
     }
 
-    public UserInfoEntity(long id) {
+    public UserInfoEntity(Long id) {
         this.id = id;
     }
 
-    public UserInfoEntity(long id, String user_name, String user_id, String user_gander, String user_phone, String user_email, String user_sign) {
+    public UserInfoEntity(Long id, String user_name, String user_id, String user_gander, String user_phone, String user_email, String user_sign) {
         this.id = id;
         this.user_name = user_name;
         this.user_id = user_id;
@@ -36,20 +36,11 @@ public class UserInfoEntity {
         this.user_sign = user_sign;
     }
 
-    public UserInfoEntity(String user_name, String user_id, String user_gander, String user_phone, String user_email, String user_sign) {
-        this.user_name = user_name;
-        this.user_id = user_id;
-        this.user_gander = user_gander;
-        this.user_phone = user_phone;
-        this.user_email = user_email;
-        this.user_sign = user_sign;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
