@@ -39,10 +39,12 @@ import java.util.ArrayList;
 public class DetailActivity extends BaseActivity {
 
     private ActivityDetailBinding mBinding;
+    public static DetailActivity instance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_detail);
         Intent intent = getIntent();
         ArrayList<ItemIndexEntity> list = (ArrayList<ItemIndexEntity>)intent.getExtras().getSerializable("Detail");
@@ -53,7 +55,9 @@ public class DetailActivity extends BaseActivity {
         mBinding.wvContentDetail.loadUrl(entity.getContent());
     }
 
-
+    public void finish(){
+        finish();
+    }
 
     @Override
     protected void destroy() {

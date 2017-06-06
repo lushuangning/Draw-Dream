@@ -13,6 +13,7 @@ import com.cuit.drawdream.bean.UserInfoEntityDao;
 import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.databinding.FragmentMyInfoBinding;
+import com.cuit.drawdream.drawdream.utils.tool.Config;
 import com.cuit.drawdream.drawdream.viewmodel.MyInfoFragmentViewModel;
 
 import java.util.ArrayList;
@@ -41,7 +42,8 @@ public class MyInfoFragment extends Fragment {
 
     private UserInfoEntity loadData() {
         UserInfoEntityDao dao = MyApplication.daoSession.getUserInfoEntityDao();
-        mList = (ArrayList<UserInfoEntity>) dao.loadAll();
-        return mList.get(0);
+//        mList = (ArrayList<UserInfoEntity>) dao.load(Config.USER_ID);
+//        Config.USER_ID = mList.get(0).getId();
+        return dao.load(Config.USER_ID);
     }
 }

@@ -40,7 +40,7 @@
             android:layout_marginRight="@dimen/md_margin_text"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="1dp"
             android:background="@color/color_main"
             android:layout_below="@+id/et_username_login"/>
         <TextView
@@ -73,7 +73,7 @@
             android:layout_marginRight="@dimen/md_margin_text"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="1dp"
             android:background="@color/color_main"
             android:layout_below="@+id/et_pwd_login"/>
         <TextView

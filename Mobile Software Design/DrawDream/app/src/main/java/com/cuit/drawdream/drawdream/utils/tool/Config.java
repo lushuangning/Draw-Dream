@@ -14,6 +14,6 @@ public class Config {
     /**
      * 当前用户id
      */
-    public static String USER_ID = "";
+    public static Long USER_ID = new Long(0);
 
 }

@@ -86,6 +86,8 @@
                     tools:text="阅读：2030" />
 
                 <WebView
+                    android:scrollbars="none"
+                    android:clickable="false"
                     android:id="@+id/wv_content_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -138,6 +140,8 @@
                     android:padding="11.5dp"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_small_title"
+                    android:text="@{detailActivityViewModel.mCommentNum}"
+                    app:clickCommand="@{detailActivityViewModel.comment}"
                     tools:text="评论(23)" />
 
                 <TextView

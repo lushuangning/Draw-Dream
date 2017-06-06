@@ -25,7 +25,7 @@ public class AccountEntityDao extends AbstractDao<AccountEntity, Void> {
     public static class Properties {
         public final static Property Account = new Property(0, String.class, "account", false, "ACCOUNT");
         public final static Property Pwd = new Property(1, String.class, "pwd", false, "PWD");
-        public final static Property User_id = new Property(2, String.class, "user_id", false, "USER_ID");
+        public final static Property User_id = new Property(2, long.class, "user_id", false, "USER_ID");
     };
 
 
@@ -43,7 +43,7 @@ public class AccountEntityDao extends AbstractDao<AccountEntity, Void> {
         db.execSQL("CREATE TABLE " + constraint + "'ACCOUNT_ENTITY' (" + //
                 "'ACCOUNT' TEXT NOT NULL ," + // 0: account
                 "'PWD' TEXT NOT NULL ," + // 1: pwd
-                "'USER_ID' TEXT NOT NULL );"); // 2: user_id
+                "'USER_ID' INTEGER NOT NULL );"); // 2: user_id
     }
 
     /** Drops the underlying database table. */
@@ -58,7 +58,7 @@ public class AccountEntityDao extends AbstractDao<AccountEntity, Void> {
         stmt.clearBindings();
         stmt.bindString(1, entity.getAccount());
         stmt.bindString(2, entity.getPwd());
-        stmt.bindString(3, entity.getUser_id());
+        stmt.bindLong(3, entity.getUser_id());
     }
 
     /** @inheritdoc */
@@ -73,7 +73,7 @@ public class AccountEntityDao extends AbstractDao<AccountEntity, Void> {
         AccountEntity entity = new AccountEntity( //
             cursor.getString(offset + 0), // account
             cursor.getString(offset + 1), // pwd
-            cursor.getString(offset + 2) // user_id
+            cursor.getLong(offset + 2) // user_id
         );
         return entity;
     }
@@ -83,7 +83,7 @@ public class AccountEntityDao extends AbstractDao<AccountEntity, Void> {
     public void readEntity(Cursor cursor, AccountEntity entity, int offset) {
         entity.setAccount(cursor.getString(offset + 0));
         entity.setPwd(cursor.getString(offset + 1));
-        entity.setUser_id(cursor.getString(offset + 2));
+        entity.setUser_id(cursor.getLong(offset + 2));
      }
     
     /** @inheritdoc */

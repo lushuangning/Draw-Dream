@@ -1,9 +1,13 @@
 package com.cuit.drawdream.drawdream.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.Toast;
 
 import com.cuit.drawdream.bean.ReplayEntity;
@@ -16,9 +20,12 @@ import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ReviewEntity;
+import com.cuit.drawdream.drawdream.view.CommentActivity;
 import com.kelin.mvvmlight.command.ReplyCommand;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import me.tatarka.bindingcollectionadapter.ItemView;
 import me.tatarka.bindingcollectionadapter.ItemViewSelector;
@@ -35,13 +42,21 @@ public class DetailActivityViewModel extends BaseViewModel {
     private static final String TAG = "DetaiActivitylVM";
     private static int ITEM_RECOMMEND = 0;     //相关推荐
     private static int ITEM_REVIEW = 1;        //评论
+    private static String DETAIL_ID_NOW = "";
 
     private Context mContext;
     private ItemIndexEntity mEntity;
     private ArrayList<DetialArticleEntity> mListForRecommend;
     private ArrayList<ReviewEntity> mListForReview;
+    private Handler mHeadler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
 
     public final ObservableBoolean isNoDataShowing = new ObservableBoolean(false);
+    public final ObservableField<String > mCommentNum = new ObservableField<>();
     public final ObservableField<String > mTitle = new ObservableField<>();
     public final ObservableField<String > mReporter = new ObservableField<>();
     public final ObservableField<String > mReadNum = new ObservableField<>();
@@ -68,15 +83,12 @@ public class DetailActivityViewModel extends BaseViewModel {
         super(context);
         mContext = context;
         mEntity = entity;
+        DETAIL_ID_NOW = mEntity.getId();
         initData();
     }
 
     private void initData() {
 
-//        mTitle.set("《夏目友人帐》第五季官方图确认公布时间倒计时！");
-//        mReporter.set("报道：" + "丢仔");
-//        mReadNum.set("阅读" + "2930");
-//        mTitleImg.set("http://img4.178.com/acg1/201705/289093273635/289093503178.jpg");
         mTitle.set(mEntity.getTitle());
         mTitleImg.set(mEntity.getImg());
         mReadNum.set(mEntity.getTime());
@@ -89,6 +101,8 @@ public class DetailActivityViewModel extends BaseViewModel {
         mListForRecommend.add(new DetialArticleEntity("魔幻史诗《幻镜诺德琳》上线，很久没有看到这么良心的国产动画了","阅读1011"));
         mListForRecommend.add(new DetialArticleEntity("《夏目的友人帐》破译了！","阅读1924"));
         mListForRecommend.add(new DetialArticleEntity("非遗+动漫有多惊艳？狐妖和灵剑山有新画风了！","阅读5313"));
+
+        //加载评论数据
         loadDataForReview();
 
 
@@ -97,12 +111,26 @@ public class DetailActivityViewModel extends BaseViewModel {
             ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_RECOMMEND,entity,null);
             viewModelsForRecommend.add(viewModel);
         }
-        for(ReviewEntity entity:mListForReview){
+        //加载评论
+        for(ReviewEntity entity: mListForReview){
             ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_REVIEW,null,entity);
             viewModelsForReview.add(viewModel);
         }
 
     }
+
+    /**
+     * 评论
+     */
+    public final ReplyCommand comment = new ReplyCommand(()->{
+//            Toast.makeText(mContext,"回复成功",Toast.LENGTH_SHORT)
+//                    .show();
+        Bundle bundle = new Bundle();
+        bundle.putString("DetailId",DETAIL_ID_NOW);
+        Intent intent = new Intent(mContext, CommentActivity.class);
+        intent.putExtras(bundle);
+        mContext.startActivity(intent);
+    });
 
     /**
      * 加载评论
@@ -124,6 +152,16 @@ public class DetailActivityViewModel extends BaseViewModel {
         }
         if(0 == mListForReview.size()){
             isNoDataShowing.set(true);
+        }else {
+            mCommentNum.set("评论（" + mListForReview.size() + ")");
+        }
+    }
+
+    public void reLoadData(){
+        loadDataForReview();
+        for(ReviewEntity entity: mListForReview){
+            ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_REVIEW,null,entity);
+            viewModelsForReview.add(viewModel);
         }
     }
 
@@ -187,8 +225,15 @@ public class DetailActivityViewModel extends BaseViewModel {
         }
 
         public final ReplyCommand replyToWho = new ReplyCommand(()->{
-            Toast.makeText(mContext,"回复成功",Toast.LENGTH_SHORT)
-                    .show();
+//            Toast.makeText(mContext,"回复成功",Toast.LENGTH_SHORT)
+//                    .show();
+            Bundle bundle = new Bundle();
+            MyApplication myApplication = (MyApplication)getApplication();
+            myApplication.setHandler(mHeadler);
+            bundle.putString("DetailId",DETAIL_ID_NOW);
+            Intent intent = new Intent(mContext, CommentActivity.class);
+            intent.putExtras(bundle);
+            mContext.startActivity(intent);
         });
 
         @Override

@@ -10,13 +10,12 @@ public class AccountEntity {
     private String account;
     /** Not-null value. */
     private String pwd;
-    /** Not-null value. */
-    private String user_id;
+    private long user_id;
 
     public AccountEntity() {
     }
 
-    public AccountEntity(String account, String pwd, String user_id) {
+    public AccountEntity(String account, String pwd, long user_id) {
         this.account = account;
         this.pwd = pwd;
         this.user_id = user_id;
@@ -42,13 +41,11 @@ public class AccountEntity {
         this.pwd = pwd;
     }
 
-    /** Not-null value. */
-    public String getUser_id() {
+    public long getUser_id() {
         return user_id;
     }
 
-    /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setUser_id(String user_id) {
+    public void setUser_id(long user_id) {
         this.user_id = user_id;
     }
 

@@ -48,7 +48,7 @@ public class WelcomeActivity extends BaseActivity {
         userInfoEntityDao.insertOrReplace(new UserInfoEntity(new Long(0),"杨庆","1","男","1","1","1"));
         userInfoEntityDao.insertOrReplace(new UserInfoEntity(new Long(1),"双儿","2","男","1","1","1"));
         userInfoEntityDao.insertOrReplace(new UserInfoEntity(new Long(2),"羊羊","3","男","1","1","1"));
-        accountEntityDao.insertOrReplace(new AccountEntity("13228189965","1","1"));
+        accountEntityDao.insertOrReplace(new AccountEntity("13228189965","1",new Long(0)));
 
         for(int i = 0;i < 3;i++){
             newsDetailDao.insertOrReplace(new NewsDetail("1",

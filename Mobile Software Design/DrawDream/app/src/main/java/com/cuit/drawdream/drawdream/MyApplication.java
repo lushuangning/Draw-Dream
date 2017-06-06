@@ -3,6 +3,7 @@ package com.cuit.drawdream.drawdream;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class MyApplication extends Application {
     private String TAG ="云巴推送";
     private SwNetworkService mNetworkService;
     private Scheduler defaultSubscribeScheduler;
+    private Handler mHandler;
     private static String token = "";
 
     private static MyApplication application;
@@ -65,6 +67,14 @@ public class MyApplication extends Application {
 
     public static MyApplication getInstance() {
         return application;
+    }
+
+    public void setHandler(Handler handler){
+        this.mHandler = handler;
+    }
+
+    public Handler getHandler(){
+        return mHandler;
     }
 
     public SwNetworkService getNetworkService() {
