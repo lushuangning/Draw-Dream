@@ -163,9 +163,23 @@ public class DetailActivityViewModel extends BaseViewModel {
             isNoDataShowing.set(true);
         }else {
             mCommentNum.set("评论（" + mListForReview.size() + ")");
+//            mListForReview = (ArrayList<ReviewEntity>)reverseOrderList( mListForReview);
         }
     }
 
+    /**
+     * 倒序,让评论更加时间排序
+     * @param list
+     * @return
+     */
+    public List<ReviewEntity> reverseOrderList(ArrayList<ReviewEntity> list){
+        ArrayList<ReviewEntity> tempList = list;
+        int id = list.size() - 1;
+        for(ReviewEntity entity : list){
+            tempList.set(id--,entity);
+        }
+        return list;
+    }
     /**
      * 重新加载数据
      */

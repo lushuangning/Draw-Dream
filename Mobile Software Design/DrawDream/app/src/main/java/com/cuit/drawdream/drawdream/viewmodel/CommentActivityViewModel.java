@@ -46,6 +46,7 @@ public class CommentActivityViewModel extends BaseViewModel {
         mHandler = MyApplication.getInstance().getHandler();
         Message msg = new Message();
         msg.arg1 = 1;
+        //TODO msg what传递新增的数据
         mHandler.sendMessage(msg);
         CommentActivity.instance.finish();
     });

@@ -55,10 +55,6 @@ public class DetailActivity extends BaseActivity {
         mBinding.wvContentDetail.loadUrl(entity.getContent());
     }
 
-    public void finish(){
-        finish();
-    }
-
     @Override
     protected void destroy() {
 
