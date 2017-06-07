@@ -52,6 +52,14 @@ public class DetailActivityViewModel extends BaseViewModel {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            if(msg.arg1 == 1){
+                reLoadData();
+                Toast.makeText(mContext,"评论成功",Toast.LENGTH_SHORT)
+                        .show();
+            }else {
+                Toast.makeText(mContext,"评论失败",Toast.LENGTH_SHORT)
+                        .show();
+            }
         }
     };
 
@@ -125,6 +133,7 @@ public class DetailActivityViewModel extends BaseViewModel {
     public final ReplyCommand comment = new ReplyCommand(()->{
 //            Toast.makeText(mContext,"回复成功",Toast.LENGTH_SHORT)
 //                    .show();
+        MyApplication.getInstance().setHandler(mHeadler);
         Bundle bundle = new Bundle();
         bundle.putString("DetailId",DETAIL_ID_NOW);
         Intent intent = new Intent(mContext, CommentActivity.class);
@@ -157,6 +166,9 @@ public class DetailActivityViewModel extends BaseViewModel {
         }
     }
 
+    /**
+     * 重新加载数据
+     */
     public void reLoadData(){
         loadDataForReview();
         for(ReviewEntity entity: mListForReview){
@@ -228,8 +240,7 @@ public class DetailActivityViewModel extends BaseViewModel {
 //            Toast.makeText(mContext,"回复成功",Toast.LENGTH_SHORT)
 //                    .show();
             Bundle bundle = new Bundle();
-            MyApplication myApplication = (MyApplication)getApplication();
-            myApplication.setHandler(mHeadler);
+            MyApplication.getInstance().setHandler(mHeadler);
             bundle.putString("DetailId",DETAIL_ID_NOW);
             Intent intent = new Intent(mContext, CommentActivity.class);
             intent.putExtras(bundle);

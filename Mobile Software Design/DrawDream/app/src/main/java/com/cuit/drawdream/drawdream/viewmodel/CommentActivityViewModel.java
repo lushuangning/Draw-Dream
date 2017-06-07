@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.databinding.ObservableField;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ public class CommentActivityViewModel extends BaseViewModel {
     private static final String TAG = "commentActivityVM";
     private Context mContext;
     private String mId;
-    private Handler mHandler;
+    private Handler mHandler = new Handler();
 
     public final ObservableField<String > mContent = new ObservableField<>();
 
@@ -42,8 +43,10 @@ public class CommentActivityViewModel extends BaseViewModel {
     public final ReplyCommand handOn = new ReplyCommand(()->{
         Log.d(TAG," 提交成功！" + mContent.get());
         saveReplay();
-        Toast.makeText(mContext,"评论成功",Toast.LENGTH_SHORT)
-                .show();
+        mHandler = MyApplication.getInstance().getHandler();
+        Message msg = new Message();
+        msg.arg1 = 1;
+        mHandler.sendMessage(msg);
         CommentActivity.instance.finish();
     });
 
