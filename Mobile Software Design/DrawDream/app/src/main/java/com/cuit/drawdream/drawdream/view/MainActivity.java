@@ -1,10 +1,15 @@
 package com.cuit.drawdream.drawdream.view;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.view.adapter.MainVpAdapter;
@@ -29,9 +34,17 @@ import devlight.io.library.ntb.NavigationTabBar;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
+    private static boolean isExit = false;
 
     private ViewPager mViewPager;
     private MainVpAdapter mMainVpAdapter;
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +101,30 @@ public class MainActivity extends BaseActivity {
         );
         navigationTabBar.setModels(model);
         navigationTabBar.setViewPager(mViewPager,0);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 退出程序判断
+     */
+    private void exit() {
+        if(!isExit){
+            isExit = true;
+            Toast.makeText(this,"请再按一次退出程序!",Toast.LENGTH_LONG)
+                    .show();
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        }else {
+            finish();
+            System.exit(0);
+        }
     }
 
     @Override

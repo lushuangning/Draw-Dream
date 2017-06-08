@@ -15,5 +15,9 @@ public class Config {
      * 当前用户id
      */
     public static Long USER_ID = new Long(0);
+    /**
+     * 当前用户姓名
+     */
+    public static String USER_NAME = "";
 
 }

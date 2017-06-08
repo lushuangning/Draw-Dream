@@ -158,8 +158,9 @@ public class IndexFragmentViewModel extends BaseViewModel {
      * 加载更多
      */
     public final ReplyCommand<Integer> onLoadMoreCommand = new ReplyCommand<>((itemCount)->{
-        Toast.makeText(mContext,"没有更多了" + itemCount,Toast.LENGTH_SHORT)
+        Toast.makeText(mContext,"没有更多了",Toast.LENGTH_SHORT)
                 .show();
+        Log.d(TAG,"item " + itemCount);
     });
 
 

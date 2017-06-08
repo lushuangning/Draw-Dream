@@ -52,8 +52,9 @@ public class DetailActivityViewModel extends BaseViewModel {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            ReviewEntity entity = (ReviewEntity) msg.obj;
             if(msg.arg1 == 1){
-                reLoadData();
+                reLoadData(entity);
                 Toast.makeText(mContext,"评论成功",Toast.LENGTH_SHORT)
                         .show();
             }else {
@@ -161,34 +162,22 @@ public class DetailActivityViewModel extends BaseViewModel {
         }
         if(0 == mListForReview.size()){
             isNoDataShowing.set(true);
+            mCommentNum.set("评论");
         }else {
             mCommentNum.set("评论（" + mListForReview.size() + ")");
-//            mListForReview = (ArrayList<ReviewEntity>)reverseOrderList( mListForReview);
+            isNoDataShowing.set(false);
         }
     }
 
     /**
-     * 倒序,让评论更加时间排序
-     * @param list
-     * @return
-     */
-    public List<ReviewEntity> reverseOrderList(ArrayList<ReviewEntity> list){
-        ArrayList<ReviewEntity> tempList = list;
-        int id = list.size() - 1;
-        for(ReviewEntity entity : list){
-            tempList.set(id--,entity);
-        }
-        return list;
-    }
-    /**
      * 重新加载数据
      */
-    public void reLoadData(){
-        loadDataForReview();
-        for(ReviewEntity entity: mListForReview){
-            ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_REVIEW,null,entity);
-            viewModelsForReview.add(viewModel);
-        }
+    public void reLoadData(ReviewEntity entity){
+        ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_REVIEW,null,entity);
+        //最新的评论在第一个
+        viewModelsForReview.add(0,viewModel);
+        isNoDataShowing.set(false);
+        mCommentNum.set("评论（" + viewModelsForReview.size() + ")");
     }
 
     @Override
@@ -251,8 +240,6 @@ public class DetailActivityViewModel extends BaseViewModel {
         }
 
         public final ReplyCommand replyToWho = new ReplyCommand(()->{
-//            Toast.makeText(mContext,"回复成功",Toast.LENGTH_SHORT)
-//                    .show();
             Bundle bundle = new Bundle();
             MyApplication.getInstance().setHandler(mHeadler);
             bundle.putString("DetailId",DETAIL_ID_NOW);

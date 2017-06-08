@@ -14,6 +14,7 @@ import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.bean.response.ResponseLogin;
 import com.cuit.drawdream.drawdream.utils.tool.Config;
 import com.cuit.drawdream.drawdream.utils.tool.Validator;
+import com.cuit.drawdream.drawdream.view.LoginActivity;
 import com.cuit.drawdream.drawdream.view.MainActivity;
 import com.google.gson.Gson;
 import com.kelin.mvvmlight.command.ReplyCommand;
@@ -58,6 +59,7 @@ public class LoginActivityViewModel extends BaseViewModel{
                 if(checkAccount(mUserName.get(),mUserPassword.get())){
                     Intent intent = new Intent(mContext,MainActivity.class);
                     mContext.startActivity(intent);
+                    LoginActivity.instance.finish();
                 }else {
                     Toast.makeText(mContext,"账号密码有错误，请重新输入！",Toast.LENGTH_SHORT).show();
                 }

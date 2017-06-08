@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import com.cuit.drawdream.bean.ReplayEntity;
 import com.cuit.drawdream.bean.ReplayEntityDao;
+import com.cuit.drawdream.bean.UserInfoEntity;
 import com.cuit.drawdream.drawdream.MyApplication;
+import com.cuit.drawdream.drawdream.bean.ordinary.ReviewEntity;
 import com.cuit.drawdream.drawdream.utils.tool.Config;
 import com.cuit.drawdream.drawdream.view.CommentActivity;
 import com.kelin.mvvmlight.command.ReplyCommand;
@@ -47,6 +49,12 @@ public class CommentActivityViewModel extends BaseViewModel {
         Message msg = new Message();
         msg.arg1 = 1;
         //TODO msg what传递新增的数据
+        ReviewEntity entity = new ReviewEntity();
+        entity.setContent(mContent.get());
+        entity.setTime("2017/08/06");
+        entity.setName(Config.USER_NAME);
+        entity.setHeader("file:///android_asset/head1.jpg");
+        msg.obj = entity;
         mHandler.sendMessage(msg);
         CommentActivity.instance.finish();
     });

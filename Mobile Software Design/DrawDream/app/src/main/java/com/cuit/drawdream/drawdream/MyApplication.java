@@ -52,6 +52,7 @@ public class MyApplication extends Application {
             Toast.makeText(getApplicationContext(), "网络无法连接！", Toast.LENGTH_LONG).show();
             return;
         }
+
         setYunBa();
         application = this;
         CrashHandler handler = CrashHandler.getInstance();

@@ -5,6 +5,7 @@ import android.databinding.ObservableField;
 import android.widget.Toast;
 
 import com.cuit.drawdream.bean.UserInfoEntity;
+import com.cuit.drawdream.drawdream.utils.tool.Config;
 import com.kelin.mvvmlight.command.ReplyCommand;
 
 /**
@@ -24,6 +25,7 @@ public class MyInfoFragmentViewModel extends BaseViewModel {
         super(context);
         mContext = context;
         mName.set(entity.getUser_name());
+        Config.USER_NAME = entity.getUser_name();
     }
 
     public final ReplyCommand toMyMsg = new ReplyCommand(()->{

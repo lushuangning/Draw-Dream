@@ -1,4 +1,5 @@
 package com.cuit.drawdream.drawdream.view;
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
@@ -12,9 +13,13 @@ public class LoginActivity extends BaseActivity {
     private ActivityLoginBinding binding;
     private LoginActivityViewModel viewModel;
     private List<Student > list ;
+
+    public static Activity instance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
         viewModel = new LoginActivityViewModel(this);
         binding.setViewmodel(viewModel);
