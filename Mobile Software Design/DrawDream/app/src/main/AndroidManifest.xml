@@ -62,6 +62,8 @@
         <activity android:name=".view.DetailActivity" />
         <activity android:name=".view.CommentActivity"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".view.MyInfoMgtActivity"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

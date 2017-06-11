@@ -1,11 +1,13 @@
 package com.cuit.drawdream.drawdream.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableField;
 import android.widget.Toast;
 
 import com.cuit.drawdream.bean.UserInfoEntity;
 import com.cuit.drawdream.drawdream.utils.tool.Config;
+import com.cuit.drawdream.drawdream.view.MyInfoMgtActivity;
 import com.kelin.mvvmlight.command.ReplyCommand;
 
 /**
@@ -28,11 +30,23 @@ public class MyInfoFragmentViewModel extends BaseViewModel {
         Config.USER_NAME = entity.getUser_name();
     }
 
+    /**
+     * 跳转到我的信息管理
+     */
     public final ReplyCommand toMyMsg = new ReplyCommand(()->{
         //跳转到msg
-        Toast.makeText(mContext,"尚未完成",Toast.LENGTH_SHORT)
-                .show();
+        Intent intent = new Intent(mContext, MyInfoMgtActivity.class);
+        mContext.startActivity(intent);
     });
+
+    /**
+     * 友好性提示
+     */
+    public final ReplyCommand hint = new ReplyCommand(()->{
+       Toast.makeText(mContext,"程序猿懒得写了",Toast.LENGTH_SHORT).show();
+    });
+
+
 
     @Override
     public void destroy() {

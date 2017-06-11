@@ -277,7 +277,8 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_msg_me"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_msg_me"
-                    app:clickCommand="@{myInfoFragmentViewModel.toMyMsg}"/>
+                    app:clickCommand="@{myInfoFragmentViewModel.hint}"
+                    />
 
                 <ImageView
                     android:layout_width="24dp"
@@ -288,7 +289,8 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_collection_me"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_collection_me"
-                    app:layout_constraintLeft_toLeftOf="@+id/guideline4" />
+                    app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+                    app:clickCommand="@{myInfoFragmentViewModel.hint}"/>
 
                 <ImageView
                     android:layout_width="24dp"
@@ -299,7 +301,8 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintLeft_toLeftOf="@+id/guideline4"
                     app:layout_constraintTop_toTopOf="@+id/tv_history_me"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_history_me" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_history_me"
+                    app:clickCommand="@{myInfoFragmentViewModel.hint}"/>
 
                 <ImageView
                     android:layout_width="24dp"
@@ -310,7 +313,8 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_setting_me"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_setting_me"
-                    app:layout_constraintLeft_toLeftOf="@+id/guideline4" />
+                    app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+                    app:clickCommand="@{myInfoFragmentViewModel.toMyMsg}"/>
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mgtViewModel"
+            type="com.cuit.drawdream.drawdream.viewmodel.MyInfoMgtActivityViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null">
+
+        <com.cuit.drawdream.drawdream.view.custom.PreviousView
+            android:id="@+id/pv_my_info"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/pv_my_info"
+            android:background="@color/color_bg">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+                <!--帐号-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/md_margin_screen_basic"
+                    android:text="帐号"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar" />
+
+                <EditText
+                    android:id="@+id/et_my_info_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@null"
+                    android:padding="@dimen/md_margin_screen_basic"
+                    android:textColor="@color/color_hint_text"
+                    android:textSize="@dimen/md_text_size_appbar"
+                    tools:text="13228189965" />
+
+                <ImageView
+                    android:id="@+id/iv_line1_mgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/et_my_info_account"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"
+                    android:background="@color/color_grey" />
+                <!--密码-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_line1_mgt"
+                    android:layout_margin="@dimen/md_margin_screen_basic"
+                    android:text="密码"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar" />
+
+                <EditText
+                    android:id="@+id/et_my_info_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/iv_line1_mgt"
+                    android:background="@null"
+                    android:inputType="numberPassword"
+                    android:padding="@dimen/md_margin_screen_basic"
+                    android:textColor="@color/color_hint_text"
+                    android:textSize="@dimen/md_text_size_appbar"
+                    tools:text="1321321" />
+
+                <ImageView
+                    android:id="@+id/iv_line2_mgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/et_my_info_pwd"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"
+                    android:background="@color/color_grey" />
+                <!--姓名-->
+                <TextView
+                    android:id="@+id/tv_name_mgt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_line2_mgt"
+                    android:layout_margin="@dimen/md_margin_screen_basic"
+                    android:text="姓名"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar" />
+
+                <EditText
+                    android:id="@+id/et_my_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/iv_line2_mgt"
+                    android:layout_toRightOf="@+id/tv_name_mgt"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:padding="@dimen/md_margin_screen_basic"
+                    android:textColor="@color/color_hint_text"
+                    android:textSize="@dimen/md_text_size_appbar"
+                    tools:text="杨庆" />
+
+                <ImageView
+                    android:id="@+id/iv_line3_mgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/et_my_info_name"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"
+                    android:background="@color/color_grey" />
+                <!--性别-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_line3_mgt"
+                    android:layout_margin="@dimen/md_margin_screen_basic"
+                    android:text="性别"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar" />
+
+                <RadioGroup
+                    android:id="@+id/rg_my_info_gander"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/iv_line3_mgt"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/md_margin_screen_basic"
+                        android:text="男"
+                        android:textSize="@dimen/md_text_size_appbar"
+                        android:checked="@={mgtViewModel.isMan}"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/md_margin_screen_basic"
+                        android:text="女"
+                        android:textSize="@dimen/md_text_size_appbar"
+                        android:checked="@={mgtViewModel.isWoman}"/>
+                </RadioGroup>
+
+                <ImageView
+                    android:id="@+id/iv_line4_mgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rg_my_info_gander"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"
+                    android:background="@color/color_grey" />
+                <!--个性签名-->
+                <TextView
+                    android:id="@+id/tv_sign_mgt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_line4_mgt"
+                    android:layout_margin="@dimen/md_margin_screen_basic"
+                    android:text="个性签名"
+                    android:textColor="#000"
+                    android:textSize="@dimen/md_text_size_appbar" />
+
+                <EditText
+                    android:id="@+id/et_my_info_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/iv_line4_mgt"
+                    android:layout_toRightOf="@+id/tv_sign_mgt"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:padding="@dimen/md_margin_screen_basic"
+                    android:textColor="@color/color_hint_text"
+                    android:textSize="@dimen/md_text_size_appbar"
+                    tools:text="说点什么呗~~" />
+
+                <ImageView
+                    android:id="@+id/iv_line5_mgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/et_my_info_sign"
+                    android:layout_marginStart="@dimen/md_margin_screen_basic"
+                    android:background="@color/color_grey" />
+
+                <ImageView
+                    android:id="@+id/iv_line6_mgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/iv_line5_mgt"
+                    android:background="@color/color_bg" />
+
+                <TextView
+                    android:id="@+id/tv_hand_mgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_line6_mgt"
+                    android:gravity="center"
+                    android:padding="@dimen/md_margin_screen_basic"
+                    android:text="提交"
+                    android:textSize="@dimen/md_text_size_appbar"
+                    app:clickCommand="@{mgtViewModel.handIn}"/>
+
+                <ImageView
+                    android:id="@+id/iv_line_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/tv_hand_mgt"
+                    android:background="@color/color_bg" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</layout>
