@@ -39,7 +39,7 @@
                     android:textColor="#000"
                     android:textSize="@dimen/md_text_size_appbar" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_my_info_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,6 +48,7 @@
                     android:padding="@dimen/md_margin_screen_basic"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_appbar"
+                    android:text="@{mgtViewModel.mAccount}"
                     tools:text="13228189965" />
 
                 <ImageView
@@ -57,13 +58,13 @@
                     android:layout_below="@+id/et_my_info_account"
                     android:layout_marginStart="@dimen/md_margin_screen_basic"
                     android:background="@color/color_grey" />
-                <!--密码-->
+                <!--邮箱-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_line1_mgt"
                     android:layout_margin="@dimen/md_margin_screen_basic"
-                    android:text="密码"
+                    android:text="邮箱"
                     android:textColor="#000"
                     android:textSize="@dimen/md_text_size_appbar" />
 
@@ -74,7 +75,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_below="@+id/iv_line1_mgt"
                     android:background="@null"
-                    android:inputType="numberPassword"
+                    android:text="@{mgtViewModel.mEmail}"
                     android:padding="@dimen/md_margin_screen_basic"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_appbar"
@@ -108,6 +109,7 @@
                     android:background="@null"
                     android:gravity="end"
                     android:padding="@dimen/md_margin_screen_basic"
+                    android:text="@{mgtViewModel.mName}"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_appbar"
                     tools:text="杨庆" />
@@ -184,6 +186,7 @@
                     android:padding="@dimen/md_margin_screen_basic"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_appbar"
+                    android:text="@{mgtViewModel.mSign}"
                     tools:text="说点什么呗~~" />
 
                 <ImageView

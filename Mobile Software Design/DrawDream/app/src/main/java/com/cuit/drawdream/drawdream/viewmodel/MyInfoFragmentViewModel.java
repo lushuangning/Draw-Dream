@@ -3,12 +3,16 @@ package com.cuit.drawdream.drawdream.viewmodel;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableField;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.cuit.drawdream.bean.UserInfoEntity;
 import com.cuit.drawdream.drawdream.utils.tool.Config;
 import com.cuit.drawdream.drawdream.view.MyInfoMgtActivity;
 import com.kelin.mvvmlight.command.ReplyCommand;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * class :    MyInfoFragmentViewModel
@@ -20,12 +24,14 @@ import com.kelin.mvvmlight.command.ReplyCommand;
 public class MyInfoFragmentViewModel extends BaseViewModel {
 
     private Context mContext;
+    private UserInfoEntity mEntity;
 
     public final ObservableField<String > mName = new ObservableField<>();
 
     public MyInfoFragmentViewModel(Context context, UserInfoEntity entity) {
         super(context);
         mContext = context;
+        mEntity = entity;
         mName.set(entity.getUser_name());
         Config.USER_NAME = entity.getUser_name();
     }
@@ -36,6 +42,11 @@ public class MyInfoFragmentViewModel extends BaseViewModel {
     public final ReplyCommand toMyMsg = new ReplyCommand(()->{
         //跳转到msg
         Intent intent = new Intent(mContext, MyInfoMgtActivity.class);
+        Bundle bundle = new Bundle();
+        ArrayList<UserInfoEntity> list = new ArrayList<UserInfoEntity>();
+        list.add(mEntity);
+        bundle.putSerializable("userInfo",list);
+        intent.putExtras(bundle);
         mContext.startActivity(intent);
     });
 
