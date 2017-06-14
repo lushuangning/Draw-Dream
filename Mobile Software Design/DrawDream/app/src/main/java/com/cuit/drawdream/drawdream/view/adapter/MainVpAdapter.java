@@ -1,12 +1,9 @@
 package com.cuit.drawdream.drawdream.view.adapter;
 
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
-
-import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import com.airbnb.lottie.LottieAnimationView;
 import com.cuit.drawdream.bean.AccountEntity;
 import com.cuit.drawdream.bean.AccountEntityDao;
+import com.cuit.drawdream.bean.ClassifyDetailEntity;
+import com.cuit.drawdream.bean.ClassifyDetailEntityDao;
 import com.cuit.drawdream.bean.NewsDetail;
 import com.cuit.drawdream.bean.NewsDetailDao;
 import com.cuit.drawdream.bean.ReplayEntity;
@@ -49,6 +51,7 @@ public class WelcomeActivity extends BaseActivity {
             UserInfoEntityDao userInfoEntityDao = MyApplication.daoSession.getUserInfoEntityDao();
             AccountEntityDao accountEntityDao = MyApplication.daoSession.getAccountEntityDao();
             NewsDetailDao newsDetailDao = MyApplication.daoSession.getNewsDetailDao();
+            ClassifyDetailEntityDao classifyDetailEntityDao = MyApplication.daoSession.getClassifyDetailEntityDao();
             ReplayEntityDao replayEntityDao = MyApplication.daoSession.getReplayEntityDao();
             //创建表格
             userInfoEntityDao.createTable(MyApplication.daoSession.getDatabase(),true);
@@ -60,6 +63,17 @@ public class WelcomeActivity extends BaseActivity {
             userInfoEntityDao.insertOrReplace(new UserInfoEntity(new Long(1),"双儿","2","男","1","1","1"));
             userInfoEntityDao.insertOrReplace(new UserInfoEntity(new Long(2),"羊羊","3","男","1","1","1"));
             accountEntityDao.insertOrReplace(new AccountEntity("13228189965","1",new Long(0)));
+            accountEntityDao.insertOrReplace(new AccountEntity("18702807538","1",new Long(1)));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(0),
+                            "热血",
+                            "http://www.shuangfile.site/images/android_app_res/emoticons-color_devil.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(1),
+                            "恐怖",
+                            "http://www.shuangfile.site/images/android_app_res/objects-color_skull.png"));
 
             for(int i = 0;i < 3;i++){
                 newsDetailDao.insertOrReplace(new NewsDetail("1",
