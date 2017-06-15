@@ -71,6 +71,7 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
         }
     }
 
+    //拿到数据，或者从本地数据库或者从网络获取
     private ArrayList<ClassifyDetailEntity> loadData(){
         ArrayList<ClassifyDetailEntity> list = new ArrayList<>();
         ClassifyDetailEntityDao dao = MyApplication.daoSession.getClassifyDetailEntityDao();
@@ -84,7 +85,7 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
         glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int i) {
-                return 2;
+                return 1;
             }
         });
         mGridLayoutManager.set(glm);
@@ -106,7 +107,7 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
     }
 
     //对RecyclerView的逻辑处理
-    private class ItemClassifyViewModel extends BaseViewModel{
+    public class ItemClassifyViewModel extends BaseViewModel{
 
         private Context mContext;
         private ClassifyItemEntity mEntity;

@@ -75,6 +75,56 @@ public class WelcomeActivity extends BaseActivity {
                             "恐怖",
                             "http://www.shuangfile.site/images/android_app_res/objects-color_skull.png"));
 
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(2),
+                            "治愈",
+                            "http://www.shuangfile.site/images/android_app_res/food-color_pizza-slice.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(3),
+                            "悬疑",
+                            "http://www.shuangfile.site/images/android_app_res/food-color_sushi.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(4),
+                            "同人",
+                            "http://www.shuangfile.site/images/android_app_res/objects-color_bear.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(5),
+                            "剧情",
+                            "http://www.shuangfile.site/images/android_app_res/ui-color-2_chat-round.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(6),
+                            "四格",
+                            "http://www.shuangfile.site/images/android_app_res/business-color_board-30.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(7),
+                            "搞笑",
+                            "http://www.shuangfile.site/images/android_app_res/emoticons-color_robot.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(8),
+                            "画册",
+                            "http://www.shuangfile.site/images/android_app_res/business-color_money-12.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(9),
+                            "手办",
+                            "http://www.shuangfile.site/images/android_app_res/transportation-color_air-baloon.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(10),
+                            "抱枕",
+                            "http://www.shuangfile.site/images/android_app_res/objects-color_diamond.png"));
+
+            classifyDetailEntityDao.insertOrReplace(
+                    new ClassifyDetailEntity(new Long(11),
+                            "其他",
+                            "http://www.shuangfile.site/images/android_app_res/media-color-2_headphones.png"));
+
             for(int i = 0;i < 3;i++){
                 newsDetailDao.insertOrReplace(new NewsDetail("1",
                         "「狐妖小红娘」日语版追加CAST公布，国语版「南国篇」确定制作",

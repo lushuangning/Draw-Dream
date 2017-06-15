@@ -87,7 +87,6 @@ public class NewsDetailDao extends AbstractDao<NewsDetail, Long> {
     @Override
     public NewsDetail readEntity(Cursor cursor, int offset) {
         NewsDetail entity = new NewsDetail( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // nede_id
             cursor.getString(offset + 2), // nede_title
             cursor.getString(offset + 3), // nede_author

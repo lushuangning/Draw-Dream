@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.view.adapter.MainVpAdapter;
+import com.cuit.drawdream.drawdream.view.fragment.ClassifyFragment;
 import com.cuit.drawdream.drawdream.view.fragment.IndexFragment;
 import com.cuit.drawdream.drawdream.view.fragment.MyInfoFragment;
-import com.cuit.drawdream.drawdream.view.fragment.SectionFragment;
 
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity {
 
         //TODO 这里添加需要的fragment
         fragments.add(new IndexFragment());
-        fragments.add(new SectionFragment());
+        fragments.add(new ClassifyFragment());
         fragments.add(new IndexFragment());
         fragments.add(new MyInfoFragment());
 

@@ -30,6 +30,8 @@
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:itemView="@{classifyFragmentViewModel.itemView}"
+                app:items="@{classifyFragmentViewModel.viewModels}"
                 app:setLayoutManager="@{classifyFragmentViewModel.mGridLayoutManager}"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
