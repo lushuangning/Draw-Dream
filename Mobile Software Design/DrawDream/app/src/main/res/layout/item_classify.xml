@@ -14,32 +14,33 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_margin="4dp"
-        android:background="@drawable/item_index_bg">
-        <!--暂时不加点击事件-->
-        <!--app:clickCommand="@{itemIndexViewModel.toDetial}"-->
+        android:background="@drawable/item_index_bg"
+        app:clickCommand="@{itemClassifyViewModel.toDetial}">
 
-        <ImageView
-            android:id="@+id/iv_item_classify"
-            android:layout_width="wrap_content"
-            android:layout_height="90dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/item_classify"
-            android:layout_centerVertical="true"
-            app:SetIcon="@{itemClassifyViewModel.mImage}"/>
 
         <TextView
             android:id="@+id/tv_title_classify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:text="@{itemClassifyViewModel.mClassify}"
             android:textColor="@color/hard_color"
+            android:textSize="@dimen/md_text_size_appbar"
+            tools:text="热血"
+            tools:ignore="RelativeOverlap"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="@dimen/md_text_size_super_one"
-            tools:text="热血" />
+            android:layout_centerHorizontal="true" />
 
+        <ImageView
+            android:id="@+id/iv_item_classify"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/item_classify"
+            app:SetIcon="@{itemClassifyViewModel.mImage}"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/tv_title_classify" />
 
 
     </RelativeLayout>

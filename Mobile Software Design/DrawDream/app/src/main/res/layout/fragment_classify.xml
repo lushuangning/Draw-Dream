@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
 
         <variable
@@ -10,30 +11,42 @@
         <import type="android.view.View"/>
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_bg">
 
+        <RelativeLayout
+            android:id="@+id/rl_title_classify"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/md_margin_appbar"
+            android:background="@color/color_main">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/classify_title"
+                android:textColor="#fff"
+                android:textSize="@dimen/md_text_size_appbar"
+                android:layout_centerInParent="true"
+                android:background="@null"/>
+        </RelativeLayout>
+
         <ProgressBar
             android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_title_classify"
             android:visibility="@{classifyFragmentViewModel.isProgressBarShowing?View.VISIBLE:View.GONE}"/>
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:refreshing="@{classifyFragmentViewModel.isRefreshing}"
-            app:onRefreshCommand="@{classifyFragmentViewModel.onRefreshCommand}">
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/rl_title_classify"
                 app:itemView="@{classifyFragmentViewModel.itemView}"
                 app:items="@{classifyFragmentViewModel.viewModels}"
                 app:setLayoutManager="@{classifyFragmentViewModel.mGridLayoutManager}"/>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
     </RelativeLayout>
 </layout>

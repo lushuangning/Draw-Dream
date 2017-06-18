@@ -13,11 +13,8 @@ import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.ClassifyItemEntity;
 import com.kelin.mvvmlight.command.ReplyCommand;
-
 import java.util.ArrayList;
-
 import me.tatarka.bindingcollectionadapter.ItemView;
-import me.tatarka.bindingcollectionadapter.ItemViewSelector;
 
 /**
  * Created by sunnlu on 2017/6/13.
@@ -29,20 +26,27 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
 
     public final ObservableBoolean isProgressBarShowing = new ObservableBoolean(true);
     public final ObservableBoolean isRefreshing = new ObservableBoolean(true);
+
+    //布局管理器
     public final ObservableField<GridLayoutManager> mGridLayoutManager = new ObservableField<>();
+    //数据源
     public final ObservableArrayList<ItemClassifyViewModel> viewModels = new ObservableArrayList<>();
-    public final ItemViewSelector<ItemClassifyViewModel> itemView = new ItemViewSelector<ItemClassifyViewModel>() {
-        @Override
-        public void select(ItemView itemView, int position, ItemClassifyViewModel item) {
+    //子布局模板
+    public final ItemView itemView = ItemView.of(BR.itemClassifyViewModel, R.layout.item_classify);
 
-            itemView.set(BR.itemClassifyViewModel, R.layout.item_classify);
-        }
-
-        @Override
-        public int viewTypeCount() {
-            return 1;
-        }
-    };
+    //多种子布局
+//    public final ItemViewSelector<ItemClassifyViewModel> itemView = new ItemViewSelector<ItemClassifyViewModel>() {
+//        @Override
+//        public void select(ItemView itemView, int position, ItemClassifyViewModel item) {
+//
+//            itemView.set(BR.itemClassifyViewModel, R.layout.item_classify);
+//        }
+//
+//        @Override
+//        public int viewTypeCount() {
+//            return 1;
+//        }
+//    };
 
 
     public ClassifyFragmentViewModel(Context context) {
@@ -71,7 +75,7 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
         }
     }
 
-    //拿到数据，或者从本地数据库或者从网络获取
+    //拿到数据，从本地数据库或者从网络获取
     private ArrayList<ClassifyDetailEntity> loadData(){
         ArrayList<ClassifyDetailEntity> list = new ArrayList<>();
         ClassifyDetailEntityDao dao = MyApplication.daoSession.getClassifyDetailEntityDao();
@@ -131,6 +135,10 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
             mImage.set(mEntity.getImg());
             mClassify.set(mEntity.getName());
         }
+
+        public final ReplyCommand<Integer> toDetial = new ReplyCommand<Integer>(()->{
+
+        });
 
 
         @Override
