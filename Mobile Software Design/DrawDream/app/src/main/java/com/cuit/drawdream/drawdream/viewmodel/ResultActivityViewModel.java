@@ -2,6 +2,8 @@ package com.cuit.drawdream.drawdream.viewmodel;
 
 import android.content.Context;
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableField;
+import android.support.v7.widget.GridLayoutManager;
 
 import com.cuit.drawdream.bean.NewsDetail;
 import com.cuit.drawdream.bean.NewsDetailDao;
@@ -27,7 +29,8 @@ public class ResultActivityViewModel extends BaseViewModel {
     public final ObservableArrayList<ItemResultViewModel> viewModels = new ObservableArrayList<>();
     //子布局模板
     public final ItemView itemView = ItemView.of(BR.itemResultViewModel, R.layout.item_result);
-
+    //布局管理器
+    public final ObservableField<GridLayoutManager> mGridLayoutManager = new ObservableField<>();
     public ResultActivityViewModel(Context context){
         super(context);
         mContext = context;
@@ -72,7 +75,15 @@ public class ResultActivityViewModel extends BaseViewModel {
     }
 
     public void setManager(){
+        GridLayoutManager glm = new GridLayoutManager(mContext,1);
+        glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int i) {
+                return 1;
+            }
+        });
 
+        mGridLayoutManager.set(glm);
     }
 
 
@@ -82,14 +93,31 @@ public class ResultActivityViewModel extends BaseViewModel {
         private Context itemContext;
         private SearchResultEntity entity;
 
+        public final ObservableField<String > mImage = new ObservableField<>();
+        public final ObservableField<String > mAuthor = new ObservableField<>();
+        public final ObservableField<String > mTime = new ObservableField<>();
+        public final ObservableField<String > mTitle = new ObservableField<>();
+        public final ObservableField<String > mContent = new ObservableField<>();
+        public final ObservableField<Integer > mBrowse = new ObservableField<>();
+
         public ItemResultViewModel(Context context, SearchResultEntity entity) {
             super(context);
             itemContext = context;
-            this.entity = entity;
+            if (null != entity){
+                this.entity = entity;
+                setData();
+            }else{
+                setData();
+            }
         }
 
         public void setData(){
-
+            mImage.set(entity.getImg());
+            mAuthor.set(entity.getAuthor());
+            mTime.set(entity.getTime());
+            mTitle.set(entity.getTitle());
+            mContent.set(entity.getContent());
+            mBrowse.set(entity.getBrowse());
         }
 
         @Override

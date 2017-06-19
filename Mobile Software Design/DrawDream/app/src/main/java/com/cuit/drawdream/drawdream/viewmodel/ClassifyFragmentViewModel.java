@@ -130,7 +130,6 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
             }else{
                 setData();
             }
-
         }
 
         private void setData(){
@@ -142,7 +141,6 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
             Intent intent = new Intent(mContext,ResultActivity.class);
             mContext.startActivity(intent);
         });
-
 
         @Override
         public void destroy() {

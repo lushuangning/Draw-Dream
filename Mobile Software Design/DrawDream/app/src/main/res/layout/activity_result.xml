@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -17,6 +16,24 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_title_result"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/md_margin_appbar"
+            android:background="@color/color_main">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/result_title"
+                android:textColor="#fff"
+                android:textSize="@dimen/md_text_size_appbar"
+                android:layout_centerInParent="true"
+                android:background="@null"/>
+
+
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

@@ -5,4 +5,5 @@
     <string name="sinIn_username">邮箱/手机号/用户名</string>
     <string name="sinIn_password">请输入密码</string>
     <string name="classify_title">分类</string>
+    <string name="result_title">结果</string>
 </resources>
