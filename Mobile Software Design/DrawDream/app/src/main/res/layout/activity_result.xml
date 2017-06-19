@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.cuit.drawdream.drawdream.view.ResultActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+        <variable
+            name="resultActivityViewModel"
+            type="com.cuit.drawdream.drawdream.viewmodel.ResultActivityViewModel" />
+
+        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:itemView="@{resultActivityViewModel.itemView}"
+            app:items="@{resultActivityViewModel.viewModels}"
+            app:setLayoutManager="@{resultActivityViewModel.mGridLayoutManager}"/>
+
+    </RelativeLayout>
+
+
+
+</layout>

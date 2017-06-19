@@ -1,6 +1,7 @@
 package com.cuit.drawdream.drawdream.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
@@ -12,6 +13,7 @@ import com.cuit.drawdream.drawdream.BR;
 import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.ClassifyItemEntity;
+import com.cuit.drawdream.drawdream.view.ResultActivity;
 import com.kelin.mvvmlight.command.ReplyCommand;
 import java.util.ArrayList;
 import me.tatarka.bindingcollectionadapter.ItemView;
@@ -96,14 +98,14 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
 
     }
 
-    /*
-    * 下拉刷新
-     */
-
-    public final ReplyCommand onRefreshCommand = new ReplyCommand(()->{
-        isRefreshing.set(true);
-        isRefreshing.set(false);
-    });
+//    /*
+//    * 下拉刷新
+//     */
+//
+//    public final ReplyCommand onRefreshCommand = new ReplyCommand(()->{
+//        isRefreshing.set(true);
+//        isRefreshing.set(false);
+//    });
 
     @Override
     public void destroy() {
@@ -137,7 +139,8 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
         }
 
         public final ReplyCommand<Integer> toDetial = new ReplyCommand<Integer>(()->{
-
+            Intent intent = new Intent(mContext,ResultActivity.class);
+            mContext.startActivity(intent);
         });
 
 
