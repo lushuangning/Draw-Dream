@@ -6,4 +6,9 @@
     <string name="sinIn_password">请输入密码</string>
     <string name="classify_title">分类</string>
     <string name="result_title">结果</string>
+    <string name="result_all">综合</string>
+    <string name="result_favour">人气</string>
+    <string name="result_time">时间</string>
+    <string name="result_comment">评论</string>
+    <string name="_2_3w">2.3W</string>
 </resources>

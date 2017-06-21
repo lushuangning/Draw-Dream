@@ -12,14 +12,74 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_margin="4dp">
 
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:id="@+id/img_item_result"
+            android:layout_width="135dp"
+            android:layout_height="180dp"
             android:layout_centerVertical="true"
-            app:SetIcon="@{itemResultViewModel.mImage}"/>
+            app:SetIcon="@{itemResultViewModel.mImage}"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/title_item_result"
+            android:layout_alignTop="@+id/img_item_result"
+            android:layout_toRightOf="@+id/img_item_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:layout_margin="6dp"
+            android:text="这里是一段文字，他用来显示标题，现在测试一行显示不下的情况,现在测试三行显示的情况"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img_item_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="这里是作者"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+        <LinearLayout
+            android:id="@+id/ly_watch_result"
+            android:layout_alignBottom="@+id/img_item_result"
+            android:layout_toRightOf="@+id/img_item_result"
+            android:orientation="horizontal"
+            android:layout_margin="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/attention"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/_2_3w"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/clocks"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="2014/7/23"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
 
 
     </RelativeLayout>

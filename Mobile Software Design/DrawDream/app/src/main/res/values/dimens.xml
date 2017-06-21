@@ -6,6 +6,10 @@
     <dimen name="md_margin_top_status">24dp</dimen>
     <!--appbar最小高度-->
     <dimen name="md_margin_appbar">56dp</dimen>
+    <!--排序栏高度-->
+    <dimen name="md_margin_order_width">42dp</dimen>
+    <!--排序栏宽度-->
+    <dimen name="md_margin_order_height">80dp</dimen>
     <!--屏幕左右基线-->
     <dimen name="md_margin_screen_basic">16dp</dimen>
     <!--文字左侧基线-->

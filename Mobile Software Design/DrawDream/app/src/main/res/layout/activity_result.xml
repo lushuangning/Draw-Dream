@@ -24,20 +24,61 @@
             android:background="@color/color_main">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/result_title"
-                android:textColor="#fff"
-                android:textSize="@dimen/md_text_size_appbar"
-                android:layout_centerInParent="true"
-                android:background="@null"/>
-
+            android:id="@+id/tv_title_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result_title"
+            android:textColor="#fff"
+            android:textSize="@dimen/md_text_size_appbar"
+            android:layout_centerInParent="true"
+            android:background="@null"/>
 
         </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_order_result"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/md_margin_order_width"
+            android:layout_below="@+id/rl_title_result"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_all_result"
+                android:gravity="center"
+                android:layout_width="@dimen/md_margin_order_height"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/md_text_size_small_title"
+                android:text="@string/result_all"/>
+
+            <TextView
+                android:id="@+id/tv_favour_result"
+                android:layout_width="@dimen/md_margin_order_height"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/result_favour"
+                android:textSize="@dimen/md_text_size_small_title" />
+
+            <TextView
+                android:id="@+id/tv_time_result"
+                android:layout_width="@dimen/md_margin_order_height"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/result_time"
+                android:textSize="@dimen/md_text_size_small_title" />
+
+            <TextView
+                android:id="@+id/tv_comment_result"
+                android:gravity="center"
+                android:layout_width="@dimen/md_margin_order_height"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/md_text_size_small_title"
+                android:text="@string/result_comment"/>
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/ly_order_result"
             app:itemView="@{resultActivityViewModel.itemView}"
             app:items="@{resultActivityViewModel.viewModels}"
             app:setLayoutManager="@{resultActivityViewModel.mGridLayoutManager}"/>
