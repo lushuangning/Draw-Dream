@@ -5,7 +5,7 @@ package com.cuit.drawdream.drawdream.utils.tool;
  */
 public class Config {
 
-    public static String PATH_ROOT="";
+    public static String PATH_ROOT="http://www.baidu.com";
     /**
      * 是否进入后台
      */

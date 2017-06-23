@@ -51,59 +51,63 @@ public class LoginActivityViewModel extends BaseViewModel{
      */
     public final ReplyCommand login = new ReplyCommand(()->{
 
-        if(null != mUserName.get() && null != mUserPassword.get()){
-            if(Validator.isMobile(mUserName.get())){
-                isErrorTextShowing.set(false);
-                //TODO 这里发起登录请求,2.0版本中这里应该请求网络
-                //test
-                if(checkAccount(mUserName.get(),mUserPassword.get())){
-                    Intent intent = new Intent(mContext,MainActivity.class);
-                    mContext.startActivity(intent);
-                    LoginActivity.instance.finish();
-                }else {
-                    Toast.makeText(mContext,"账号密码有错误，请重新输入！",Toast.LENGTH_SHORT).show();
-                }
+//        if(null != mUserName.get() && null != mUserPassword.get()){
+//            if(Validator.isMobile(mUserName.get())){
+//                isErrorTextShowing.set(false);
+//                //TODO 这里发起登录请求,2.0版本中这里应该请求网络
+//                //test
+//                if(checkAccount(mUserName.get(),mUserPassword.get())){
+//                    Intent intent = new Intent(mContext,MainActivity.class);
+//                    mContext.startActivity(intent);
+//                    LoginActivity.instance.finish();
+//                }else {
+//                    Toast.makeText(mContext,"账号密码有错误，请重新输入！",Toast.LENGTH_SHORT).show();
+//                }
+//
+//
+//            }else{
+//                //TODO 这里书写格式错误的处理代码,抖动效果未加
+//                isErrorTextShowing.set(true);
+//            }
+//        }else{
+//            Toast.makeText(mContext,"请输入账号或者密码",Toast.LENGTH_SHORT).show();
+//        }
 
-//                Gson gson = new Gson();
-//                HashMap<String ,String > paramsMap = new HashMap<>();
-//                paramsMap.put("account",mUserName.get());
-//                paramsMap.put("pwd",mUserPassword.get());
-//                String strGson = gson.toJson(paramsMap);
-//                RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),strGson);
-//                mSubscription = getApplication()
-//                        .getNetworkService()
-//                        .login(body)
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribeOn(getApplication().defaultSubscribeScheduler())
-//                        .subscribe(new Observer<Response<ResponseLogin>>() {
-//                            @Override
-//                            public void onCompleted() {
-//
-//                            }
-//
-//                            @Override
-//                            public void onError(Throwable e) {
-//                                Log.i("Error", "错误" + e.getMessage());
-//                            }
-//
-//                            @Override
-//                            public void onNext(Response<ResponseLogin> responseLoginResponse) {
-//                                if(responseLoginResponse.body().getSuccess().equals("true")){
-//                                    Intent intent = new Intent(mContext, MainActivity.class);
-//                                    mContext.startActivity(intent);
-//                                    Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
-//                                }else{
-//                                    Toast.makeText(mContext,"用户名或者密码错误，请重新输入！",Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
-            }else{
-                //TODO 这里书写格式错误的处理代码,抖动效果未加
-                isErrorTextShowing.set(true);
-            }
-        }else{
-            Toast.makeText(mContext,"请输入账号或者密码",Toast.LENGTH_SHORT).show();
-        }
+
+        Gson gson = new Gson();
+        HashMap<String ,String > paramsMap = new HashMap<>();
+        paramsMap.put("account",mUserName.get());
+        paramsMap.put("pwd",mUserPassword.get());
+        String strGson = gson.toJson(paramsMap);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),strGson);
+        mSubscription = getApplication()
+                .getNetworkService()
+                .login(body)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(getApplication().defaultSubscribeScheduler())
+                .subscribe(new Observer<Response<ResponseLogin>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("Error", "错误" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Response<ResponseLogin> responseLoginResponse) {
+                        if(responseLoginResponse.body().getSuccess().equals("true")){
+                            Intent intent = new Intent(mContext, MainActivity.class);
+                            mContext.startActivity(intent);
+                            Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(mContext,"用户名或者密码错误，请重新输入！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
     });
 
     /**
