@@ -79,6 +79,7 @@ public class LoginActivityViewModel extends BaseViewModel{
         paramsMap.put("account",mUserName.get());
         paramsMap.put("pwd",mUserPassword.get());
         String strGson = gson.toJson(paramsMap);
+        Log.i("STRGSON", strGson);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),strGson);
         mSubscription = getApplication()
                 .getNetworkService()
