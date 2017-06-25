@@ -1,5 +1,6 @@
 package com.cuit.drawdream.drawdream.view;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,10 @@ public class ResultActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         mBinding =  DataBindingUtil.setContentView(this, R.layout.activity_result);
-        ResultActivityViewModel viewModel = new ResultActivityViewModel(this);
+        Intent intent = getIntent();
+        String classify = (String)intent.getExtras().getSerializable("classify");
+
+        ResultActivityViewModel viewModel = new ResultActivityViewModel(this, classify);
         mBinding.setResultActivityViewModel(viewModel);
     }
 

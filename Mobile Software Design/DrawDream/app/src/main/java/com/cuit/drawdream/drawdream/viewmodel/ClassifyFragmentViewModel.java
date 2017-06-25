@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.cuit.drawdream.bean.ClassifyDetailEntity;
@@ -15,8 +16,11 @@ import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.ClassifyItemEntity;
 import com.cuit.drawdream.drawdream.view.ResultActivity;
 import com.kelin.mvvmlight.command.ReplyCommand;
+
 import java.util.ArrayList;
+
 import me.tatarka.bindingcollectionadapter.ItemView;
+import rx.Subscription;
 
 /**
  * Created by sunnlu on 2017/6/13.
@@ -117,6 +121,7 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
 
         private Context mContext;
         private ClassifyItemEntity mEntity;
+        private Subscription subscription;
 
         public final ObservableField<String > mImage = new ObservableField<>();
         public final ObservableField<String > mClassify = new ObservableField<>();
@@ -138,7 +143,11 @@ public class ClassifyFragmentViewModel extends BaseViewModel {
         }
 
         public final ReplyCommand<Integer> toDetial = new ReplyCommand<Integer>(()->{
+
+            Bundle bundle = new Bundle();
+            bundle.putString("classify", mClassify.get());
             Intent intent = new Intent(mContext,ResultActivity.class);
+            intent.putExtras(bundle);
             mContext.startActivity(intent);
         });
 

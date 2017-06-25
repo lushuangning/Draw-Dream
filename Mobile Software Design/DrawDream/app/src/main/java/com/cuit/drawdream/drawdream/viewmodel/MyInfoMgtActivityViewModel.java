@@ -44,7 +44,7 @@ public class MyInfoMgtActivityViewModel extends BaseViewModel {
         mName.set(mEntity.getUser_name());
         mSign.set(mEntity.getUser_sign());
         mEmail.set(mEntity.getUser_email());
-        if(mEntity.getUser_gander().equals("女")){
+        if(mEntity.getUser_gender().equals("女")){
             isMan.set(false);
             isWoman.set(true);
         }

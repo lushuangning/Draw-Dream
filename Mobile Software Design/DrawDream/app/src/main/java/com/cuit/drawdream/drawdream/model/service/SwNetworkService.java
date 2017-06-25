@@ -1,5 +1,6 @@
 package com.cuit.drawdream.drawdream.model.service;
 
+import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
 import com.cuit.drawdream.drawdream.bean.response.ResponseLogin;
 
 import okhttp3.RequestBody;
@@ -18,4 +19,8 @@ public interface SwNetworkService {
     @POST("test/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseLogin>> login (@Body RequestBody route);
+
+    @POST("classify/result/")
+    @Headers("Content-type:application/json;charset=UTF-8")
+    Observable<Response<ResponseClassifyResult>> result(@Body RequestBody route);
 }

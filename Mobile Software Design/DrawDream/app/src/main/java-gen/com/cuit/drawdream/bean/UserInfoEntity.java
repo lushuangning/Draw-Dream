@@ -12,7 +12,7 @@ public class UserInfoEntity {
     /** Not-null value. */
     private String user_id;
     /** Not-null value. */
-    private String user_gander;
+    private String user_gender;
     /** Not-null value. */
     private String user_phone;
     /** Not-null value. */
@@ -26,11 +26,11 @@ public class UserInfoEntity {
         this.id = id;
     }
 
-    public UserInfoEntity(Long id, String user_name, String user_id, String user_gander, String user_phone, String user_email, String user_sign) {
+    public UserInfoEntity(Long id, String user_name, String user_id, String user_gender, String user_phone, String user_email, String user_sign) {
         this.id = id;
         this.user_name = user_name;
         this.user_id = user_id;
-        this.user_gander = user_gander;
+        this.user_gender = user_gender;
         this.user_phone = user_phone;
         this.user_email = user_email;
         this.user_sign = user_sign;
@@ -65,13 +65,13 @@ public class UserInfoEntity {
     }
 
     /** Not-null value. */
-    public String getUser_gander() {
-        return user_gander;
+    public String getUser_gender() {
+        return user_gender;
     }
 
     /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setUser_gander(String user_gander) {
-        this.user_gander = user_gander;
+    public void setUser_gander(String user_gender) {
+        this.user_gender = user_gender;
     }
 
     /** Not-null value. */

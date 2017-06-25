@@ -71,7 +71,7 @@ public class UserInfoEntityDao extends AbstractDao<UserInfoEntity, Long> {
         }
         stmt.bindString(2, entity.getUser_name());
         stmt.bindString(3, entity.getUser_id());
-        stmt.bindString(4, entity.getUser_gander());
+        stmt.bindString(4, entity.getUser_gender());
         stmt.bindString(5, entity.getUser_phone());
         stmt.bindString(6, entity.getUser_email());
  

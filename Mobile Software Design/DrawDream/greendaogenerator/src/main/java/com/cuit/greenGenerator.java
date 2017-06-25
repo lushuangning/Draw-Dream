@@ -61,7 +61,7 @@ public class greenGenerator {
         userInfo.addIdProperty().autoincrement();
         userInfo.addStringProperty("user_name").notNull();
         userInfo.addStringProperty("user_id").notNull();
-        userInfo.addStringProperty("user_gander").notNull();
+        userInfo.addStringProperty("user_gender").notNull();
         userInfo.addStringProperty("user_phone").notNull();
         userInfo.addStringProperty("user_email").notNull();
         userInfo.addStringProperty("user_sign");
