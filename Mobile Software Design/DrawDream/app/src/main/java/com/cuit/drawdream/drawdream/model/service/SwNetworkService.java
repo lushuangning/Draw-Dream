@@ -16,7 +16,7 @@ import rx.Observable;
  */
 public interface SwNetworkService {
 
-    @POST("test/")
+    @POST("login/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseLogin>> login (@Body RequestBody route);
 

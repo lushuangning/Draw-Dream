@@ -55,9 +55,7 @@ public class ResultActivityViewModel extends BaseViewModel {
 
     }
 
-    public void initUI(){
-        rList = new ArrayList<>();
-
+    private void requestNetwork(){
         Gson gson = new Gson();
         HashMap<String ,String > postMap = new HashMap<>();
         postMap.put("classify", classify);
@@ -85,8 +83,11 @@ public class ResultActivityViewModel extends BaseViewModel {
 
                     }
                 });
+    }
 
-
+    public void initUI(){
+        rList = new ArrayList<>();
+        requestNetwork();
         for (NewsDetail entity: loadData()){
             SearchResultEntity searchEntity = new SearchResultEntity();
             searchEntity.setTable_id(entity.getId());

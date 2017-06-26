@@ -99,6 +99,7 @@ public class LoginActivityViewModel extends BaseViewModel{
 
                     @Override
                     public void onNext(Response<ResponseLogin> responseLoginResponse) {
+                        Log.i("RESPONSE",responseLoginResponse.body().getSuccess());
                         if(responseLoginResponse.body().getSuccess().equals("true")){
                             Intent intent = new Intent(mContext, MainActivity.class);
                             mContext.startActivity(intent);
