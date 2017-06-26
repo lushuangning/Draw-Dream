@@ -3,6 +3,8 @@ package com.cuit.drawdream.drawdream.bean.response;
 import com.cuit.drawdream.bean.NewsDetail;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
  * Created by sunnylu on 2017/6/25.
  */
@@ -13,7 +15,7 @@ public class ResponseClassifyResult {
     @SerializedName("success")
     private String success;
     @SerializedName("detail")
-    private NewsDetail detail;
+    private ArrayList<NewsDetail> data;
 
     public String getMsg() {
         return msg;
@@ -31,11 +33,11 @@ public class ResponseClassifyResult {
         this.success = success;
     }
 
-    public NewsDetail getDetail() {
-        return detail;
+    public ArrayList<NewsDetail> getData() {
+        return data;
     }
 
-    public void setDetail(NewsDetail detail) {
-        this.detail = detail;
+    public void setData(ArrayList<NewsDetail> data) {
+        this.data = data;
     }
 }
