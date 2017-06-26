@@ -2,6 +2,7 @@ package com.cuit.drawdream.drawdream.model.service;
 
 import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
 import com.cuit.drawdream.drawdream.bean.response.ResponseLogin;
+import com.cuit.drawdream.drawdream.bean.response.ResponseReview;
 
 import okhttp3.RequestBody;
 import retrofit2.Response;
@@ -27,4 +28,8 @@ public interface SwNetworkService {
     @POST("index/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseClassifyResult>> index (@Body RequestBody route);
+
+    @POST("detail/")
+    @Headers("Content-type:application/json;charset=UTF-8")
+    Observable<Response<ResponseReview>> review (@Body RequestBody route);
 }

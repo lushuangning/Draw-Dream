@@ -19,6 +19,7 @@ import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.databinding.ActivityDetailBinding;
 import com.cuit.drawdream.drawdream.viewmodel.DetailActivityViewModel;
+import com.google.gson.Gson;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,6 +28,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import okhttp3.RequestBody;
+import rx.Subscription;
 
 
 /**
@@ -41,6 +46,8 @@ public class DetailActivity extends BaseActivity {
     private ActivityDetailBinding mBinding;
     public static DetailActivity instance;
 
+    private ItemIndexEntity mEntity;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +55,15 @@ public class DetailActivity extends BaseActivity {
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_detail);
         Intent intent = getIntent();
         ArrayList<ItemIndexEntity> list = (ArrayList<ItemIndexEntity>)intent.getExtras().getSerializable("Detail");
-        ItemIndexEntity entity = list.get(0);
-        DetailActivityViewModel viewModel = new DetailActivityViewModel(this,entity);
+        mEntity = list.get(0);
+        initUI();
+    }
+
+    private void initUI(){
+        DetailActivityViewModel viewModel = new DetailActivityViewModel(this,mEntity);
         mBinding.setDetailActivityViewModel(viewModel);
         mBinding.pvDetail.setTitle("详情");
-        mBinding.wvContentDetail.loadUrl(entity.getContent());
+        mBinding.wvContentDetail.loadUrl(mEntity.getContent());
     }
 
     @Override

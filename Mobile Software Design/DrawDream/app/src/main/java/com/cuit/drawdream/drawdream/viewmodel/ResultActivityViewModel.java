@@ -82,7 +82,7 @@ public class ResultActivityViewModel extends BaseViewModel {
                     @Override
                     public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
                         if(responseClassifyResultResponse.body().getSuccess().equals("true")){
-                            res_list = responseClassifyResultResponse.body().getData();
+                            res_list = (ArrayList<NewsDetail>) responseClassifyResultResponse.body().getData();
                         }
                     }
                 });

@@ -8,6 +8,7 @@ import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.cuit.drawdream.bean.ReplayEntity;
@@ -20,15 +21,23 @@ import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ReviewEntity;
+import com.cuit.drawdream.drawdream.bean.response.ResponseReview;
 import com.cuit.drawdream.drawdream.view.CommentActivity;
+import com.google.gson.Gson;
 import com.kelin.mvvmlight.command.ReplyCommand;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import me.tatarka.bindingcollectionadapter.ItemView;
 import me.tatarka.bindingcollectionadapter.ItemViewSelector;
+import okhttp3.RequestBody;
+import retrofit2.Response;
+import rx.Observer;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * class :    DetailActivityViewModel
@@ -48,6 +57,7 @@ public class DetailActivityViewModel extends BaseViewModel {
     private ItemIndexEntity mEntity;
     private ArrayList<DetialArticleEntity> mListForRecommend;
     private ArrayList<ReviewEntity> mListForReview;
+    private Subscription mSubscription;
     private Handler mHeadler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -112,7 +122,7 @@ public class DetailActivityViewModel extends BaseViewModel {
         mListForRecommend.add(new DetialArticleEntity("非遗+动漫有多惊艳？狐妖和灵剑山有新画风了！","阅读5313"));
 
         //加载评论数据
-        loadDataForReview();
+//        loadReViewDataFromNet();
 
 
         //加载推荐
@@ -120,12 +130,47 @@ public class DetailActivityViewModel extends BaseViewModel {
             ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_RECOMMEND,entity,null);
             viewModelsForRecommend.add(viewModel);
         }
-        //加载评论
-        for(ReviewEntity entity: mListForReview){
-            ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_REVIEW,null,entity);
-            viewModelsForReview.add(viewModel);
-        }
 
+
+    }
+
+    /**
+     * 获取评论数据
+     */
+    private void loadReViewDataFromNet() {
+        Gson gson = new Gson();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("news_id",mEntity.getId());
+        String jsonStr = gson.toJson(map);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),jsonStr);
+        mSubscription = getApplication()
+                .getNetworkService()
+                .review(body)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(getApplication().defaultSubscribeScheduler())
+                .subscribe(new Observer<Response<ResponseReview>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG,"*******************" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Response<ResponseReview> responseReviewResponse) {
+                        if(responseReviewResponse.body().getSuccess().equals("true")){
+                            loadDataForReview(responseReviewResponse.body().getData());
+                            //加载评论
+                            for(ReviewEntity entity: mListForReview){
+                                ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_REVIEW,null,entity);
+                                viewModelsForReview.add(viewModel);
+                            }
+                        }
+                    }
+                });
     }
 
     /**
@@ -145,20 +190,18 @@ public class DetailActivityViewModel extends BaseViewModel {
     /**
      * 加载评论
      */
-    private void loadDataForReview() {
-        ReplayEntityDao replyDao = MyApplication.daoSession.getReplayEntityDao();
-        UserInfoEntityDao userInfoDao = MyApplication.daoSession.getUserInfoEntityDao();
-        for(ReplayEntity entity : (ArrayList<ReplayEntity>) replyDao.loadAll()){
-            if(entity.getCore_nede_id().equals(mEntity.getId())){
-                ReviewEntity entityReView = new ReviewEntity();
-                entityReView.setContent(entity.getCore_content());
-                entityReView.setTime(entity.getCore_date());
-                UserInfoEntity entityUserInfo = new UserInfoEntity();
-                entityUserInfo = userInfoDao.load(entity.getCore_acco_id());
-                entityReView.setName(entityUserInfo.getUser_name());
-                entityReView.setHeader("file:///android_asset/head1.jpg");
-                mListForReview.add(entityReView);
-            }
+    private void loadDataForReview(ArrayList<ReviewEntity> list){
+        for(ReviewEntity entity : list){
+            ReviewEntity entityReView = new ReviewEntity();
+//            entityReView.setContent(entity.getCore_content());
+//            entityReView.setTime(entity.getCore_date());
+//            UserInfoEntity entityUserInfo = new UserInfoEntity();
+//            entityUserInfo = userInfoDao.load(entity.getCore_acco_id());
+//            entityReView.setName(entityUserInfo.getUser_name());
+//            entityReView.setHeader("file:///android_asset/head1.jpg");
+            entityReView = entity;
+            entityReView.setHeader("file:///android_asset/head1.jpg");
+            mListForReview.add(entityReView);
         }
         if(0 == mListForReview.size()){
             isNoDataShowing.set(true);
@@ -168,6 +211,32 @@ public class DetailActivityViewModel extends BaseViewModel {
             isNoDataShowing.set(false);
         }
     }
+//    /**
+//     * 加载评论
+//     */
+//    private void loadDataForReview() {
+//        ReplayEntityDao replyDao = MyApplication.daoSession.getReplayEntityDao();
+//        UserInfoEntityDao userInfoDao = MyApplication.daoSession.getUserInfoEntityDao();
+//        for(ReplayEntity entity : (ArrayList<ReplayEntity>) replyDao.loadAll()){
+//            if(entity.getCore_nede_id().equals(mEntity.getId())){
+//                ReviewEntity entityReView = new ReviewEntity();
+//                entityReView.setContent(entity.getCore_content());
+//                entityReView.setTime(entity.getCore_date());
+//                UserInfoEntity entityUserInfo = new UserInfoEntity();
+//                entityUserInfo = userInfoDao.load(entity.getCore_acco_id());
+//                entityReView.setName(entityUserInfo.getUser_name());
+//                entityReView.setHeader("file:///android_asset/head1.jpg");
+//                mListForReview.add(entityReView);
+//            }
+//        }
+//        if(0 == mListForReview.size()){
+//            isNoDataShowing.set(true);
+//            mCommentNum.set("评论");
+//        }else {
+//            mCommentNum.set("评论（" + mListForReview.size() + ")");
+//            isNoDataShowing.set(false);
+//        }
+//    }
 
     /**
      * 重新加载数据

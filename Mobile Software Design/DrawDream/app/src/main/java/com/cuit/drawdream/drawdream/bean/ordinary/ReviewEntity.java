@@ -1,6 +1,7 @@
 package com.cuit.drawdream.drawdream.bean.ordinary;
 
 import com.cuit.drawdream.drawdream.bean.BaseBean;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * class :    ReviewEntity
@@ -13,18 +14,22 @@ public class ReviewEntity extends BaseBean {
     /**
      * 头像
      */
+    @SerializedName("header")
     private String header;
     /**
      * 姓名
      */
+    @SerializedName("name")
     private String name;
     /**
      * 时间
      */
+    @SerializedName("time")
     private String time;
     /**
      * 内容
      */
+    @SerializedName("content")
     private String content;
     /**
      * 评论的对象，用户还是文章,这里是对象的id

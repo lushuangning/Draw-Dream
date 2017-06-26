@@ -116,7 +116,6 @@ public class IndexFragmentViewModel extends BaseViewModel {
         mList = new ArrayList<>();
 
         ArrayList<String > images = new ArrayList<>();
-        loadDataFromNet(REFRESH);
         for(NewsDetail entity : mListNews){
             ItemIndexEntity itemEntity = new ItemIndexEntity();
             itemEntity.setAuthor(entity.getNede_author());
@@ -183,12 +182,13 @@ public class IndexFragmentViewModel extends BaseViewModel {
                     @Override
                     public void onError(Throwable e) {
                         Log.d(TAG,e.getMessage());
+                        Log.d(TAG,"*************************");
                     }
 
                     @Override
                     public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
-                        if(responseClassifyResultResponse.body().getSuccess().equals("success")){
-                            mListNews = responseClassifyResultResponse.body().getData();
+                        if(responseClassifyResultResponse.body().getSuccess().equals("true")){
+                            mListNews = (ArrayList<NewsDetail>) responseClassifyResultResponse.body().getData();
                             initUI();
                         }
                     }
