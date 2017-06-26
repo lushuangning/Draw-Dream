@@ -35,6 +35,7 @@ public class ResultActivityViewModel extends BaseViewModel {
     private String classify;
     private static ArrayList<SearchResultEntity> rList;
     private Subscription subscription;
+    private ArrayList<NewsDetail> res_list;
 
     //数据源
     public final ObservableArrayList<ItemResultViewModel> viewModels = new ObservableArrayList<>();
@@ -80,7 +81,9 @@ public class ResultActivityViewModel extends BaseViewModel {
 
                     @Override
                     public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
-
+                        if(responseClassifyResultResponse.body().getSuccess().equals("true")){
+                            res_list = responseClassifyResultResponse.body().getData();
+                        }
                     }
                 });
     }
@@ -88,7 +91,7 @@ public class ResultActivityViewModel extends BaseViewModel {
     public void initUI(){
         rList = new ArrayList<>();
         requestNetwork();
-        for (NewsDetail entity: loadData()){
+        for (NewsDetail entity: res_list){
             SearchResultEntity searchEntity = new SearchResultEntity();
             searchEntity.setTable_id(entity.getId());
             searchEntity.setId(entity.getNede_id());
@@ -108,13 +111,13 @@ public class ResultActivityViewModel extends BaseViewModel {
         }
     }
 
-    public ArrayList<NewsDetail> loadData(){
-        ArrayList<NewsDetail> list = new ArrayList<>();
-        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
-        list = (ArrayList<NewsDetail>) dao.loadAll();
-
-        return list;
-    }
+//    public ArrayList<NewsDetail> loadData(){
+//        ArrayList<NewsDetail> list = new ArrayList<>();
+//        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
+//        list = (ArrayList<NewsDetail>) dao.loadAll();
+//
+//        return list;
+//    }
 
     public void setManager(){
         GridLayoutManager glm = new GridLayoutManager(mContext,1);

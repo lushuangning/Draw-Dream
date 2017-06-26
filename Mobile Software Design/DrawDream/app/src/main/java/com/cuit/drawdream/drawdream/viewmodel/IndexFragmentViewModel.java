@@ -57,7 +57,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
     private static int LOADMORE_TIMES = 0;
 
     private Context mContext;
-    private ArrayList<NewsDetail> mListNews;   //普通新闻数据
+    private ArrayList<NewsDetail> mListNews = new ArrayList<>();   //普通新闻数据
     private Subscription mSubscription;
     private static ArrayList<ItemIndexEntity> mList;
 
@@ -86,7 +86,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
     public IndexFragmentViewModel(Context context) {
         super(context);
         mContext = context;
-        initUI();
+//        initUI();
+        loadDataFromNet(REFRESH);
         setManager();
     }
 
@@ -161,7 +162,6 @@ public class IndexFragmentViewModel extends BaseViewModel {
     }
 
     private void loadDataFromNet(int key){
-        ArrayList<NewsDetail> listNews = new ArrayList<>();
         Gson gson = new Gson();
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         map.put("operation", key);
@@ -189,6 +189,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
                     public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
                         if(responseClassifyResultResponse.body().getSuccess().equals("success")){
                             mListNews = responseClassifyResultResponse.body().getData();
+                            initUI();
                         }
                     }
                 });
