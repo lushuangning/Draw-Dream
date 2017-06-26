@@ -5,7 +5,7 @@ android {
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.cuit.drawdream.drawdream"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -72,7 +72,7 @@ dependencies {
     compile 'devlight.io:navigationtabbar:1.2.5'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.youth.banner:banner:1.4.9'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.airbnb.android:lottie:1.0.1'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.16'
     compile 'org.jsoup:jsoup:1.9.2'

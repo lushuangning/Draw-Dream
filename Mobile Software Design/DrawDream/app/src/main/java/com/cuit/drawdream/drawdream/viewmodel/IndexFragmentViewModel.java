@@ -19,15 +19,23 @@ import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
+import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
 import com.cuit.drawdream.drawdream.utils.tool.GlideImageLoader;
 import com.cuit.drawdream.drawdream.view.DetailActivity;
+import com.google.gson.Gson;
 import com.kelin.mvvmlight.command.ReplyCommand;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import me.tatarka.bindingcollectionadapter.ItemView;
 import me.tatarka.bindingcollectionadapter.ItemViewSelector;
+import okhttp3.RequestBody;
+import retrofit2.Response;
+import rx.Observer;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * class :    IndexFragmentViewModel
@@ -43,8 +51,14 @@ public class IndexFragmentViewModel extends BaseViewModel {
     private static final int ITEM_HEADER_AUTHOR = 1;    //作者
     private static final int ITEM_HEADER_RECYCLER = 0;  //轮播图
     private static final int ITEM_GENERAL = 2;          //普通的
+    private static final int REFRESH = 0;               //下拉刷新
+    private static final int LOAD_MORE = 1;             //加载更多
+
+    private static int LOADMORE_TIMES = 0;
 
     private Context mContext;
+    private ArrayList<NewsDetail> mListNews;   //普通新闻数据
+    private Subscription mSubscription;
     private static ArrayList<ItemIndexEntity> mList;
 
     public final ObservableBoolean isRefreshing = new ObservableBoolean(true);
@@ -101,9 +115,8 @@ public class IndexFragmentViewModel extends BaseViewModel {
         mList = new ArrayList<>();
 
         ArrayList<String > images = new ArrayList<>();
-
-
-        for(NewsDetail entity :loadGeneralData()){
+        loadDataFromNet(REFRESH);
+        for(NewsDetail entity : mListNews){
             ItemIndexEntity itemEntity = new ItemIndexEntity();
             itemEntity.setAuthor(entity.getNede_author());
             itemEntity.setImg(entity.getNede_img());
@@ -116,6 +129,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
             mList.add(itemEntity);
         }
 
+        //轮播图
         images.add(mList.get(0).getImg());
         images.add(mList.get(1).getImg());
         images.add(mList.get(2).getImg());
@@ -137,13 +151,47 @@ public class IndexFragmentViewModel extends BaseViewModel {
         }
 
     }
-
+    //获取普通布局数据
     private ArrayList<NewsDetail> loadGeneralData() {
         ArrayList<NewsDetail> list = new ArrayList<>();
-        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
-        list = (ArrayList<NewsDetail>) dao.loadAll();
+//        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
+//        list = (ArrayList<NewsDetail>) dao.loadAll();
 
         return list;
+    }
+
+    private void loadDataFromNet(int key){
+        ArrayList<NewsDetail> listNews = new ArrayList<>();
+        Gson gson = new Gson();
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        map.put("operation", key);
+        map.put("page",LOADMORE_TIMES);
+        String jsonStr = gson.toJson(map);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),jsonStr);
+
+        mSubscription = getApplication()
+                .getNetworkService()
+                .index(body)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(getApplication().defaultSubscribeScheduler())
+                .subscribe(new Observer<Response<ResponseClassifyResult>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG,e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
+                        if(responseClassifyResultResponse.body().getSuccess().equals("success")){
+                            mListNews = responseClassifyResultResponse.body().getData();
+                        }
+                    }
+                });
     }
 
     /**
@@ -152,6 +200,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
     public final ReplyCommand onRefreshCommand = new ReplyCommand(()->{
         isRefreshing.set(true);
         isRefreshing.set(false);
+        LOADMORE_TIMES = 0;
     });
 
     /**
@@ -161,6 +210,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
         Toast.makeText(mContext,"没有更多了",Toast.LENGTH_SHORT)
                 .show();
         Log.d(TAG,"item " + itemCount);
+        LOADMORE_TIMES += 1;
     });
 
 

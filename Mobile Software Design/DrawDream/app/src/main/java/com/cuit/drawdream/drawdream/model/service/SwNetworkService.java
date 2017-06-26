@@ -23,4 +23,8 @@ public interface SwNetworkService {
     @POST("classify/result/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseClassifyResult>> result(@Body RequestBody route);
+
+    @POST("index/")
+    @Headers("Content-type:application/json;charset=UTF-8")
+    Observable<Response<ResponseClassifyResult>> index (@Body RequestBody route);
 }
