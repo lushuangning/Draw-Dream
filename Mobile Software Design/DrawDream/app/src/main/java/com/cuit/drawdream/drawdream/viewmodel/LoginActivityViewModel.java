@@ -29,7 +29,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
- * Created by sailwish008 on 2017/2/15 0015.
+ * Created  on 2017/2/15 0015.
  */
 
 public class LoginActivityViewModel extends BaseViewModel{

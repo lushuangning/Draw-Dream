@@ -14,7 +14,6 @@ public class ReviewEntity extends BaseBean {
     /**
      * 头像
      */
-    @SerializedName("header")
     private String header;
     /**
      * 姓名

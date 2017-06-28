@@ -27,7 +27,6 @@ import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * ClassName : MyInfoMgtActivityViewModel
- * Created by yangq
  * On 2017/6/11.
  * Desc :
  */

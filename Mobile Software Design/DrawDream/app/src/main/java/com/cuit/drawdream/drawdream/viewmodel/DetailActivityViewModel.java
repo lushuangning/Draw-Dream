@@ -140,6 +140,7 @@ public class DetailActivityViewModel extends BaseViewModel {
     private void loadReViewDataFromNet() {
         Gson gson = new Gson();
         HashMap<String, String> map = new HashMap<>();
+        //文章id为pk
         map.put("news_id",mEntity.getId());
         String jsonStr = gson.toJson(map);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),jsonStr);
@@ -246,7 +247,7 @@ public class DetailActivityViewModel extends BaseViewModel {
         //最新的评论在第一个
         viewModelsForReview.add(0,viewModel);
         isNoDataShowing.set(false);
-        mCommentNum.set("评论（" + viewModelsForReview.size() + ")");
+        mCommentNum.set("评论（" + viewModelsForReview.size() + "）");
     }
 
     @Override

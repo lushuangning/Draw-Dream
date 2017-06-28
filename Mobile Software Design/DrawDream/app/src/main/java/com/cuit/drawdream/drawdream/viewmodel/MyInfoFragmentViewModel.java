@@ -16,7 +16,6 @@ import java.util.List;
 
 /**
  * class :    MyInfoFragmentViewModel
- * Created by yangq
  * At         2017/5/31.
  * Desc :
  */

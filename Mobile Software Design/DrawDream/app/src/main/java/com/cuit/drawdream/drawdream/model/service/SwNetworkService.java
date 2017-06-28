@@ -38,4 +38,8 @@ public interface SwNetworkService {
     @POST("user_info/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseInfo>> userInfo (@Body RequestBody route);
+
+    @POST("user_info/")
+    @Headers("Content-type:application/json;charset=UTF-8")
+    Observable<Response<ResponseInfo>> comment (@Body RequestBody route);
 }

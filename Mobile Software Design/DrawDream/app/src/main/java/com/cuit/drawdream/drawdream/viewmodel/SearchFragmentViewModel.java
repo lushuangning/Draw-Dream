@@ -22,7 +22,7 @@ public class SearchFragmentViewModel extends BaseViewModel {
 
     public SearchFragmentViewModel(Context context) {
         super(context);
-        mSearchContent.set("请输入搜索名称");
+//        mSearchContent.set("请输入搜索名称");
     }
 
     @Override
