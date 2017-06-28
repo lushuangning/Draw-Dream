@@ -5,7 +5,9 @@ package com.cuit.drawdream.drawdream.utils.tool;
  */
 public class Config {
 
-    public static String PATH_ROOT="http://192.168.191.1:8000/server/";
+//    http://192.168.191.1:8000/server/
+
+    public static String PATH_ROOT="http://172.20.10.14:8000/server/";
     /**
      * 是否进入后台
      */

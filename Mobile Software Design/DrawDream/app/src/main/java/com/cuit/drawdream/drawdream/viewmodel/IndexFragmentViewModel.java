@@ -17,6 +17,7 @@ import com.cuit.drawdream.bean.NewsDetailDao;
 import com.cuit.drawdream.drawdream.BR;
 import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
+import com.cuit.drawdream.drawdream.bean.ordinary.DetailEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
@@ -57,7 +58,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
     private static int LOADMORE_TIMES = 0;
 
     private Context mContext;
-    private ArrayList<NewsDetail> mListNews = new ArrayList<>();   //普通新闻数据
+    private ArrayList<DetailEntity> mListNews = new ArrayList<>();   //普通新闻数据
     private Subscription mSubscription;
     private static ArrayList<ItemIndexEntity> mList;
 
@@ -116,16 +117,17 @@ public class IndexFragmentViewModel extends BaseViewModel {
         mList = new ArrayList<>();
 
         ArrayList<String > images = new ArrayList<>();
-        for(NewsDetail entity : mListNews){
+        for(DetailEntity entity : mListNews){
             ItemIndexEntity itemEntity = new ItemIndexEntity();
-            itemEntity.setAuthor(entity.getNede_author());
-            itemEntity.setImg(entity.getNede_img());
-            itemEntity.setTime(entity.getNede_time());
-            itemEntity.setTitle(entity.getNede_title());
-            itemEntity.setId(entity.getNede_id());
-            itemEntity.setContent(entity.getNede_content());
-            itemEntity.setClassify("动漫");
-            itemEntity.setTable_id(entity.getId());
+          //TODO 改对应的数据设置
+//            itemEntity.setAuthor(entity.getNede_author());
+//            itemEntity.setImg(entity.getNede_img());
+//            itemEntity.setTime(entity.getNede_time());
+//            itemEntity.setTitle(entity.getNede_title());
+//            itemEntity.setId(entity.getNede_id());
+//            itemEntity.setContent(entity.getNede_content());
+//            itemEntity.setClassify("动漫");
+//            itemEntity.setTable_id(entity.getId());
             mList.add(itemEntity);
         }
 
@@ -188,7 +190,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
                     @Override
                     public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
                         if(responseClassifyResultResponse.body().getSuccess().equals("true")){
-                            mListNews = (ArrayList<NewsDetail>) responseClassifyResultResponse.body().getData();
+                            mListNews = (ArrayList<DetailEntity>) responseClassifyResultResponse.body().getData();
                             initUI();
                         }
                     }

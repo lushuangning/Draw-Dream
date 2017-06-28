@@ -1,6 +1,7 @@
 package com.cuit.drawdream.drawdream.bean.response;
 
 import com.cuit.drawdream.bean.NewsDetail;
+import com.cuit.drawdream.drawdream.bean.ordinary.DetailEntity;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class ResponseClassifyResult {
     @SerializedName("success")
     private String success;
     @SerializedName("data")
-    private List<NewsDetail> data;
+    private List<DetailEntity> data;
 
     public String getMsg() {
         return msg;
@@ -34,11 +35,11 @@ public class ResponseClassifyResult {
         this.success = success;
     }
 
-    public List<NewsDetail> getData() {
+    public List<DetailEntity> getData() {
         return data;
     }
 
-    public void setData(List<NewsDetail> data) {
+    public void setData(List<DetailEntity> data) {
         this.data = data;
     }
 }
