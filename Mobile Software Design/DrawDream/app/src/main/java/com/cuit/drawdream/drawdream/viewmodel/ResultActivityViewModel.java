@@ -6,12 +6,9 @@ import android.databinding.ObservableField;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 
-import com.cuit.drawdream.bean.NewsDetail;
-import com.cuit.drawdream.bean.NewsDetailDao;
 import com.cuit.drawdream.drawdream.BR;
-import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
-import com.cuit.drawdream.drawdream.bean.ordinary.SearchResultEntity;
+import com.cuit.drawdream.drawdream.bean.ordinary.DetailEntity;
 import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
 import com.google.gson.Gson;
 
@@ -33,9 +30,9 @@ public class ResultActivityViewModel extends BaseViewModel {
 
     private Context mContext;
     private String classify;
-    private static ArrayList<SearchResultEntity> rList;
+//    private static ArrayList<SearchResultEntity> rList;
     private Subscription subscription;
-    private ArrayList<NewsDetail> res_list;
+    private ArrayList<DetailEntity> res_list;
 
     //数据源
     public final ObservableArrayList<ItemResultViewModel> viewModels = new ObservableArrayList<>();
@@ -47,7 +44,7 @@ public class ResultActivityViewModel extends BaseViewModel {
         super(context);
         mContext = context;
         this.classify = classify;
-        initUI();
+        requestNetwork();
         setManager();
     }
 
@@ -82,30 +79,30 @@ public class ResultActivityViewModel extends BaseViewModel {
                     @Override
                     public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
                         if(responseClassifyResultResponse.body().getSuccess().equals("true")){
-                            res_list = (ArrayList<NewsDetail>) responseClassifyResultResponse.body().getData();
+                            res_list = (ArrayList<DetailEntity>) responseClassifyResultResponse.body().getData();
+                            initUI();
                         }
                     }
                 });
     }
 
     public void initUI(){
-        rList = new ArrayList<>();
-        requestNetwork();
-        for (NewsDetail entity: res_list){
-            SearchResultEntity searchEntity = new SearchResultEntity();
-            searchEntity.setTable_id(entity.getId());
-            searchEntity.setId(entity.getNede_id());
-            searchEntity.setAuthor(entity.getNede_author());
-            searchEntity.setImg(entity.getNede_img());
-            searchEntity.setTime(entity.getNede_time());
-            searchEntity.setTitle(entity.getNede_title());
-            searchEntity.setContent(entity.getNede_content());
-            searchEntity.setBrowse(2400);
+//        rList = new ArrayList<>();
+//        for (DetailEntity entity: res_list){
+//            SearchResultEntity searchEntity = new SearchResultEntity();
+//            searchEntity.setTable_id(0);
+//            searchEntity.setId(entity.getPk());
+//            searchEntity.setAuthor(entity.getNede_author());
+//            searchEntity.setImg(entity.getNede_img());
+//            searchEntity.setTime(entity.getNede_time());
+//            searchEntity.setTitle(entity.getNede_title());
+//            searchEntity.setContent(entity.getNede_content());
+//            searchEntity.setBrowse(2400);
+//
+//            rList.add(searchEntity);
+//        }
 
-            rList.add(searchEntity);
-        }
-
-        for (SearchResultEntity entity: rList){
+        for (DetailEntity entity: res_list){
             ItemResultViewModel model = new ItemResultViewModel(mContext, entity);
             viewModels.add(model);
         }
@@ -136,16 +133,17 @@ public class ResultActivityViewModel extends BaseViewModel {
 
     public class ItemResultViewModel extends BaseViewModel{
         private Context itemContext;
-        private SearchResultEntity entity;
+        private DetailEntity entity;
 
         public final ObservableField<String > mImage = new ObservableField<>();
         public final ObservableField<String > mAuthor = new ObservableField<>();
         public final ObservableField<String > mTime = new ObservableField<>();
         public final ObservableField<String > mTitle = new ObservableField<>();
         public final ObservableField<String > mContent = new ObservableField<>();
-        public final ObservableField<Integer > mBrowse = new ObservableField<>();
+        public final ObservableField<String > mBrowse = new ObservableField<>();
+        public final ObservableField<String > love = new ObservableField<>();
 
-        public ItemResultViewModel(Context context, SearchResultEntity entity) {
+        public ItemResultViewModel(Context context, DetailEntity entity) {
             super(context);
             itemContext = context;
             if (null != entity){
@@ -157,12 +155,20 @@ public class ResultActivityViewModel extends BaseViewModel {
         }
 
         public void setData(){
-            mImage.set(entity.getImg());
-            mAuthor.set(entity.getAuthor());
-            mTime.set(entity.getTime());
-            mTitle.set(entity.getTitle());
-            mContent.set(entity.getContent());
-            mBrowse.set(entity.getBrowse());
+//            mImage.set(entity.getNede_cover_img());
+//            mAuthor.set(entity.getAuthor());
+//            mTime.set(entity.getTime());
+//            mTitle.set(entity.getTitle());
+//            mContent.set(entity.getContent());
+//            mBrowse.set(entity.getBrowse());
+            mImage.set(entity.getNede_cover_img());
+            mAuthor.set(entity.getNede_author());
+            mTime.set(entity.getNede_web_time());
+            mTitle.set(entity.getNede_title());
+            mContent.set(entity.getNede_content());
+            mBrowse.set(entity.getNede_browse() + "w");
+            love.set(entity.getNede_love() + "");
+
         }
 
         @Override

@@ -30,11 +30,11 @@ public class DetailEntity extends BaseBean {
     @SerializedName("nede_content")
     private String nede_content;
 
-//    @SerializedName("nede_browse")
-//    private int nede_browse;
-//
-//    @SerializedName("nede_love")
-//    private int nede_love;
+    @SerializedName("nede_browse")
+    private int nede_browse;
+
+    @SerializedName("nede_love")
+    private int nede_love;
 
     @SerializedName("pk")
     private String pk;
@@ -93,5 +93,21 @@ public class DetailEntity extends BaseBean {
 
     public void setPk(String pk) {
         this.pk = pk;
+    }
+
+    public int getNede_browse() {
+        return nede_browse;
+    }
+
+    public void setNede_browse(int nede_browse) {
+        this.nede_browse = nede_browse;
+    }
+
+    public int getNede_love() {
+        return nede_love;
+    }
+
+    public void setNede_love(int nede_love) {
+        this.nede_love = nede_love;
     }
 }

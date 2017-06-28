@@ -21,7 +21,8 @@ public interface SwNetworkService {
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseLogin>> login (@Body RequestBody route);
 
-    @POST("classify/result/")
+    //TODO 这里要改成result
+    @POST("index/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseClassifyResult>> result(@Body RequestBody route);
 

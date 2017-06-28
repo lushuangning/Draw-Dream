@@ -12,16 +12,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_margin="4dp">
 
         <ImageView
             android:id="@+id/img_item_result"
-            android:layout_width="135dp"
-            android:layout_height="180dp"
+            android:layout_width="112dp"
+            android:layout_height="150dp"
             android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
             app:SetIcon="@{itemResultViewModel.mImage}"
-            tools:ignore="ContentDescription" />
+            tools:background="@drawable/bg_no_data"/>
 
         <TextView
             android:id="@+id/title_item_result"
@@ -30,54 +31,55 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="3"
-            android:layout_margin="6dp"
-            android:text="这里是一段文字，他用来显示标题，现在测试一行显示不下的情况,现在测试三行显示的情况"
-            tools:ignore="HardcodedText,RtlHardcoded" />
+            android:ellipsize="end"
+            android:layout_margin="8dp"
+            android:textSize="@dimen/md_text_size_content"
+            android:textColor="#000"
+            android:text="@{itemResultViewModel.mTitle}" />
 
         <TextView
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/img_item_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            android:text="这里是作者"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
+            android:layout_above="@+id/ly_watch_result"
+            android:layout_marginEnd="@dimen/md_margin_screen_basic"
+            android:layout_margin="8dp"
+            android:layout_toRightOf="@+id/img_item_result"
+            android:textColor="@color/color_hint_text"
+            android:textSize="@dimen/md_text_size_hint"
+            tools:text="这里是作者"
+            android:text="@{itemResultViewModel.mAuthor}" />
 
         <LinearLayout
             android:id="@+id/ly_watch_result"
             android:layout_alignBottom="@+id/img_item_result"
             android:layout_toRightOf="@+id/img_item_result"
             android:orientation="horizontal"
-            android:layout_margin="6dp"
+            android:layout_margin="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlHardcoded">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@mipmap/attention"
-                tools:ignore="ContentDescription" />
+                android:src="@mipmap/attention" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/_2_3w"/>
+                android:text="@{itemResultViewModel.mBrowse}"/>
 
             <ImageView
+                android:layout_marginLeft="16dp"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@mipmap/clocks"
-                tools:ignore="ContentDescription" />
+                android:src="@mipmap/clocks" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="2014/7/23"
-                tools:ignore="HardcodedText" />
+                android:text="@{itemResultViewModel.mTime}" />
 
         </LinearLayout>
 

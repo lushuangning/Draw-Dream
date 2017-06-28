@@ -10,22 +10,15 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.widget.Toast;
 
-
-import com.bumptech.glide.Glide;
-import com.cuit.drawdream.bean.NewsDetail;
-import com.cuit.drawdream.bean.NewsDetailDao;
 import com.cuit.drawdream.drawdream.BR;
-import com.cuit.drawdream.drawdream.MyApplication;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetailEntity;
-import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
 import com.cuit.drawdream.drawdream.utils.tool.GlideImageLoader;
 import com.cuit.drawdream.drawdream.view.DetailActivity;
 import com.google.gson.Gson;
 import com.kelin.mvvmlight.command.ReplyCommand;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -120,14 +113,15 @@ public class IndexFragmentViewModel extends BaseViewModel {
         for(DetailEntity entity : mListNews){
             ItemIndexEntity itemEntity = new ItemIndexEntity();
           //TODO 改对应的数据设置
-//            itemEntity.setAuthor(entity.getNede_author());
-//            itemEntity.setImg(entity.getNede_img());
-//            itemEntity.setTime(entity.getNede_time());
-//            itemEntity.setTitle(entity.getNede_title());
-//            itemEntity.setId(entity.getNede_id());
-//            itemEntity.setContent(entity.getNede_content());
-//            itemEntity.setClassify("动漫");
-//            itemEntity.setTable_id(entity.getId());
+            itemEntity.setAuthor(entity.getNede_author());
+            itemEntity.setImg(entity.getNede_cover_img());
+            itemEntity.setTime(entity.getNede_web_time());
+            itemEntity.setTitle(entity.getNede_title());
+//          这里应该是PK
+            itemEntity.setId(entity.getPk());
+            itemEntity.setContent(entity.getNede_content());
+            itemEntity.setClassify(entity.getNede_classify());
+//            itemEntity.setTable_id();
             mList.add(itemEntity);
         }
 
@@ -153,14 +147,14 @@ public class IndexFragmentViewModel extends BaseViewModel {
         }
 
     }
-    //获取普通布局数据
-    private ArrayList<NewsDetail> loadGeneralData() {
-        ArrayList<NewsDetail> list = new ArrayList<>();
-//        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
-//        list = (ArrayList<NewsDetail>) dao.loadAll();
-
-        return list;
-    }
+//    //获取普通布局数据
+//    private ArrayList<NewsDetail> loadGeneralData() {
+//        ArrayList<NewsDetail> list = new ArrayList<>();
+////        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
+////        list = (ArrayList<NewsDetail>) dao.loadAll();
+//
+//        return list;
+//    }
 
     private void loadDataFromNet(int key){
         Gson gson = new Gson();

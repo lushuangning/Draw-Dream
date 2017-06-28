@@ -84,6 +84,7 @@ public class LoginActivityViewModel extends BaseViewModel{
                                 if(responseLoginResponse.body().getSuccess().equals("true")){
                                     Intent intent = new Intent(mContext, MainActivity.class);
                                     mContext.startActivity(intent);
+                                    LoginActivity.instance.finish();
                                     Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
                                 }else{
                                     Toast.makeText(mContext,"用户名或者密码错误，请重新输入！",Toast.LENGTH_SHORT).show();
