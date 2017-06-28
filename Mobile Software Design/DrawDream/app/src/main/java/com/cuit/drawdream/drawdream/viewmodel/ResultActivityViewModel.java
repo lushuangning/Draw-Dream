@@ -1,16 +1,21 @@
 package com.cuit.drawdream.drawdream.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 
 import com.cuit.drawdream.drawdream.BR;
 import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetailEntity;
+import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
+import com.cuit.drawdream.drawdream.view.DetailActivity;
 import com.google.gson.Gson;
+import com.kelin.mvvmlight.command.ReplyCommand;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,21 +92,6 @@ public class ResultActivityViewModel extends BaseViewModel {
     }
 
     public void initUI(){
-//        rList = new ArrayList<>();
-//        for (DetailEntity entity: res_list){
-//            SearchResultEntity searchEntity = new SearchResultEntity();
-//            searchEntity.setTable_id(0);
-//            searchEntity.setId(entity.getPk());
-//            searchEntity.setAuthor(entity.getNede_author());
-//            searchEntity.setImg(entity.getNede_img());
-//            searchEntity.setTime(entity.getNede_time());
-//            searchEntity.setTitle(entity.getNede_title());
-//            searchEntity.setContent(entity.getNede_content());
-//            searchEntity.setBrowse(2400);
-//
-//            rList.add(searchEntity);
-//        }
-
         for (DetailEntity entity: res_list){
             ItemResultViewModel model = new ItemResultViewModel(mContext, entity);
             viewModels.add(model);
@@ -128,9 +118,6 @@ public class ResultActivityViewModel extends BaseViewModel {
         mGridLayoutManager.set(glm);
     }
 
-
-
-
     public class ItemResultViewModel extends BaseViewModel{
         private Context itemContext;
         private DetailEntity entity;
@@ -155,12 +142,6 @@ public class ResultActivityViewModel extends BaseViewModel {
         }
 
         public void setData(){
-//            mImage.set(entity.getNede_cover_img());
-//            mAuthor.set(entity.getAuthor());
-//            mTime.set(entity.getTime());
-//            mTitle.set(entity.getTitle());
-//            mContent.set(entity.getContent());
-//            mBrowse.set(entity.getBrowse());
             mImage.set(entity.getNede_cover_img());
             mAuthor.set(entity.getNede_author());
             mTime.set(entity.getNede_web_time());
@@ -175,9 +156,27 @@ public class ResultActivityViewModel extends BaseViewModel {
         public void destroy() {
 
         }
+
+        public final ReplyCommand<Integer> toDetail = new ReplyCommand<Integer>(()->{
+            Bundle bundle = new Bundle();
+            ArrayList<ItemIndexEntity> list = new ArrayList<>();
+            list.add(transfer(entity));
+            bundle.putSerializable("Detail",list);
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            intent.putExtras(bundle);
+            mContext.startActivity(intent);
+        });
+
+        public ItemIndexEntity transfer(DetailEntity entity){
+            ItemIndexEntity itemEntity = new ItemIndexEntity();
+            itemEntity.setAuthor(entity.getNede_author());
+            itemEntity.setImg(entity.getNede_cover_img());
+            itemEntity.setTime(entity.getNede_web_time());
+            itemEntity.setTitle(entity.getNede_title());
+            itemEntity.setId(entity.getPk());
+            itemEntity.setContent(entity.getNede_content());
+            itemEntity.setClassify(entity.getNede_classify());
+            return itemEntity;
+        }
     }
-
-
-
-
 }

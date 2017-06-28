@@ -15,7 +15,7 @@
         android:layout_height="180dp"
         android:layout_margin="4dp"
         android:background="@drawable/item_index_bg"
-        app:clickCommand="@{itemIndexViewModel.toDetial}">
+        app:clickCommand="@{itemIndexViewModel.toDetail}">
 
         <ImageView
             android:id="@+id/iv_item_index"

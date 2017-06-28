@@ -276,7 +276,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
         /**
          * 跳转详情页面
          */
-        public final ReplyCommand toDetial = new ReplyCommand(()->{
+        public final ReplyCommand toDetail = new ReplyCommand(()->{
             /**
              * TODO 这里需要获取到被点击item的信息，以便在详情页面进行网络请求
              * mTitle.get();获取信息
