@@ -15,6 +15,7 @@ import com.cuit.drawdream.drawdream.R;
 import com.cuit.drawdream.drawdream.bean.ordinary.DetailEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
+import com.cuit.drawdream.drawdream.utils.tool.Config;
 import com.cuit.drawdream.drawdream.utils.tool.GlideImageLoader;
 import com.cuit.drawdream.drawdream.view.DetailActivity;
 import com.google.gson.Gson;
@@ -48,7 +49,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
     private static final int REFRESH = 0;               //下拉刷新
     private static final int LOAD_MORE = 1;             //加载更多
 
-    private static int LOADMORE_TIMES = 0;
+    private static int LOADMORE_TIMES = 1;
 
     private Context mContext;
     private ArrayList<DetailEntity> mListNews = new ArrayList<>();   //普通新闻数据
@@ -104,9 +105,14 @@ public class IndexFragmentViewModel extends BaseViewModel {
         mGridLayoutManager.set(glm);
     }
 
-    private void initUI() {
+    private void initUI(Boolean isReFreshing) {
         isProgressBarShowing.set(false);
         isRefreshing.set(false);
+        if(isReFreshing){
+            //每次刷新清空viewmodels
+            viewModels.clear();
+        }
+
         mList = new ArrayList<>();
 
         ArrayList<String > images = new ArrayList<>();
@@ -147,14 +153,6 @@ public class IndexFragmentViewModel extends BaseViewModel {
         }
 
     }
-//    //获取普通布局数据
-//    private ArrayList<NewsDetail> loadGeneralData() {
-//        ArrayList<NewsDetail> list = new ArrayList<>();
-////        NewsDetailDao dao = MyApplication.daoSession.getNewsDetailDao();
-////        list = (ArrayList<NewsDetail>) dao.loadAll();
-//
-//        return list;
-//    }
 
     private void loadDataFromNet(int key){
         Gson gson = new Gson();
@@ -179,13 +177,24 @@ public class IndexFragmentViewModel extends BaseViewModel {
                     public void onError(Throwable e) {
                         Log.d(TAG,e.getMessage());
                         Log.d(TAG,"*************************");
+                        Toast.makeText(mContext,"服务器错误",Toast.LENGTH_SHORT)
+                                .show();
                     }
 
                     @Override
                     public void onNext(Response<ResponseClassifyResult> responseClassifyResultResponse) {
                         if(responseClassifyResultResponse.body().getSuccess().equals("true")){
                             mListNews = (ArrayList<DetailEntity>) responseClassifyResultResponse.body().getData();
-                            initUI();
+                            initUI(LOADMORE_TIMES == 1?true:false);
+                        }else {
+                            if(responseClassifyResultResponse.body().getMsg().equals(Config.CODE_NONE)){
+                                Toast.makeText(mContext,"没有更多了",Toast.LENGTH_SHORT)
+                                        .show();
+                            }else if(responseClassifyResultResponse.body().getMsg().equals(Config.CODE_ERROR)){
+                                Toast.makeText(mContext,"服务器错误",Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+
                         }
                     }
                 });
@@ -196,18 +205,19 @@ public class IndexFragmentViewModel extends BaseViewModel {
      */
     public final ReplyCommand onRefreshCommand = new ReplyCommand(()->{
         isRefreshing.set(true);
-        isRefreshing.set(false);
         LOADMORE_TIMES = 0;
+        //重新载入数据
+        loadDataFromNet(REFRESH);
     });
 
     /**
      * 加载更多
      */
     public final ReplyCommand<Integer> onLoadMoreCommand = new ReplyCommand<>((itemCount)->{
-        Toast.makeText(mContext,"没有更多了",Toast.LENGTH_SHORT)
-                .show();
         Log.d(TAG,"item " + itemCount);
         LOADMORE_TIMES += 1;
+        //加载更多
+        loadDataFromNet(LOADMORE_TIMES);
     });
 
 

@@ -23,5 +23,14 @@ public class Config {
      * 当前用户姓名
      */
     public static String USER_NAME = "";
+    /**
+     * 服务器错误
+     */
+    public static String CODE_ERROR = "302";
+    /**
+     * 数据不存在
+     */
+    public static String CODE_NONE = "404";
+
 
 }
