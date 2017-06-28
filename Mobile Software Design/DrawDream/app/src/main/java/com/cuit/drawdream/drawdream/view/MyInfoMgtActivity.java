@@ -22,13 +22,16 @@ public class MyInfoMgtActivity extends BaseActivity {
 
     private ActivityMyInfoMgtBinding mBinding;
 
+    public static MyInfoMgtActivity instance;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayList<UserInfoEntity> list = (ArrayList<UserInfoEntity>) getIntent().getExtras().get("userInfo");
-        UserInfoEntity entity = list.get(0);
+//        ArrayList<UserInfoEntity> list = (ArrayList<UserInfoEntity>) getIntent().getExtras().get("userInfo");
+//        UserInfoEntity entity = list.get(0);
+        instance = this;
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_my_info_mgt);
-        MyInfoMgtActivityViewModel viewModel = new MyInfoMgtActivityViewModel(this,entity);
+        MyInfoMgtActivityViewModel viewModel = new MyInfoMgtActivityViewModel(this);
         mBinding.pvMyInfo.setTitle("个人资料");
         mBinding.setMgtViewModel(viewModel);
     }

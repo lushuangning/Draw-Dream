@@ -28,22 +28,22 @@ import java.util.ArrayList;
 public class MyInfoFragment extends Fragment {
 
     private FragmentMyInfoBinding mBinding;
-    private ArrayList<UserInfoEntity> mList;
+//    private ArrayList<UserInfoEntity> mList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        View view = inflater.inflate(R.layout.fragment_my_info,container,false);
         mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_info,container,false);
-        MyInfoFragmentViewModel viewModel = new MyInfoFragmentViewModel(getContext(),loadData());
+        MyInfoFragmentViewModel viewModel = new MyInfoFragmentViewModel(getContext());
         mBinding.setMyInfoFragmentViewModel(viewModel);
         return mBinding.getRoot();
     }
 
-    private UserInfoEntity loadData() {
-        UserInfoEntityDao dao = MyApplication.daoSession.getUserInfoEntityDao();
-//        mList = (ArrayList<UserInfoEntity>) dao.load(Config.USER_ID);
-//        Config.USER_ID = mList.get(0).getId();
-        return dao.load(Config.USER_ID);
-    }
+//    private UserInfoEntity loadData() {
+//        UserInfoEntityDao dao = MyApplication.daoSession.getUserInfoEntityDao();
+////        mList = (ArrayList<UserInfoEntity>) dao.load(Config.USER_ID);
+////        Config.USER_ID = mList.get(0).getId();
+//        return dao.load(Config.USER_ID);
+//    }
 }

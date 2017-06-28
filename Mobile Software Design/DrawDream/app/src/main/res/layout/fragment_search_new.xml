@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="searchFragmentViewModel"
+            name="searchViewModel"
             type="com.cuit.drawdream.drawdream.viewmodel.SearchFragmentViewModel"/>
     </data>
     <RelativeLayout
@@ -15,17 +15,27 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/md_margin_appbar"
             android:background="@color/color_main">
-
             <EditText
                 android:layout_toLeftOf="@+id/tv_cancal_sch"
                 android:background="#fff"
-                android:id="@+id/et_search_srh"
+                android:id="@+id/et_search"
                 android:layout_marginStart="@dimen/md_margin_screen_basic"
                 android:layout_marginEnd="@dimen/md_margin_screen_basic"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="@={searchViewModel.mSearchContent}"
+                />
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_toLeftOf="@+id/tv_cancal_sch"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/delete"
+                app:clickCommand="@{searchViewModel.cancal}"
+                />
             <TextView
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -36,6 +46,7 @@
                 android:textSize="@dimen/md_text_size_appbar"
                 android:text="搜索"
                 android:textColor="#fff"
+                app:clickCommand="@{searchViewModel.search}"
                 />
         </RelativeLayout>
 

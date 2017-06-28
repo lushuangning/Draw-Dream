@@ -35,13 +35,13 @@
 
         </RelativeLayout>
 
-        <ProgressBar
-            android:layout_marginTop="16dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/rl_title_index"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{indexFragmentViewModel.isProgressBarShowing?View.VISIBLE:View.GONE}"/>
+        <!--<ProgressBar-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_below="@+id/rl_title_index"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:visibility="@{indexFragmentViewModel.isProgressBarShowing?View.VISIBLE:View.GONE}"/>-->
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"

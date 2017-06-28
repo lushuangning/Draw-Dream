@@ -75,7 +75,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_below="@+id/iv_line1_mgt"
                     android:background="@null"
-                    android:text="@{mgtViewModel.mEmail}"
+                    android:text="@={mgtViewModel.mEmail}"
                     android:padding="@dimen/md_margin_screen_basic"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_appbar"
@@ -109,7 +109,7 @@
                     android:background="@null"
                     android:gravity="end"
                     android:padding="@dimen/md_margin_screen_basic"
-                    android:text="@{mgtViewModel.mName}"
+                    android:text="@={mgtViewModel.mName}"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_appbar"
                     tools:text="杨庆" />
@@ -186,7 +186,7 @@
                     android:padding="@dimen/md_margin_screen_basic"
                     android:textColor="@color/color_hint_text"
                     android:textSize="@dimen/md_text_size_appbar"
-                    android:text="@{mgtViewModel.mSign}"
+                    android:text="@={mgtViewModel.mSign}"
                     tools:text="说点什么呗~~" />
 
                 <ImageView

@@ -52,7 +52,7 @@ public class CommentActivityViewModel extends BaseViewModel {
         ReviewEntity entity = new ReviewEntity();
         entity.setContent(mContent.get());
         entity.setTime("2017/08/06");
-        entity.setName(Config.USER_NAME);
+        entity.setName(Config.USER_INFO.getUserName());
         entity.setHeader("file:///android_asset/head1.jpg");
         msg.obj = entity;
         mHandler.sendMessage(msg);

@@ -1,23 +1,21 @@
 package com.cuit.drawdream.drawdream.bean.response;
 
-import com.cuit.drawdream.bean.UserInfoEntity;
-import com.cuit.drawdream.drawdream.bean.ordinary.UserEntity;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * class :    ResponseLogin
- * Created by yangq
- * At         2017/6/6.
- * Desc :
+ * class :
+ *
+ * @auther 杨庆
+ * data on 2017/6/29.
+ * desc :
  */
 
-public class ResponseLogin {
+public class ResponseInfo {
+
     @SerializedName("msg")
     private String msg;
     @SerializedName("success")
     private String success;
-    @SerializedName("data")
-    private UserEntity data;
 
     public String getMsg() {
         return msg;
@@ -33,13 +31,5 @@ public class ResponseLogin {
 
     public void setSuccess(String success) {
         this.success = success;
-    }
-
-    public UserEntity getData() {
-        return data;
-    }
-
-    public void setData(UserEntity data) {
-        this.data = data;
     }
 }

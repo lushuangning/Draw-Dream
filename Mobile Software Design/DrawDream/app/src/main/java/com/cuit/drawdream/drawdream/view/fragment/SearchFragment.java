@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cuit.drawdream.drawdream.R;
-import com.cuit.drawdream.drawdream.databinding.FragmentSearchBinding;
+import com.cuit.drawdream.drawdream.databinding.FragmentSearchNewBinding;
 import com.cuit.drawdream.drawdream.viewmodel.SearchFragmentViewModel;
 
 /**
@@ -22,13 +22,13 @@ import com.cuit.drawdream.drawdream.viewmodel.SearchFragmentViewModel;
 
 public class SearchFragment extends Fragment {
 
-    private FragmentSearchBinding mBinding;
+    private FragmentSearchNewBinding mBinding;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_search,container,false);
+        mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_search_new,container,false);
         SearchFragmentViewModel viewModel = new SearchFragmentViewModel(getContext());
-        mBinding.setSearchFragmentViewModel(viewModel);
+        mBinding.setSearchViewModel(viewModel);
         return mBinding.getRoot();
     }
 }

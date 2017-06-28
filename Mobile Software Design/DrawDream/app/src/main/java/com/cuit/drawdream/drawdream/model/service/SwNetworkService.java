@@ -1,6 +1,7 @@
 package com.cuit.drawdream.drawdream.model.service;
 
 import com.cuit.drawdream.drawdream.bean.response.ResponseClassifyResult;
+import com.cuit.drawdream.drawdream.bean.response.ResponseInfo;
 import com.cuit.drawdream.drawdream.bean.response.ResponseLogin;
 import com.cuit.drawdream.drawdream.bean.response.ResponseReview;
 
@@ -33,4 +34,8 @@ public interface SwNetworkService {
     @POST("detail/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseReview>> review (@Body RequestBody route);
+
+    @POST("user_info/")
+    @Headers("Content-type:application/json;charset=UTF-8")
+    Observable<Response<ResponseInfo>> userInfo (@Body RequestBody route);
 }

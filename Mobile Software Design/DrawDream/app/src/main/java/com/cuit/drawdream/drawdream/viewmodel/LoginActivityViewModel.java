@@ -82,12 +82,17 @@ public class LoginActivityViewModel extends BaseViewModel{
                             public void onNext(Response<ResponseLogin> responseLoginResponse) {
                                 Log.i("RESPONSE",responseLoginResponse.body().getSuccess());
                                 if(responseLoginResponse.body().getSuccess().equals("true")){
+                                    Config.USER_INFO = responseLoginResponse.body().getData();
                                     Intent intent = new Intent(mContext, MainActivity.class);
                                     mContext.startActivity(intent);
                                     LoginActivity.instance.finish();
                                     Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Toast.makeText(mContext,"用户名或者密码错误，请重新输入！",Toast.LENGTH_SHORT).show();
+                                    if(responseLoginResponse.body().getMsg().equals(Config.CODE_NONE)){
+                                        Toast.makeText(mContext,"用户不存在，请重新输入！",Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(mContext,"用户名或者密码错误，请重新输入！",Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         });
