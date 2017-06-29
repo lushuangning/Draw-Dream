@@ -130,28 +130,35 @@ public class IndexFragmentViewModel extends BaseViewModel {
 //            itemEntity.setTable_id();
             mList.add(itemEntity);
         }
+        //如果是首次或者下拉刷新，执行
+        if(isReFreshing){
+            //轮播图
+            images.add(mList.get(0).getImg());
+            images.add(mList.get(1).getImg());
+            images.add(mList.get(2).getImg());
+            images.add(mList.get(3).getImg());
 
-        //轮播图
-        images.add(mList.get(0).getImg());
-        images.add(mList.get(1).getImg());
-        images.add(mList.get(2).getImg());
-        images.add(mList.get(3).getImg());
+            ItemIndexViewModel viewModelForRecycler = new ItemIndexViewModel(mContext,
+                    new ItemIndexEntity(images),
+                    ITEM_HEADER_RECYCLER);
+            viewModels.add(viewModelForRecycler);
 
-        ItemIndexViewModel viewModelForRecycler = new ItemIndexViewModel(mContext,
-                new ItemIndexEntity(images),
-                ITEM_HEADER_RECYCLER);
-        viewModels.add(viewModelForRecycler);
+            ItemIndexViewModel viewModelForAuthor = new ItemIndexViewModel(mContext,
+                    null,
+                    ITEM_HEADER_AUTHOR);
+            viewModels.add(viewModelForAuthor);
 
-        ItemIndexViewModel viewModelForAuthor = new ItemIndexViewModel(mContext,
-                null,
-                ITEM_HEADER_AUTHOR);
-        viewModels.add(viewModelForAuthor);
-
-        for(ItemIndexEntity entity :mList){
-            ItemIndexViewModel viewModel = new ItemIndexViewModel(mContext,entity,ITEM_GENERAL);
-            viewModels.add(viewModel);
+            for(ItemIndexEntity entity :mList){
+                ItemIndexViewModel viewModel = new ItemIndexViewModel(mContext,entity,ITEM_GENERAL);
+                viewModels.add(viewModel);
+            }
+        }else {
+            //如果是加载更多，则直接添加general
+            for(ItemIndexEntity entity :mList){
+                ItemIndexViewModel viewModel = new ItemIndexViewModel(mContext,entity,ITEM_GENERAL);
+                viewModels.add(viewModel);
+            }
         }
-
     }
 
     private void loadDataFromNet(int key){

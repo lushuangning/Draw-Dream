@@ -76,6 +76,8 @@ public class LoginActivityViewModel extends BaseViewModel{
                             @Override
                             public void onError(Throwable e) {
                                 Log.i("Error", "错误" + e.getMessage());
+                                Toast.makeText(mContext,"无法连接服务器!",Toast.LENGTH_SHORT).show();
+
                             }
 
                             @Override
@@ -96,18 +98,7 @@ public class LoginActivityViewModel extends BaseViewModel{
                                 }
                             }
                         });
-                //test
-//                if(checkAccount(mUserName.get(),mUserPassword.get())){
-//                    Intent intent = new Intent(mContext,MainActivity.class);
-//                    mContext.startActivity(intent);
-//                    LoginActivity.instance.finish();
-//                }else {
-//                    Toast.makeText(mContext,"账号密码有错误，请重新输入！",Toast.LENGTH_SHORT).show();
-//                }
-
-
             }else{
-                //TODO 这里书写格式错误的处理代码,抖动效果未加
                 isErrorTextShowing.set(true);
             }
         }else{
@@ -115,26 +106,6 @@ public class LoginActivityViewModel extends BaseViewModel{
         }
 
     });
-
-    /**
-     *  查询数据库，判断账号密码是否正确
-     * @param account
-     * @param pwd
-     * @return
-     */
-    private boolean checkAccount(String account ,String pwd){
-        AccountEntityDao dao = MyApplication.daoSession.getAccountEntityDao();
-        mList = (ArrayList<AccountEntity>) dao.loadAll();
-        for(AccountEntity entity :mList){
-            if(entity.getAccount().equals(account) &&
-                    entity.getPwd().equals(pwd)){
-                //获取到用户的数据库id
-                Config.USER_ID = entity.getUser_id();
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public void destroy() {

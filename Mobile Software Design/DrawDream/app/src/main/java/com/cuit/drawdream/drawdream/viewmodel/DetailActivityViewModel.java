@@ -22,6 +22,7 @@ import com.cuit.drawdream.drawdream.bean.ordinary.DetialArticleEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ItemIndexEntity;
 import com.cuit.drawdream.drawdream.bean.ordinary.ReviewEntity;
 import com.cuit.drawdream.drawdream.bean.response.ResponseReview;
+import com.cuit.drawdream.drawdream.utils.tool.Config;
 import com.cuit.drawdream.drawdream.view.CommentActivity;
 import com.google.gson.Gson;
 import com.kelin.mvvmlight.command.ReplyCommand;
@@ -116,13 +117,13 @@ public class DetailActivityViewModel extends BaseViewModel {
         mListForRecommend = new ArrayList<>();
         mListForReview = new ArrayList<>();
 
-        mListForRecommend.add(new DetialArticleEntity("「狐妖小红娘」日语版追加CAST公布，国语版「南国篇」确定制作","阅读3201"));
-        mListForRecommend.add(new DetialArticleEntity("魔幻史诗《幻镜诺德琳》上线，很久没有看到这么良心的国产动画了","阅读1011"));
+        mListForRecommend.add(new DetialArticleEntity("「狐妖小红娘」日语版追加CAST公布","阅读3201"));
+        mListForRecommend.add(new DetialArticleEntity("魔幻史诗《幻镜诺德琳》上线","阅读1011"));
         mListForRecommend.add(new DetialArticleEntity("《夏目的友人帐》破译了！","阅读1924"));
-        mListForRecommend.add(new DetialArticleEntity("非遗+动漫有多惊艳？狐妖和灵剑山有新画风了！","阅读5313"));
+        mListForRecommend.add(new DetialArticleEntity("狐妖和灵剑山有新画风了！","阅读5313"));
 
         //加载评论数据
-//        loadReViewDataFromNet();
+        loadReViewDataFromNet();
 
 
         //加载推荐
@@ -158,17 +159,28 @@ public class DetailActivityViewModel extends BaseViewModel {
                     @Override
                     public void onError(Throwable e) {
                         Log.d(TAG,"*******************" + e.getMessage());
+                        Toast.makeText(mContext,"服务器错误",Toast.LENGTH_SHORT)
+                                .show();
                     }
 
                     @Override
                     public void onNext(Response<ResponseReview> responseReviewResponse) {
                         if(responseReviewResponse.body().getSuccess().equals("true")){
                             loadDataForReview(responseReviewResponse.body().getData());
+                            mCommentNum.set("评论（" + mListForReview.size() + ")");
+                            isNoDataShowing.set(false);
                             //加载评论
                             for(ReviewEntity entity: mListForReview){
                                 ItemDetailViewModel viewModel = new ItemDetailViewModel(mContext,ITEM_REVIEW,null,entity);
                                 viewModelsForReview.add(viewModel);
                             }
+                        }else if(responseReviewResponse.body().getMsg().equals(Config.CODE_NONE)){
+                            //没有评论
+                            isNoDataShowing.set(true);
+                            mCommentNum.set("评论");
+                        }else{
+                            Toast.makeText(mContext,"评论获取失败",Toast.LENGTH_SHORT)
+                                    .show();
                         }
                     }
                 });
@@ -178,8 +190,6 @@ public class DetailActivityViewModel extends BaseViewModel {
      * 评论
      */
     public final ReplyCommand comment = new ReplyCommand(()->{
-//            Toast.makeText(mContext,"回复成功",Toast.LENGTH_SHORT)
-//                    .show();
         MyApplication.getInstance().setHandler(mHeadler);
         Bundle bundle = new Bundle();
         bundle.putString("DetailId",DETAIL_ID_NOW);
@@ -194,50 +204,16 @@ public class DetailActivityViewModel extends BaseViewModel {
     private void loadDataForReview(ArrayList<ReviewEntity> list){
         for(ReviewEntity entity : list){
             ReviewEntity entityReView = new ReviewEntity();
-//            entityReView.setContent(entity.getCore_content());
-//            entityReView.setTime(entity.getCore_date());
-//            UserInfoEntity entityUserInfo = new UserInfoEntity();
-//            entityUserInfo = userInfoDao.load(entity.getCore_acco_id());
-//            entityReView.setName(entityUserInfo.getUser_name());
-//            entityReView.setHeader("file:///android_asset/head1.jpg");
             entityReView = entity;
             entityReView.setHeader("file:///android_asset/head1.jpg");
             mListForReview.add(entityReView);
         }
-        if(0 == mListForReview.size()){
-            isNoDataShowing.set(true);
-            mCommentNum.set("评论");
-        }else {
-            mCommentNum.set("评论（" + mListForReview.size() + ")");
-            isNoDataShowing.set(false);
-        }
-    }
-//    /**
-//     * 加载评论
-//     */
-//    private void loadDataForReview() {
-//        ReplayEntityDao replyDao = MyApplication.daoSession.getReplayEntityDao();
-//        UserInfoEntityDao userInfoDao = MyApplication.daoSession.getUserInfoEntityDao();
-//        for(ReplayEntity entity : (ArrayList<ReplayEntity>) replyDao.loadAll()){
-//            if(entity.getCore_nede_id().equals(mEntity.getId())){
-//                ReviewEntity entityReView = new ReviewEntity();
-//                entityReView.setContent(entity.getCore_content());
-//                entityReView.setTime(entity.getCore_date());
-//                UserInfoEntity entityUserInfo = new UserInfoEntity();
-//                entityUserInfo = userInfoDao.load(entity.getCore_acco_id());
-//                entityReView.setName(entityUserInfo.getUser_name());
-//                entityReView.setHeader("file:///android_asset/head1.jpg");
-//                mListForReview.add(entityReView);
-//            }
-//        }
 //        if(0 == mListForReview.size()){
-//            isNoDataShowing.set(true);
-//            mCommentNum.set("评论");
+//
 //        }else {
-//            mCommentNum.set("评论（" + mListForReview.size() + ")");
-//            isNoDataShowing.set(false);
+//
 //        }
-//    }
+    }
 
     /**
      * 重新加载数据

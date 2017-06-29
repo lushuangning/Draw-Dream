@@ -107,6 +107,9 @@ public class CommentActivityViewModel extends BaseViewModel {
                             msg.obj = entity;
                             mHandler.sendMessage(msg);
                             CommentActivity.instance.finish();
+                        }else{
+                            Toast.makeText(mContext,"评论失败！",Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });

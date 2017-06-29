@@ -31,7 +31,7 @@ public interface SwNetworkService {
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseClassifyResult>> index (@Body RequestBody route);
 
-    @POST("detail/")
+    @POST("comment/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseReview>> review (@Body RequestBody route);
 
@@ -39,7 +39,7 @@ public interface SwNetworkService {
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseInfo>> userInfo (@Body RequestBody route);
 
-    @POST("user_info/")
+    @POST("deliver_comment/")
     @Headers("Content-type:application/json;charset=UTF-8")
     Observable<Response<ResponseInfo>> comment (@Body RequestBody route);
 }
