@@ -20,7 +20,7 @@ public class ResultActivity extends BaseActivity {
         mBinding =  DataBindingUtil.setContentView(this, R.layout.activity_result);
         Intent intent = getIntent();
         String classify = (String)intent.getExtras().getSerializable("classify");
-
+        mBinding.prTitleResult.setTitle("结果");
         ResultActivityViewModel viewModel = new ResultActivityViewModel(this, classify);
         mBinding.setResultActivityViewModel(viewModel);
     }

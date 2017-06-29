@@ -13,33 +13,38 @@
         <import type="android.view.View"/>
     </data>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/rl_title_result"
+        <com.cuit.drawdream.drawdream.view.custom.PreviousView
+            android:id="@+id/pr_title_result"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/md_margin_appbar"
-            android:background="@color/color_main">
+            android:layout_height="56dp"/>
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_title_result"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/md_margin_appbar"-->
+            <!--android:background="@color/color_main">-->
 
-            <TextView
-            android:id="@+id/tv_title_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/result_title"
-            android:textColor="#fff"
-            android:textSize="@dimen/md_text_size_appbar"
-            android:layout_centerInParent="true"
-            android:background="@null"/>
+            <!--<TextView-->
+            <!--android:id="@+id/tv_title_result"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/result_title"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="@dimen/md_text_size_appbar"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="@null"/>-->
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
         <LinearLayout
             android:id="@+id/ly_order_result"
             android:layout_width="match_parent"
             android:layout_height="@dimen/md_margin_order_width"
-            android:layout_below="@+id/rl_title_result"
+            android:layout_below="@+id/pr_title_result"
             android:orientation="horizontal">
 
             <TextView

@@ -82,6 +82,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
         super(context);
         mContext = context;
 //        initUI();
+        LOADMORE_TIMES = 1;
         loadDataFromNet(REFRESH);
         setManager();
     }
@@ -212,7 +213,7 @@ public class IndexFragmentViewModel extends BaseViewModel {
      */
     public final ReplyCommand onRefreshCommand = new ReplyCommand(()->{
         isRefreshing.set(true);
-        LOADMORE_TIMES = 0;
+        LOADMORE_TIMES = 1;
         //重新载入数据
         loadDataFromNet(REFRESH);
     });

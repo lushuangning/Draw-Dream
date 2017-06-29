@@ -9,11 +9,12 @@ public class Config {
 
 //    http://192.168.191.1:8000/server/
 
-    //iphone地址
+//    iphone地址
 //    public static String PATH_ROOT="http://172.20.10.14:8000/server/";
-
+//    模拟器连入的地址
 //    public static String PATH_ROOT="http://10.0.3.2:8000/server/";
-        public static String PATH_ROOT="http://192.168.191.1:8000/server/";
+//    连入wifi时候的服务器ip
+    public static String PATH_ROOT="http://192.168.191.1:8000/server/";
 
     /**
      * 是否进入后台
