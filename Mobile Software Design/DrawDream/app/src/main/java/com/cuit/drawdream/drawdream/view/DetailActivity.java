@@ -63,6 +63,10 @@ public class DetailActivity extends BaseActivity {
         DetailActivityViewModel viewModel = new DetailActivityViewModel(this,mEntity);
         mBinding.setDetailActivityViewModel(viewModel);
         mBinding.pvDetail.setTitle("详情");
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+//            mBinding.wvContentDetail.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+//        }
+//        mBinding.wvContentDetail.getSettings().setBlockNetworkImage(false);
         mBinding.wvContentDetail.loadUrl(mEntity.getContent());
     }
 
