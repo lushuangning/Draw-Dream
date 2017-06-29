@@ -36,8 +36,9 @@ public class MyInfoMgtActivityViewModel extends BaseViewModel {
     private static final String TAG = "MyInfoMgtVM";
 
     private Context mContext;
+
     private Subscription mSubscription;
-//    private UserInfoEntity mEntity;
+
 
     public final ObservableBoolean isMan = new ObservableBoolean(true);
     public final ObservableBoolean isWoman = new ObservableBoolean(false);
@@ -50,18 +51,21 @@ public class MyInfoMgtActivityViewModel extends BaseViewModel {
     public MyInfoMgtActivityViewModel(Context context) {
         super(context);
         mContext = context;
-//        mEntity = entity;
         if(null != Config.USER_INFO.getUserId()){
             initUI();
         }
     }
 
+    /**
+     * 给界面设置数据
+     */
     private void initUI() {
         //phone作为账号使用
         mAccount.set(Config.USER_INFO.getUserPhone());
         mName.set(Config.USER_INFO.getUserName());
         mSign.set(Config.USER_INFO.getUserSign());
         mEmail.set(Config.USER_INFO.getUserEmail());
+        //女性为true，男性为false
         if(Config.USER_INFO.getUserGender().equals("true")){
             isMan.set(false);
             isWoman.set(true);
@@ -72,13 +76,6 @@ public class MyInfoMgtActivityViewModel extends BaseViewModel {
      * 提交修改的信息
      */
     public final ReplyCommand handIn = new ReplyCommand(()->{
-//        if(isMan.get()){
-//            Log.d("The gander is ","man");
-//        }else if(isWoman.get()){
-//            Log.d("The gander is ","woman");
-//        }else {
-//            Log.d("The gander is ","null");
-//        }
         if(!mName.get().toString().isEmpty() &&
                 !mEmail.get().toString().isEmpty()){
 
@@ -95,9 +92,6 @@ public class MyInfoMgtActivityViewModel extends BaseViewModel {
                     .show();
 
         }
-        //TODO 这里提交时将config.NAME设置好
-////        Config.USER_NAME = mName.get();
-//        updataToNet();
 
     });
 

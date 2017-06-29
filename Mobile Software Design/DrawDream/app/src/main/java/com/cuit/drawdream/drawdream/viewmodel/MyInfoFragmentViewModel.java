@@ -23,16 +23,13 @@ import java.util.List;
 public class MyInfoFragmentViewModel extends BaseViewModel {
 
     private Context mContext;
-//    private UserInfoEntity mEntity;
 
     public final ObservableField<String > mName = new ObservableField<>();
 
     public MyInfoFragmentViewModel(Context context) {
         super(context);
         mContext = context;
-//        mEntity = entity;
         mName.set(Config.USER_INFO.getUserName());
-//        Config.USER_NAME = entity.getUser_name();
     }
 
     /**
@@ -41,11 +38,6 @@ public class MyInfoFragmentViewModel extends BaseViewModel {
     public final ReplyCommand toMyMsg = new ReplyCommand(()->{
         //跳转到msg
         Intent intent = new Intent(mContext, MyInfoMgtActivity.class);
-//        Bundle bundle = new Bundle();
-//        ArrayList<UserInfoEntity> list = new ArrayList<UserInfoEntity>();
-//        list.add(mEntity);
-//        bundle.putSerializable("userInfo",list);
-//        intent.putExtras(bundle);
         mContext.startActivity(intent);
     });
 

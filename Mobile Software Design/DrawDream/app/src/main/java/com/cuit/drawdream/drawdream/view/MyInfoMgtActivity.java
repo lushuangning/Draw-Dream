@@ -27,8 +27,6 @@ public class MyInfoMgtActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ArrayList<UserInfoEntity> list = (ArrayList<UserInfoEntity>) getIntent().getExtras().get("userInfo");
-//        UserInfoEntity entity = list.get(0);
         instance = this;
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_my_info_mgt);
         MyInfoMgtActivityViewModel viewModel = new MyInfoMgtActivityViewModel(this);
