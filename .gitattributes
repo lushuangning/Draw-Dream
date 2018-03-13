@@ -1,0 +1,3 @@
+*.java linguist-language=Android
+*.xml linguist-language=Android
+*.rp linguist-language=Android
